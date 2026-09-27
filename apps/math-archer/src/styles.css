@@ -364,7 +364,6 @@ legend {
 }
 
 .start-button,
-.pause-card button,
 .play-again-button {
   width: 100%;
   min-height: 53px;
@@ -894,36 +893,6 @@ legend {
   pointer-events: none;
   animation: arrow-flight 480ms cubic-bezier(.3,.7,.4,1) forwards;
 }
-
-.pause-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  background: rgb(9 35 30 / 82%);
-  backdrop-filter: blur(6px);
-}
-
-.pause-overlay[hidden] { display: none; }
-
-.pause-card {
-  width: min(410px, 100%);
-  padding: 30px;
-  color: var(--gg-ink);
-  background: var(--gg-cream);
-  border: 4px solid #b98750;
-  border-radius: 24px;
-  box-shadow: var(--gg-shadow-dark);
-  text-align: center;
-}
-
-.pause-icon { font-size: 45px; }
-.pause-card h2 { margin: 8px 0; color: var(--gg-forest-deep); font-family: var(--gg-font-display); }
-.pause-card p { color: var(--gg-muted); }
-.pause-card button { margin-top: 10px; }
-.pause-card #quit-button { color: var(--gg-forest); background: transparent; border: 2px solid #a9bd94; box-shadow: none; }
 
 .result-screen {
   display: grid;

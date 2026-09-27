@@ -1,10 +1,17 @@
 import "@gezy-games/design-system/base.css";
+import "@gezy-games/game-shell/styles.css";
 import {
   createGameSession,
   selectQuestions,
   shuffleQuestionChoices,
   type GameSession,
 } from "@gezy-games/game-core";
+import {
+  createDialogController,
+  renderGameHud,
+  renderSessionDialogs,
+  type DialogController,
+} from "@gezy-games/game-shell";
 import {
   loadPlayerProgress,
   migrateLegacyMathArcherProgress,
@@ -71,6 +78,11 @@ let timerId: number | null = null;
 let deadline = 0;
 let remainingMs = 0;
 let sessionFinished = false;
+let transitionTimerId: number | null = null;
+let pendingTransition: (() => void) | null = null;
+let pauseDialogController: DialogController | null = null;
+let helpDialogController: DialogController | null = null;
+let resumeAfterHelp = false;
 let progress: PlayerProgress = { ...migrateLegacyMathArcherProgress() };
 
 function saveProgress(): void {
@@ -84,6 +96,8 @@ const levelFromXp = (xp: number): number => Math.floor(xp / 1_000) + 1;
 
 function renderSetup(): void {
   clearTimer();
+  clearTransition();
+  destroyShellDialogs();
   const availableTopics = topicsForPhase(selectedPhase);
   if (selectedTopic && !availableTopics.includes(selectedTopic)) selectedTopic = null;
   const availableQuestionCount = selectQuestions(mathQuestions, {
@@ -210,6 +224,8 @@ function renderSetup(): void {
 }
 
 function startGame(): void {
+  clearTransition();
+  destroyShellDialogs();
   const nicknameInput = document.querySelector<HTMLInputElement>("#player-nickname");
   if (nicknameInput) playerNickname = nicknameInput.value.trim().slice(0, 30);
   const topicSelect = document.querySelector<HTMLSelectElement>("#topic-select");
@@ -239,21 +255,17 @@ function startGame(): void {
 
   app.innerHTML = `
     <main class="play-screen">
-      <header class="play-hud">
-        <a class="hud-brand" href="${portalUrl}" aria-label="Keluar ke Gezy Games">★ <span>Gezy Games</span></a>
-        <div class="hud-stats">
-          <div><span>⭐</span><p><small>XP</small><strong id="hud-xp">${progress.xp.toLocaleString("id-ID")}</strong></p></div>
-          <div><span>💰</span><p><small>KOIN</small><strong id="hud-coins">${progress.coins.toLocaleString("id-ID")}</strong></p></div>
-          <div><span>🔥</span><p><small>STREAK</small><strong id="hud-streak">0</strong></p></div>
-          <div class="hearts-stat"><span>❤️</span><p><small>NYAWA</small><strong id="hud-hearts">${selectedMode === "challenge" ? "3" : "∞"}</strong></p></div>
-          <div><span>🏆</span><p><small>LEVEL</small><strong id="hud-level">${levelFromXp(progress.xp)}</strong></p></div>
-        </div>
-        <div class="hud-actions">
-          <button id="sound-button" type="button" aria-label="${soundEnabled ? "Matikan" : "Nyalakan"} suara">${soundEnabled ? "🔊" : "🔇"}</button>
-          <button id="fullscreen-button" type="button" aria-label="Layar penuh">⛶</button>
-          <button id="pause-button" type="button" aria-label="Jeda permainan">Ⅱ</button>
-        </div>
-      </header>
+      ${renderGameHud({
+        brandHref: portalUrl,
+        soundEnabled,
+        stats: [
+          { id: "hud-xp", icon: "⭐", label: "XP", value: progress.xp.toLocaleString("id-ID") },
+          { id: "hud-coins", icon: "💰", label: "Koin", value: progress.coins.toLocaleString("id-ID") },
+          { id: "hud-streak", icon: "🔥", label: "Streak", value: "0" },
+          { id: "hud-hearts", icon: "❤️", label: "Nyawa", value: selectedMode === "challenge" ? "3" : "∞", className: "hearts-stat" },
+          { id: "hud-level", icon: "🏆", label: "Level", value: String(levelFromXp(progress.xp)) },
+        ],
+      })}
 
       <section class="arena" aria-label="Arena memanah">
         <div class="sky-decoration" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -288,23 +300,29 @@ function startGame(): void {
         <div class="feedback" id="feedback" role="status" aria-live="assertive"></div>
       </section>
 
-      <div class="pause-overlay" id="pause-overlay" hidden>
-        <div class="pause-card" role="dialog" aria-modal="true" aria-labelledby="pause-title">
-          <span class="pause-icon">🌿</span>
-          <h2 id="pause-title">Permainan dijeda</h2>
-          <p>Tarik napas dulu. Waktu berhenti selama layar ini terbuka.</p>
-          <button id="resume-button" type="button">Lanjutkan</button>
-          <button id="quit-button" type="button">Kembali ke pengaturan</button>
-        </div>
-      </div>
+      ${renderSessionDialogs({
+        gameName: "Pemanah Matematika",
+        helpItems: [
+          { icon: "👆", title: "Sentuh atau klik", detail: "Pilih target dengan jawaban yang tepat." },
+          { icon: "🏹", title: "Bidik dengan tenang", detail: "Jawaban salah boleh dicoba kembali." },
+        ],
+      })}
     </main>
   `;
 
+  const pauseOverlay = document.querySelector<HTMLElement>("#pause-overlay");
+  const helpOverlay = document.querySelector<HTMLElement>("#help-overlay");
+  if (!pauseOverlay || !helpOverlay) throw new Error("Dialog shell permainan tidak ditemukan.");
+  pauseDialogController = createDialogController(pauseOverlay, { onEscape: resumeGame });
+  helpDialogController = createDialogController(helpOverlay, { onEscape: closeHelp });
+
   document.querySelector<HTMLButtonElement>("#sound-button")?.addEventListener("click", toggleSound);
+  document.querySelector<HTMLButtonElement>("#help-button")?.addEventListener("click", openHelp);
   document.querySelector<HTMLButtonElement>("#fullscreen-button")?.addEventListener("click", toggleFullscreen);
-  document.querySelector<HTMLButtonElement>("#pause-button")?.addEventListener("click", pauseGame);
+  document.querySelector<HTMLButtonElement>("#pause-button")?.addEventListener("click", () => pauseGame());
   document.querySelector<HTMLButtonElement>("#resume-button")?.addEventListener("click", resumeGame);
   document.querySelector<HTMLButtonElement>("#quit-button")?.addEventListener("click", quitSession);
+  document.querySelector<HTMLButtonElement>("#close-help-button")?.addEventListener("click", closeHelp);
   renderQuestion();
 }
 
@@ -363,11 +381,10 @@ async function shootAt(target: HTMLButtonElement): Promise<void> {
     button.disabled = true;
   });
   document.querySelector(".archer-character")?.classList.add("is-shooting");
-  playTone(260, 0.08, "triangle");
-  await animateArrow(target);
-
   const answer = target.dataset.answer ?? "";
   const attempt = session.submitAnswer(answer);
+  playTone(260, 0.08, "triangle");
+  await animateArrow(target);
 
   if (attempt.correct) {
     target.classList.add("is-hit");
@@ -378,7 +395,7 @@ async function shootAt(target: HTMLButtonElement): Promise<void> {
     updateHud();
     showFeedback(`🎯 Tepat! +100 XP · Streak ${streak}`, "success");
     playTone(620, 0.12, "sine");
-    window.setTimeout(() => {
+    scheduleTransition(() => {
       activeQuestionId = "";
       renderQuestion();
     }, 1_050);
@@ -394,13 +411,13 @@ async function shootAt(target: HTMLButtonElement): Promise<void> {
   const sameQuestion = session.getSnapshot().currentQuestion?.id === question.id;
   if (selectedMode === "challenge" && hearts === 0) {
     showFeedback("Perisaimu habis. Kita lihat apa yang sudah dikuasai.", "error");
-    window.setTimeout(() => finishGame(false), 1_200);
+    scheduleTransition(() => finishGame(false), 1_200);
     return;
   }
 
   if (sameQuestion) {
     showFeedback("Belum tepat. Coba sasaran lain!", "error");
-    window.setTimeout(() => {
+    scheduleTransition(() => {
       inputLocked = false;
       document.querySelector(".archer-character")?.classList.remove("is-shooting");
       document.querySelectorAll<HTMLButtonElement>(".target-button:not(.is-miss)").forEach((button) => {
@@ -410,7 +427,7 @@ async function shootAt(target: HTMLButtonElement): Promise<void> {
     }, 900);
   } else {
     showFeedback(`Kita coba konsep ini lagi nanti. ${question.explanation}`, "error");
-    window.setTimeout(() => {
+    scheduleTransition(() => {
       activeQuestionId = "";
       renderQuestion();
     }, 1_700);
@@ -491,12 +508,12 @@ function handleTimeout(): void {
   showFeedback("Waktu habis. Tarik napas, lalu coba lagi.", "error");
 
   if (selectedMode === "challenge" && hearts === 0) {
-    window.setTimeout(() => finishGame(false), 1_200);
+    scheduleTransition(() => finishGame(false), 1_200);
     return;
   }
 
   const sameQuestion = session.getSnapshot().currentQuestion?.id === question.id;
-  window.setTimeout(() => {
+  scheduleTransition(() => {
     if (sameQuestion) {
       inputLocked = false;
       startQuestionTimer();
@@ -507,23 +524,44 @@ function handleTimeout(): void {
   }, 1_100);
 }
 
-function pauseGame(): void {
+function pauseGame(force = false): void {
   if (!session || session.getSnapshot().completed) return;
+  if (inputLocked && !force) return;
   session.pause();
   if (deadline) remainingMs = Math.max(0, deadline - Date.now());
   clearTimer();
-  const overlay = document.querySelector<HTMLElement>("#pause-overlay");
-  if (overlay) overlay.hidden = false;
-  document.querySelector<HTMLButtonElement>("#resume-button")?.focus();
+  pauseDialogController?.open(document.querySelector<HTMLButtonElement>("#pause-button"));
 }
 
 function resumeGame(): void {
   if (!session) return;
+  pauseDialogController?.close();
   session.resume();
-  const overlay = document.querySelector<HTMLElement>("#pause-overlay");
-  if (overlay) overlay.hidden = true;
-  startQuestionTimer(true);
-  document.querySelector<HTMLButtonElement>("#pause-button")?.focus();
+  const deferredTransition = pendingTransition;
+  pendingTransition = null;
+  if (deferredTransition) deferredTransition();
+  else if (!inputLocked) startQuestionTimer(true);
+}
+
+function openHelp(): void {
+  if (!session || inputLocked || helpDialogController?.isOpen()) return;
+  resumeAfterHelp = !session.getSnapshot().paused;
+  if (resumeAfterHelp) {
+    session.pause();
+    if (deadline) remainingMs = Math.max(0, deadline - Date.now());
+    clearTimer();
+  }
+  helpDialogController?.open(document.querySelector<HTMLButtonElement>("#help-button"));
+}
+
+function closeHelp(): void {
+  if (!helpDialogController?.isOpen()) return;
+  helpDialogController.close();
+  if (resumeAfterHelp && session) {
+    session.resume();
+    startQuestionTimer(true);
+  }
+  resumeAfterHelp = false;
 }
 
 function quitSession(): void {
@@ -536,6 +574,7 @@ function quitSession(): void {
     return;
   }
   clearTimer();
+  clearTransition();
   session.finish();
   session = null;
   renderSetup();
@@ -545,12 +584,14 @@ function finishGame(victory: boolean): void {
   if (!session || sessionFinished) return;
   sessionFinished = true;
   clearTimer();
+  clearTransition();
   session.finish();
   progress.sessions += 1;
   saveProgress();
   const result = session.getResult();
   const report = createSessionReport(result, currentQuestions);
   const playerGreeting = playerNickname ? `, ${escapeHtml(playerNickname)}` : "";
+  destroyShellDialogs();
 
   app.innerHTML = `
     <main class="result-screen">
@@ -612,6 +653,33 @@ function clearTimer(): void {
   timerId = null;
 }
 
+function scheduleTransition(callback: () => void, delayMs: number): void {
+  if (transitionTimerId !== null) window.clearTimeout(transitionTimerId);
+  pendingTransition = null;
+  transitionTimerId = window.setTimeout(() => {
+    transitionTimerId = null;
+    if (session?.getSnapshot().paused) {
+      pendingTransition = callback;
+      return;
+    }
+    callback();
+  }, delayMs);
+}
+
+function clearTransition(): void {
+  if (transitionTimerId !== null) window.clearTimeout(transitionTimerId);
+  transitionTimerId = null;
+  pendingTransition = null;
+}
+
+function destroyShellDialogs(): void {
+  pauseDialogController?.destroy();
+  helpDialogController?.destroy();
+  pauseDialogController = null;
+  helpDialogController = null;
+  resumeAfterHelp = false;
+}
+
 function toggleSound(): void {
   soundEnabled = !soundEnabled;
   savePlayerPreferences({ audioEnabled: soundEnabled });
@@ -662,22 +730,35 @@ function escapeHtml(value: string): string {
 }
 
 document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && document.querySelector(".play-screen")) {
-    const overlay = document.querySelector<HTMLElement>("#pause-overlay");
-    if (overlay?.hidden) pauseGame();
-    else resumeGame();
+  if (!document.querySelector(".play-screen")) return;
+
+  if (event.key.toLowerCase() === "p") {
+    if (helpDialogController?.isOpen()) return;
+    if (pauseDialogController?.isOpen()) resumeGame();
+    else pauseGame();
+    return;
+  }
+
+  if (event.key === "Escape") {
+    if (!pauseDialogController?.isOpen() && !helpDialogController?.isOpen()) pauseGame();
     return;
   }
 
   const targetIndex = Number(event.key) - 1;
-  if (targetIndex >= 0 && targetIndex <= 3 && !inputLocked) {
+  if (
+    targetIndex >= 0
+    && targetIndex <= 2
+    && !inputLocked
+    && !session?.getSnapshot().paused
+    && !helpDialogController?.isOpen()
+  ) {
     document.querySelectorAll<HTMLButtonElement>(".target-button")[targetIndex]?.click();
   }
 });
 
 document.addEventListener("visibilitychange", () => {
   if (document.hidden && document.querySelector(".play-screen") && session && !session.getSnapshot().paused) {
-    pauseGame();
+    pauseGame(true);
   }
 });
 

@@ -201,16 +201,18 @@ Simpan preferensi dan progres dasar di browser dengan skema yang dapat berkemban
 **Prioritas:** P0  
 **Depends on:** GZG-006, GZG-010, GZG-011
 
+**Status:** Selesai — 27 September 2026
+
 Sediakan UI umum untuk konfigurasi sesi, HUD, pause, bantuan, audio, layar penuh, dan keluar ke portal.
 
 **Acceptance criteria**
 
-- [ ] Game dapat memilih fase, topik, nama pemain, dan mode waktu.
-- [ ] HUD dapat menampilkan progres, skor game, status target, dan timer bila aktif.
-- [ ] Menu pause menghentikan waktu dan input permainan.
-- [ ] Perpindahan tab menjeda sesi dengan aman.
-- [ ] Bantuan kontrol tersedia untuk sentuh dan keyboard.
-- [ ] Keluar dari sesi meminta konfirmasi hanya ketika progres sesi akan hilang.
+- [x] Game dapat memilih fase, topik, nama pemain, dan mode waktu.
+- [x] HUD dapat menampilkan progres, skor game, status target, dan timer bila aktif.
+- [x] Menu pause menghentikan waktu dan input permainan.
+- [x] Perpindahan tab menjeda sesi dengan aman.
+- [x] Bantuan kontrol tersedia untuk sentuh dan keyboard.
+- [x] Keluar dari sesi meminta konfirmasi hanya ketika progres sesi akan hilang.
 
 ### GZG-013 — Buat komponen laporan hasil bersama
 
