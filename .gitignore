@@ -1,0 +1,20 @@
+# Dependencies and build output
+node_modules/
+dist/
+.vite/
+coverage/
+
+# Local environment
+.env
+.env.*
+!.env.example
+*.local
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+
+# Reference project: never include it in the Gezy Games repository
+/lompatkodok/
+

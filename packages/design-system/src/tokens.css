@@ -1,0 +1,34 @@
+:root {
+  color-scheme: light;
+
+  --gg-forest: #214b3b;
+  --gg-forest-deep: #17352f;
+  --gg-grass: #70a453;
+  --gg-moss: #355f3e;
+  --gg-gold: #f4c662;
+  --gg-cream: #fff6d9;
+  --gg-wood: #9a5535;
+  --gg-rock: #a95d39;
+  --gg-sky: #83c4d1;
+  --gg-ink: #27332d;
+
+  --gg-surface: #fffdf4;
+  --gg-surface-soft: #f3f0dc;
+  --gg-line: #d9dfc8;
+  --gg-muted: #667269;
+  --gg-white: #ffffff;
+
+  --gg-font-display: "Trebuchet MS", "Avenir Next", "Segoe UI", sans-serif;
+  --gg-font-body: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --gg-radius-sm: 10px;
+  --gg-radius-md: 18px;
+  --gg-radius-lg: 28px;
+  --gg-shadow-sm: 0 5px 0 rgb(23 53 47 / 12%);
+  --gg-shadow-md: 0 18px 45px rgb(16 45 42 / 14%);
+  --gg-shadow-dark: 0 20px 60px rgb(7 28 26 / 34%);
+
+  --gg-content: 1180px;
+  --gg-focus: #ffe17d;
+}
+

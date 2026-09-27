@@ -1,0 +1,27 @@
+{
+  "name": "gezy-games",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -n portal,archer -c green,yellow \"npm run dev:portal\" \"npm run dev:archer\"",
+    "dev:portal": "npm --workspace @gezy-games/portal run dev -- --port 5173",
+    "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
+    "build": "npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build",
+    "preview": "vite preview --outDir dist",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "node --import tsx --test 'packages/**/*.test.ts'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "concurrently": "^9.2.1",
+    "puppeteer-core": "^25.12.0",
+    "typescript": "^5.9.3",
+    "tsx": "^4.20.6",
+    "vite": "^8.0.0"
+  }
+}
