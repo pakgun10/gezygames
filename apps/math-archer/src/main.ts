@@ -303,6 +303,9 @@ function startGame(): void {
             <span id="question-progress"></span>
           </div>
           <h1 id="question-prompt"></h1>
+          <button class="listen-question-button" id="listen-question-button" type="button">
+            🔊 Dengarkan soal
+          </button>
           <div class="timer-row" id="timer-row" hidden>
             <div class="timer-track"><span id="timer-fill"></span></div>
             <strong id="timer-text"></strong>
@@ -366,6 +369,9 @@ function startGame(): void {
   document
     .querySelector<HTMLButtonElement>("#close-help-button")
     ?.addEventListener("click", closeHelp);
+  document
+    .querySelector<HTMLButtonElement>("#listen-question-button")
+    ?.addEventListener("click", readCurrentQuestion);
   renderQuestion();
 }
 
@@ -744,12 +750,51 @@ function destroyShellDialogs(): void {
 
 function toggleSound(): void {
   soundEnabled = !soundEnabled;
+  if (!soundEnabled) window.speechSynthesis?.cancel();
   savePlayerPreferences({ audioEnabled: soundEnabled });
   const button = document.querySelector<HTMLButtonElement>("#sound-button");
   if (button) {
     button.textContent = soundEnabled ? "🔊" : "🔇";
     button.setAttribute("aria-label", soundEnabled ? "Matikan suara" : "Nyalakan suara");
   }
+}
+
+function readCurrentQuestion(): void {
+  const question = session?.getSnapshot().currentQuestion;
+  if (!question) return;
+  if (!soundEnabled) {
+    showFeedback("Nyalakan suara di pojok atas untuk mendengarkan soal.", "error");
+    return;
+  }
+
+  try {
+    const utterance = new SpeechSynthesisUtterance(questionToSpeech(question.prompt));
+    utterance.lang = "id-ID";
+    utterance.rate = 0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  } catch {
+    showFeedback(
+      "Perangkat ini belum dapat membacakan soal. Kamu tetap bisa membaca di papan.",
+      "error",
+    );
+  }
+}
+
+function questionToSpeech(prompt: string): string {
+  return prompt
+    .replace(/[\p{Extended_Pictographic}]/gu, "")
+    .replaceAll("cm²", "sentimeter persegi")
+    .replaceAll("×", " kali ")
+    .replaceAll("÷", " dibagi ")
+    .replaceAll("−", " dikurangi ")
+    .replaceAll("+", " ditambah ")
+    .replaceAll("=", " sama dengan ")
+    .replaceAll("%", " persen ")
+    .replaceAll("∈", " anggota dari ")
+    .replaceAll("∪", " gabungan ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function playTone(frequency: number, duration: number, type: OscillatorType): void {

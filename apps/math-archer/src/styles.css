@@ -628,6 +628,23 @@ legend {
   white-space: pre-line;
 }
 
+.listen-question-button {
+  min-height: 38px;
+  margin-top: 12px;
+  padding: 7px 12px;
+  color: var(--gg-forest-deep);
+  background: rgb(255 255 255 / 64%);
+  border: 2px solid #b99869;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.listen-question-button:hover {
+  background: var(--gg-cream);
+}
+
 .timer-row {
   display: flex;
   align-items: center;
