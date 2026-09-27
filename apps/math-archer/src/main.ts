@@ -302,7 +302,7 @@ function startGame(): void {
             <span id="topic-label"></span>
             <span id="question-progress"></span>
           </div>
-          <h1 id="question-prompt"></h1>
+          <h1 id="question-prompt" tabindex="-1" aria-live="polite" aria-atomic="true"></h1>
           <button class="listen-question-button" id="listen-question-button" type="button">
             🔊 Dengarkan soal
           </button>
@@ -399,6 +399,7 @@ function renderQuestion(): void {
     `Sasaran ${Math.min(snapshot.progress + 1, snapshot.target)} dari ${snapshot.target}`,
   );
   setText("#question-prompt", question.prompt);
+  document.querySelector<HTMLElement>("#question-prompt")?.focus({ preventScroll: true });
   setText("#mastery-text", `${snapshot.progress}/${snapshot.target}`);
   const masteryFill = document.querySelector<HTMLElement>("#mastery-fill");
   if (masteryFill) masteryFill.style.width = `${(snapshot.progress / snapshot.target) * 100}%`;
@@ -658,11 +659,11 @@ function finishGame(victory: boolean): void {
   destroyShellDialogs();
 
   app.innerHTML = `
-    <main class="result-screen">
+    <main class="result-screen" aria-labelledby="result-title">
       <div class="result-card">
         <p class="result-eyebrow">${victory ? "MISI SELESAI" : "LATIHAN SELESAI"}</p>
         <div class="result-icon">${victory ? "🏆" : "🌱"}</div>
-        <h1>${victory ? `Panahmu tepat sasaran${playerGreeting}!` : `Kemampuanmu terus tumbuh${playerGreeting}!`}</h1>
+        <h1 id="result-title" tabindex="-1">${victory ? `Panahmu tepat sasaran${playerGreeting}!` : `Kemampuanmu terus tumbuh${playerGreeting}!`}</h1>
         <p>${victory ? "Semua konsep pada sesi ini sudah kamu kuasai." : "Coba lagi dengan mode Santai untuk menguasai sasaran yang tersisa."}</p>
 
         ${renderSessionReport(report)}
@@ -692,6 +693,7 @@ function finishGame(victory: boolean): void {
   document
     .querySelector<HTMLButtonElement>(".change-material-button")
     ?.addEventListener("click", renderSetup);
+  document.querySelector<HTMLElement>("#result-title")?.focus({ preventScroll: true });
 }
 
 function updateHud(): void {
