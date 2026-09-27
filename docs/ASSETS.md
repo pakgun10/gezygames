@@ -13,6 +13,7 @@ Math Archer MVP tidak mengirim berkas gambar, musik, atau efek suara pihak ketig
 | Ikon status                      | Emoji sistem dan teks                    | Perangkat pemain                                           | Tidak dibundel                         | Informasi penting juga diberikan melalui label teks dan warna.                                  |
 | Efek tarik, kena, dan meleset    | Web Audio API oscillator                 | Kode Gezy Games                                            | Gezy Tech                              | Tidak ada file audio eksternal; semua cue dapat dimatikan.                                      |
 | Pembacaan soal                   | Web Speech API browser                   | Perangkat pemain                                           | Layanan sistem browser                 | Bersifat tambahan. Soal tetap terbaca di papan dan game tetap berjalan bila API tidak tersedia. |
+| Favicon portal                   | SVG vektor berbasis palet Gezy Games     | Kode Gezy Games                                            | Gezy Tech                              | Dipakai portal dan subpath game melalui root build.                                             |
 
 ## Aturan aset berikutnya
 
