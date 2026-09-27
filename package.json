@@ -8,10 +8,11 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n portal,archer -c green,yellow \"npm run dev:portal\" \"npm run dev:archer\"",
+    "dev": "concurrently -n portal,archer,adventure -c green,yellow,cyan \"npm run dev:portal\" \"npm run dev:archer\" \"npm run dev:adventure\"",
     "dev:portal": "npm --workspace @gezy-games/portal run dev -- --port 5173",
     "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
-    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm run check:bundle",
+    "dev:adventure": "npm --workspace @gezy-games/math-adventure run dev -- --port 5175",
+    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm --workspace @gezy-games/math-adventure run build && npm run check:bundle",
     "preview": "vite preview --outDir dist",
     "lint": "eslint .",
     "format": "prettier --write .",

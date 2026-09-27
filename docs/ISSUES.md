@@ -406,15 +406,17 @@ Amati siswa dan pendamping menggunakan produk untuk menguji pemahaman, kenyamana
 **Prioritas:** P2  
 **Depends on:** GZG-021
 
+**Status:** Selesai — 28 September 2026
+
 Bangun game unggulan kedua yang memakai fondasi bersama serta menambahkan peta, karakter, misi, dan tipe interaksi baru.
 
 **Acceptance criteria**
 
-- [ ] Brief menjelaskan peta pulau, progres wilayah, misi, ekonomi, boss, kondisi akhir, dan kebutuhan aset.
-- [ ] Game memakai bank soal, mesin sesi, progres, shell, dan laporan bersama.
-- [ ] Tidak ada salinan paket inti di aplikasi game.
-- [ ] Perbedaan kebutuhan yang sah menghasilkan perbaikan API bersama yang terdokumentasi.
-- [ ] Vertical slice Pantai–Hutan–boss awal dapat dimainkan dari portal.
+- [x] Brief menjelaskan peta pulau, progres wilayah, misi, ekonomi, boss, kondisi akhir, dan kebutuhan aset.
+- [x] Game memakai bank soal, mesin sesi, progres, shell, dan laporan bersama.
+- [x] Tidak ada salinan paket inti di aplikasi game.
+- [x] Perbedaan kebutuhan yang sah menghasilkan perbaikan API bersama yang terdokumentasi.
+- [x] Vertical slice Pantai–Hutan–boss awal dapat dimainkan dari portal.
 
 ## Milestone M5 — Interactive learning
 

@@ -17,6 +17,13 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Preview build lokal dengan `prefers-reduced-motion: reduce`: durasi animasi dipangkas dan dialog pause tetap dapat digunakan.
 - Refresh URL langsung `/math-archer/` membuka setup game yang benar.
 
+## Math Adventure vertical slice
+
+- Kartu Math Adventure muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, setup membuka peta Pantai–Hutan–boss tanpa overflow.
+- Misi Pantai memakai Himpunan, membuka Hutan setelah selesai, lalu Hutan memakai Relasi dan membuka boss.
+- Boss menggabungkan Himpunan dan Relasi; seluruh rangkaian dapat diselesaikan sampai laporan hasil, dengan progres peta `3/3` dan tanpa error JavaScript.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:

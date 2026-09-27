@@ -21,6 +21,20 @@ const budgets = [
     raw: 35,
     gzip: 10,
   },
+  {
+    label: "Math Adventure JavaScript",
+    directory: "dist/math-adventure/assets",
+    extension: ".js",
+    raw: 85,
+    gzip: 22,
+  },
+  {
+    label: "Math Adventure CSS",
+    directory: "dist/math-adventure/assets",
+    extension: ".css",
+    raw: 45,
+    gzip: 12,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

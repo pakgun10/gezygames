@@ -17,11 +17,13 @@ const mathArcherLevel = Math.floor(mathArcherProgress.xp / 1_000) + 1;
 const gameCard = (game: GameCatalogItem): string => {
   const phaseLabels = game.phases.map((phase) => `<span>Fase ${phase}</span>`).join("");
   const isDeveloping = game.status === "in-development";
-  const isPlayable = game.slug === "math-archer";
+  const isPlayable = game.slug === "math-archer" || game.slug === "math-adventure";
   const statusLabel = isDeveloping ? "Sedang dibuat" : "Segera hadir";
-  const playableHref = import.meta.env.DEV ? "http://localhost:5174/math-archer/" : "/math-archer/";
+  const playableHref = import.meta.env.DEV
+    ? `http://localhost:${game.slug === "math-adventure" ? "5175" : "5174"}/${game.slug}/`
+    : `/${game.slug}/`;
   const action = isPlayable
-    ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">Mainkan versi awal <span aria-hidden="true">→</span></a>`
+    ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">${game.slug === "math-adventure" ? "Mainkan vertical slice" : "Mainkan versi awal"} <span aria-hidden="true">→</span></a>`
     : `<button class="card-action" type="button" disabled aria-label="${game.name}: ${statusLabel}">${statusLabel}</button>`;
   const savedProgress =
     isPlayable && mathArcherProgress.sessions > 0

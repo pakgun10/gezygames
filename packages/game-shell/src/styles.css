@@ -1,3 +1,84 @@
+.play-hud {
+  position: relative;
+  z-index: 30;
+  min-height: 68px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 7px clamp(10px, 2vw, 28px);
+  color: var(--gg-cream);
+  background: linear-gradient(90deg, #17352f, #28563f 52%, #17352f);
+  border-bottom: 3px solid #102d2a;
+  box-shadow: 0 5px 15px rgb(7 28 26 / 32%);
+}
+
+.hud-brand {
+  color: var(--gg-gold);
+  font-family: var(--gg-font-display);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.hud-brand span {
+  color: var(--gg-cream);
+}
+
+.hud-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 30px);
+}
+
+.hud-stats > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hud-stats > div > span {
+  font-size: 19px;
+}
+
+.hud-stats p {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.hud-stats small,
+.hud-stats strong {
+  display: block;
+}
+
+.hud-stats small {
+  color: #aeca9f;
+  font-size: 7px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.hud-stats strong {
+  margin-top: 3px;
+  font-size: 14px;
+}
+
+.hud-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.hud-actions button {
+  width: 42px;
+  height: 42px;
+  color: var(--gg-cream);
+  background: #102e2a;
+  border: 1px solid rgb(255 246 217 / 26%);
+  border-radius: 11px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
 .game-shell-overlay {
   position: fixed;
   inset: 0;

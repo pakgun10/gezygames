@@ -1,6 +1,6 @@
 # Game Design Brief — Math Adventure: Jelajah Pulau Matematika
 
-**Status:** Konsep unggulan  
+**Status:** Vertical slice tersedia
 **Rilis sasaran:** Vertical slice setelah Math Archer  
 **Fase awal:** D, lalu dapat dibuatkan dunia dan materi untuk fase lain
 

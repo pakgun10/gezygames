@@ -24,6 +24,7 @@ Konfigurasi Nginx produksi berada di `deploy/nginx/gezygames.conf`. File `gezyga
 ```bash
 curl -fsSI https://games.gezytech.web.id/
 curl -fsSI https://games.gezytech.web.id/math-archer/
+curl -fsSI https://games.gezytech.web.id/math-adventure/
 sudo systemctl is-active nginx
 ```
 

@@ -7,6 +7,8 @@ Brief game aktif:
 - [Math Archer / Pemanah Matematika](./docs/games/math-archer.md)
 - [Math Adventure: Jelajah Pulau Matematika](./docs/games/math-adventure.md)
 
+Math Adventure sudah memiliki vertical slice Fase D pada `/math-adventure/` dengan alur Pantai → Hutan → boss.
+
 Dokumen fondasi:
 
 - [Arsitektur](./docs/ARCHITECTURE.md)
