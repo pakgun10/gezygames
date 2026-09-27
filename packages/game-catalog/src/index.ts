@@ -37,7 +37,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Kumpulkan energi dari jawaban benar untuk menjelajah planet baru.",
     icon: "🚀",
     theme: "space",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "science-lab",

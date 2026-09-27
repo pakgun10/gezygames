@@ -8,10 +8,12 @@ Brief game aktif:
 - [Math Adventure: Jelajah Pulau Matematika](./docs/games/math-adventure.md)
 - [Science Lab: Laboratorium Sains](./docs/games/science-lab.md)
 - [Math Castle](./docs/games/math-castle.md)
+- [Math Space Mission](./docs/games/math-space-mission.md)
 
 Math Adventure sudah memiliki vertical slice Fase D pada `/math-adventure/` dengan alur Pantai → Hutan → boss.
 Science Lab sudah memiliki prototipe eksperimen penyaringan air pada `/science-lab/`.
 Math Castle sudah memiliki vertical slice pertahanan kastil pada `/math-castle/`.
+Math Space Mission sudah memiliki vertical slice perjalanan tiga planet pada `/math-space-mission/`.
 
 Dokumen fondasi:
 

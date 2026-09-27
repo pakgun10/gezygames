@@ -63,6 +63,20 @@ const budgets = [
     raw: 45,
     gzip: 12,
   },
+  {
+    label: "Math Space Mission JavaScript",
+    directory: "dist/math-space-mission/assets",
+    extension: ".js",
+    raw: 85,
+    gzip: 22,
+  },
+  {
+    label: "Math Space Mission CSS",
+    directory: "dist/math-space-mission/assets",
+    extension: ".css",
+    raw: 45,
+    gzip: 12,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

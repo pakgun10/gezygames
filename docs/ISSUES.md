@@ -463,14 +463,16 @@ Bangun game pertahanan kastil yang menjadikan jawaban matematika sebagai aksi me
 **Prioritas:** P1  
 **Depends on:** GZG-024
 
+**Status:** Selesai — 28 September 2026
+
 Gunakan jawaban benar untuk mengisi bahan bakar pesawat dan membuka planet berikutnya.
 
 **Acceptance criteria**
 
-- [ ] Peta planet dan urutan misi dapat dipahami tanpa instruksi tambahan.
-- [ ] Jawaban benar menggerakkan pesawat; jawaban salah memberi pembahasan singkat.
-- [ ] Progres planet, XP, dan laporan tersimpan melalui fondasi bersama.
-- [ ] Vertical slice memiliki minimal tiga planet dan satu kondisi selesai.
+- [x] Peta planet dan urutan misi dapat dipahami tanpa instruksi tambahan.
+- [x] Jawaban benar menggerakkan pesawat; jawaban salah memberi pembahasan singkat.
+- [x] Progres planet, XP, dan laporan tersimpan melalui fondasi bersama.
+- [x] Vertical slice memiliki minimal tiga planet dan satu kondisi selesai.
 
 ### GZG-026 — Bangun vertical slice Quiz Runner
 
