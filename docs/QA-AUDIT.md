@@ -8,7 +8,7 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 
 ## Cakupan yang lulus
 
-- Pipeline VPS: lint, format check, typecheck, 18 unit test, validasi 50 soal untuk lima fase, build portal/game, dan `nginx -t`.
+- Pipeline VPS: lint, format check, typecheck, 19 unit test, validasi 50 soal untuk lima fase, build portal/game, dan `nginx -t`.
 - Portal produksi: judul, footer legal, tautan Math Archer, dan pembukaan game.
 - Math Archer produksi pada viewport 390×844 dengan touch: setup, mulai sesi, tiga sasaran, tombol audio, pesan saat audio dimatikan, layout dua kolom, tanpa overflow, dan tanpa error JavaScript.
 - Math Archer produksi pada desktop 1280×800: setup menuju arena dan kontrol HUD.
@@ -45,7 +45,7 @@ Ukuran output Vite dari build produksi:
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
-Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip.
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip.
 
 ## Pekerjaan lanjutan
 
