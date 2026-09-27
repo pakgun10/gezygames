@@ -73,11 +73,11 @@ Instruksi memiliki tombol audio, sasaran memakai ilustrasi besar, sesi 5–7 tar
 
 ## Kontrol
 
-| Perangkat | Kontrol |
-|---|---|
-| Sentuh/IFP | Sentuh langsung target |
-| Mouse | Klik target |
-| Keyboard | Tombol 1–4 memilih target; Space/Enter melanjutkan |
+| Perangkat     | Kontrol                                                     |
+| ------------- | ----------------------------------------------------------- |
+| Sentuh/IFP    | Sentuh langsung target                                      |
+| Mouse         | Klik target                                                 |
+| Keyboard      | Tombol 1–4 memilih target; Space/Enter melanjutkan          |
 | Aksesibilitas | Target berupa tombol asli dengan label soal dan isi jawaban |
 
 ## First playable
@@ -99,4 +99,3 @@ Instruksi memiliki tombol audio, sasaran memakai ilustrasi besar, sesi 5–7 tar
 - Soal salah muncul kembali dan tidak memberi XP mastery dua kali.
 - UI tetap terbaca pada 390 × 844 dan 1920 × 1080.
 - Audio, fullscreen, pause, dan reduced motion berfungsi.
-

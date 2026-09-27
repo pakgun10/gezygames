@@ -24,8 +24,18 @@ const createStorage = (): ProgressStorage => {
 describe("progress storage", () => {
   it("menyimpan progres beberapa game dengan skema versi satu", () => {
     const storage = createStorage();
-    assert.equal(saveGameProgress("math-archer", { xp: 500, coins: 54, bestStreak: 5, sessions: 1 }, storage), true);
-    assert.equal(saveGameProgress("math-adventure", { xp: 100, coins: 10, bestStreak: 1, sessions: 1 }, storage), true);
+    assert.equal(
+      saveGameProgress("math-archer", { xp: 500, coins: 54, bestStreak: 5, sessions: 1 }, storage),
+      true,
+    );
+    assert.equal(
+      saveGameProgress(
+        "math-adventure",
+        { xp: 100, coins: 10, bestStreak: 1, sessions: 1 },
+        storage,
+      ),
+      true,
+    );
 
     const progress = loadPlayerProgress(storage);
     assert.equal(progress.version, 1);
@@ -46,7 +56,10 @@ describe("progress storage", () => {
 
   it("memigrasikan progres Math Archer lama dan dapat menghapus semua data", () => {
     const storage = createStorage();
-    storage.setItem(legacyMathArcherStorageKey, JSON.stringify({ xp: 300, coins: 20, bestStreak: 3, sessions: 2 }));
+    storage.setItem(
+      legacyMathArcherStorageKey,
+      JSON.stringify({ xp: 300, coins: 20, bestStreak: 3, sessions: 2 }),
+    );
 
     assert.equal(migrateLegacyMathArcherProgress(storage).xp, 300);
     assert.equal(loadGameProgress("math-archer", storage).sessions, 2);
@@ -60,12 +73,18 @@ describe("progress storage", () => {
 
   it("menyimpan nama, audio, fase, dan topik terakhir", () => {
     const storage = createStorage();
-    assert.equal(savePlayerPreferences({
-      nickname: "  Raka  ",
-      audioEnabled: false,
-      lastPhase: "D",
-      lastTopic: "SPLDV",
-    }, storage), true);
+    assert.equal(
+      savePlayerPreferences(
+        {
+          nickname: "  Raka  ",
+          audioEnabled: false,
+          lastPhase: "D",
+          lastTopic: "SPLDV",
+        },
+        storage,
+      ),
+      true,
+    );
 
     assert.deepEqual(loadPlayerProgress(storage).preferences, {
       nickname: "Raka",

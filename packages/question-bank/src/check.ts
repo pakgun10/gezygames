@@ -2,10 +2,7 @@ import { mathQuestions } from "./math";
 import { phases } from "./types";
 import { validateMathMvpCoverage, validateQuestionBank } from "./validate";
 
-const issues = [
-  ...validateQuestionBank(mathQuestions),
-  ...validateMathMvpCoverage(mathQuestions),
-];
+const issues = [...validateQuestionBank(mathQuestions), ...validateMathMvpCoverage(mathQuestions)];
 
 for (const question of mathQuestions) {
   if (question.status !== "published") {
@@ -18,7 +15,9 @@ for (const question of mathQuestions) {
 }
 
 for (const phase of phases) {
-  if (!mathQuestions.some((question) => question.phase === phase && question.status === "published")) {
+  if (
+    !mathQuestions.some((question) => question.phase === phase && question.status === "published")
+  ) {
     issues.push({
       questionId: `phase-${phase}`,
       field: "status",

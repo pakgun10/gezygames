@@ -34,13 +34,15 @@ describe("session report", () => {
       },
       { correct: 1, incorrect: 1, unanswered: 1, accuracy: 0.5, elapsedMs: 12_000, points: 100 },
     );
-    assert.deepEqual(report.topics, [{
-      topic: "Penjumlahan",
-      correct: 1,
-      incorrect: 0,
-      unanswered: 1,
-      total: 2,
-    }]);
+    assert.deepEqual(report.topics, [
+      {
+        topic: "Penjumlahan",
+        correct: 1,
+        incorrect: 0,
+        unanswered: 1,
+        total: 2,
+      },
+    ]);
     assert.equal(formatDuration(report.elapsedMs), "0:12");
   });
 
@@ -48,7 +50,12 @@ describe("session report", () => {
     const source = mathQuestions[0];
     if (!source) throw new Error("Fixture soal tidak tersedia.");
     const question: Question = { ...source, prompt: "<script>bahaya()</script>" };
-    const session = createGameSession([question], {}, () => 0.99, () => 0);
+    const session = createGameSession(
+      [question],
+      {},
+      () => 0.99,
+      () => 0,
+    );
     session.submitAnswer(question.correctAnswer);
 
     const markup = renderSessionReport(createSessionReport(session.getResult(), [question]));

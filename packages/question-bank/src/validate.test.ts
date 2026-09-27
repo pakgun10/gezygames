@@ -17,8 +17,14 @@ describe("validateQuestionBank", () => {
 
     const issues = validateQuestionBank([mathQuestions[0], invalid]);
 
-    assert.equal(issues.some((issue) => issue.message === "ID soal harus unik."), true);
-    assert.equal(issues.some((issue) => issue.field === "correctAnswer"), true);
+    assert.equal(
+      issues.some((issue) => issue.message === "ID soal harus unik."),
+      true,
+    );
+    assert.equal(
+      issues.some((issue) => issue.field === "correctAnswer"),
+      true,
+    );
   });
 
   it("memastikan cakupan minimal dua soal pada setiap topik MVP", () => {

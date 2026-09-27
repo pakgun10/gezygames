@@ -7,6 +7,12 @@ Brief game aktif:
 - [Math Archer / Pemanah Matematika](./docs/games/math-archer.md)
 - [Math Adventure: Jelajah Pulau Matematika](./docs/games/math-adventure.md)
 
+Dokumen fondasi:
+
+- [Arsitektur](./docs/ARCHITECTURE.md)
+- [Panduan konten Matematika MVP](./docs/CONTENT-GUIDE.md)
+- [Deployment VPS](./deploy/README.md)
+
 ## Menjalankan portal
 
 ```bash
@@ -17,7 +23,10 @@ npm run dev
 Perintah pemeriksaan utama:
 
 ```bash
+npm run lint
+npm run format:check
 npm run typecheck
+npm test
 npm run build
 ```
 

@@ -35,23 +35,28 @@ export interface DialogControllerOptions {
   readonly onEscape?: () => void;
 }
 
-const escapeHtml = (value: string): string => value
-  .replaceAll("&", "&amp;")
-  .replaceAll("<", "&lt;")
-  .replaceAll(">", "&gt;")
-  .replaceAll('"', "&quot;")
-  .replaceAll("'", "&#039;");
+const escapeHtml = (value: string): string =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
 export const renderGameHud = (options: GameHudOptions): string => `
   <header class="play-hud game-shell-hud">
     <a class="hud-brand" href="${escapeHtml(options.brandHref)}" aria-label="Keluar ke ${escapeHtml(options.brandLabel ?? "Gezy Games")}">★ <span>${escapeHtml(options.brandLabel ?? "Gezy Games")}</span></a>
     <div class="hud-stats">
-      ${options.stats.map((stat) => `
+      ${options.stats
+        .map(
+          (stat) => `
         <div${stat.className ? ` class="${escapeHtml(stat.className)}"` : ""}>
           <span aria-hidden="true">${escapeHtml(stat.icon)}</span>
           <p><small>${escapeHtml(stat.label)}</small><strong id="${escapeHtml(stat.id)}">${escapeHtml(stat.value)}</strong></p>
         </div>
-      `).join("")}
+      `,
+        )
+        .join("")}
     </div>
     <div class="hud-actions">
       <button id="sound-button" type="button" aria-label="${options.soundEnabled ? "Matikan" : "Nyalakan"} suara">${options.soundEnabled ? "🔊" : "🔇"}</button>
@@ -79,12 +84,16 @@ export const renderSessionDialogs = (options: SessionDialogOptions): string => `
       <h2 id="help-title">Cara bermain ${escapeHtml(options.gameName)}</h2>
       <p>Pilih cara yang paling nyaman. Semua kontrol memberi hasil yang sama.</p>
       <ul class="game-shell-help-list">
-        ${options.helpItems.map((item) => `
+        ${options.helpItems
+          .map(
+            (item) => `
           <li>
             <span aria-hidden="true">${escapeHtml(item.icon)}</span>
             <div><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(item.detail)}</small></div>
           </li>
-        `).join("")}
+        `,
+          )
+          .join("")}
         <li>
           <span aria-hidden="true"><kbd>1–3</kbd></span>
           <div><strong>Tombol angka</strong><small>Pilih sasaran pertama, kedua, atau ketiga.</small></div>
@@ -114,9 +123,10 @@ export const createDialogController = (
 ): DialogController => {
   let returnFocus: HTMLElement | null = null;
 
-  const focusableElements = (): HTMLElement[] => [
-    ...overlay.querySelectorAll<HTMLElement>(focusableSelector),
-  ].filter((element) => !element.hidden);
+  const focusableElements = (): HTMLElement[] =>
+    [...overlay.querySelectorAll<HTMLElement>(focusableSelector)].filter(
+      (element) => !element.hidden,
+    );
 
   const handleKeydown = (event: KeyboardEvent): void => {
     if (overlay.hidden) return;
@@ -147,10 +157,13 @@ export const createDialogController = (
   overlay.addEventListener("keydown", handleKeydown);
 
   return {
-    open(trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null): void {
+    open(
+      trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null,
+    ): void {
       returnFocus = trigger;
       overlay.hidden = false;
-      const initialFocus = overlay.querySelector<HTMLElement>("[autofocus]") ?? focusableElements()[0];
+      const initialFocus =
+        overlay.querySelector<HTMLElement>("[autofocus]") ?? focusableElements()[0];
       initialFocus?.focus();
     },
 

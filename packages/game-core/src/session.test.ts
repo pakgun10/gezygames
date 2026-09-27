@@ -29,11 +29,7 @@ describe("createGameSession", () => {
 
   it("menampilkan kembali soal salah sebagai remedial setelah jeda", () => {
     const questions = mathQuestions.slice(0, 4);
-    const session = createGameSession(
-      questions,
-      { questionCount: 4, remedialGap: 2 },
-      fixedRandom,
-    );
+    const session = createGameSession(questions, { questionCount: 4, remedialGap: 2 }, fixedRandom);
     const first = session.getSnapshot().currentQuestion;
     if (!first) throw new Error("Soal pertama tidak ditemukan.");
 
@@ -81,7 +77,9 @@ describe("createGameSession", () => {
     const selected = selectQuestions(mathQuestions, { phase: "A", topic: "Penjumlahan" });
 
     assert.equal(selected.length, 2);
-    assert.ok(selected.every((question) => question.phase === "A" && question.topic === "Penjumlahan"));
+    assert.ok(
+      selected.every((question) => question.phase === "A" && question.topic === "Penjumlahan"),
+    );
   });
 
   it("mengacak pilihan tanpa mengubah soal atau kunci jawaban", () => {

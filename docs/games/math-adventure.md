@@ -23,14 +23,14 @@ Pemain merasa sedang menjelajahi sebuah pulau, menolong penduduk, membuka jalan,
            🏝️ PANTAI
 ```
 
-| Wilayah | Materi | Fantasi dan aktivitas |
-|---|---|---|
-| Pantai | Himpunan | Mengelompokkan benda temuan dan membaca peta pertama |
-| Hutan | Relasi | Menghubungkan makhluk, jejak, atau tanaman dengan pasangannya |
-| Danau | Fungsi | Mengaktifkan jembatan air melalui mesin input-output |
-| Desa | Persamaan | Membantu transaksi, pembangunan, dan teka-teki penduduk |
-| Gunung | SPLDV | Menentukan dua nilai untuk membuka jalur pendakian |
-| Kastil | Tantangan akhir | Menggabungkan seluruh keterampilan dalam boss battle bertahap |
+| Wilayah | Materi          | Fantasi dan aktivitas                                         |
+| ------- | --------------- | ------------------------------------------------------------- |
+| Pantai  | Himpunan        | Mengelompokkan benda temuan dan membaca peta pertama          |
+| Hutan   | Relasi          | Menghubungkan makhluk, jejak, atau tanaman dengan pasangannya |
+| Danau   | Fungsi          | Mengaktifkan jembatan air melalui mesin input-output          |
+| Desa    | Persamaan       | Membantu transaksi, pembangunan, dan teka-teki penduduk       |
+| Gunung  | SPLDV           | Menentukan dua nilai untuk membuka jalur pendakian            |
+| Kastil  | Tantangan akhir | Menggabungkan seluruh keterampilan dalam boss battle bertahap |
 
 Urutan awal adalah Pantai → Hutan. Setelah itu peta mulai bercabang. Danau dan Desa memberi kunci berbeda; keduanya diperlukan untuk membuka Gunung atau Kastil. Peta harus terasa bebas dijelajahi, tetapi dependensi materi tetap terjaga.
 
@@ -90,15 +90,15 @@ Pemain memilih atau menyusun panah `1 → 2`, `2 → 4`, dan `3 → 6`.
 
 ## Sistem progres dan ekonomi
 
-| Sistem | Fungsi | Aturan utama |
-|---|---|---|
-| XP | Membuka level akun lokal dan wilayah | Diberikan terutama untuk penguasaan, bukan kecepatan |
-| Koin | Membeli kosmetik karakter dan dekorasi kemah | Tidak membeli jawaban atau peluang acak |
-| Level | Menunjukkan perjalanan pemain | Tidak mengunci materi yang harus dipelajari |
-| Streak | Memberi feedback atas rangkaian jawaban benar | Bonus dibatasi agar satu kesalahan tidak terasa menghukum |
-| Hati/energi | Menunjukkan ketahanan pada misi tertentu | Mode santai dan Fase Fondasi tidak memakai kegagalan keras |
-| Achievement | Menghargai eksplorasi dan kebiasaan baik | Termasuk mencoba kembali dan menguasai konsep sulit |
-| Item | Kosmetik atau alat cerita | Item belajar memberi petunjuk, bukan melewati materi |
+| Sistem      | Fungsi                                        | Aturan utama                                               |
+| ----------- | --------------------------------------------- | ---------------------------------------------------------- |
+| XP          | Membuka level akun lokal dan wilayah          | Diberikan terutama untuk penguasaan, bukan kecepatan       |
+| Koin        | Membeli kosmetik karakter dan dekorasi kemah  | Tidak membeli jawaban atau peluang acak                    |
+| Level       | Menunjukkan perjalanan pemain                 | Tidak mengunci materi yang harus dipelajari                |
+| Streak      | Memberi feedback atas rangkaian jawaban benar | Bonus dibatasi agar satu kesalahan tidak terasa menghukum  |
+| Hati/energi | Menunjukkan ketahanan pada misi tertentu      | Mode santai dan Fase Fondasi tidak memakai kegagalan keras |
+| Achievement | Menghargai eksplorasi dan kebiasaan baik      | Termasuk mencoba kembali dan menguasai konsep sulit        |
+| Item        | Kosmetik atau alat cerita                     | Item belajar memberi petunjuk, bukan melewati materi       |
 
 Progres belajar dan progres hiburan disimpan terpisah. XP tinggi tidak boleh menutupi konsep yang belum dikuasai.
 
@@ -117,13 +117,13 @@ Jawaban benar mengurangi pertahanan boss. Kesalahan memberi petunjuk visual dan 
 
 Pulau dan narasi dapat berubah sesuai fase; materi Fase D tidak diturunkan begitu saja kepada anak yang lebih muda.
 
-| Fase | Contoh wilayah/materi |
-|---|---|
+| Fase    | Contoh wilayah/materi                                            |
+| ------- | ---------------------------------------------------------------- |
 | Fondasi | Mengelompokkan warna/bentuk, banyak-sedikit, pola visual, posisi |
-| A | Bilangan, penjumlahan, pengurangan, bentuk, pengukuran awal |
-| B | Perkalian, pembagian, pecahan awal, keliling, data sederhana |
-| C | Pecahan, desimal, persen, luas-volume, perbandingan awal |
-| D | Himpunan, relasi, fungsi, persamaan, SPLDV, geometri dan data |
+| A       | Bilangan, penjumlahan, pengurangan, bentuk, pengukuran awal      |
+| B       | Perkalian, pembagian, pecahan awal, keliling, data sederhana     |
+| C       | Pecahan, desimal, persen, luas-volume, perbandingan awal         |
+| D       | Himpunan, relasi, fungsi, persamaan, SPLDV, geometri dan data    |
 
 Fase Fondasi memakai instruksi audio/visual, sesi lebih singkat, tanpa timer wajib, dan tanpa kondisi kalah yang keras.
 
@@ -172,4 +172,3 @@ Vertical slice cukup untuk membuktikan rasa petualangan tanpa membangun seluruh 
 - Setidaknya dua interaksi utama bukan pilihan teks biasa.
 - Pemain dapat kembali ke peta dan mengetahui misi berikutnya.
 - Guru dapat menjalankan seluruh vertical slice dari IFP tanpa mouse.
-

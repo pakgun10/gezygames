@@ -64,15 +64,17 @@ Definisikan first playable Math Archer serta arah game unggulan Math Adventure, 
 **Prioritas:** P0  
 **Depends on:** GZG-003
 
+**Status:** Selesai — 27 September 2026
+
 Buktikan struktur monorepo, build multi-aplikasi, paket bersama, serta batas antara DOM UI dan scene game.
 
 **Acceptance criteria**
 
-- [ ] Opsi workspace dan struktur direktori dibandingkan singkat.
-- [ ] Portal dan satu aplikasi contoh dapat memakai paket TypeScript bersama.
-- [ ] Strategi routing/deployment untuk `/` dan `/math-castle/` terbukti.
-- [ ] Keputusan penggunaan Phaser beserta batasnya dicatat.
-- [ ] Hasil spike ditulis dalam `docs/ARCHITECTURE.md`.
+- [x] Opsi workspace dan struktur direktori dibandingkan singkat.
+- [x] Portal dan satu aplikasi contoh dapat memakai paket TypeScript bersama.
+- [x] Strategi routing/deployment untuk `/` dan pola subpath game dibuktikan dengan `/math-archer/`; pola `/math-castle/` didokumentasikan.
+- [x] Keputusan penggunaan Phaser beserta batasnya dicatat.
+- [x] Hasil spike ditulis dalam `docs/ARCHITECTURE.md`.
 
 ## Milestone M1 — Platform foundation
 
@@ -82,15 +84,17 @@ Buktikan struktur monorepo, build multi-aplikasi, paket bersama, serta batas ant
 **Prioritas:** P0  
 **Depends on:** GZG-004
 
+**Status:** Selesai — 27 September 2026
+
 Siapkan workspace utama untuk portal, game, dan paket bersama.
 
 **Acceptance criteria**
 
-- [ ] Portal dan Math Archer memiliki aplikasi terpisah dalam satu workspace.
-- [ ] Perintah development dan production build terdokumentasi.
-- [ ] Type checking, lint, dan formatting dapat dijalankan dari root.
-- [ ] Build bersih berhasil dari checkout baru.
-- [ ] Repositori Lompat Kodok tidak disalin ke source tree produk.
+- [x] Portal dan Math Archer memiliki aplikasi terpisah dalam satu workspace.
+- [x] Perintah development dan production build terdokumentasi.
+- [x] Type checking, lint, dan formatting dapat dijalankan dari root.
+- [x] Build bersih berhasil dari checkout baru.
+- [x] Repositori Lompat Kodok tidak disalin ke source tree produk.
 
 ### GZG-006 — Implementasikan design tokens dan komponen UI dasar
 
@@ -346,14 +350,16 @@ Ukur dan perbaiki waktu muat, ukuran aset, serta perilaku aplikasi pada kondisi 
 **Prioritas:** P0  
 **Depends on:** GZG-007, GZG-015, GZG-019
 
+**Status:** Sebagian selesai — 27 September 2026
+
 Publikasikan build statis melalui Nginx pada domain produksi dengan proses deployment yang dapat diulang.
 
 **Acceptance criteria**
 
-- [ ] Build produksi menghasilkan portal dan game pada path yang benar.
-- [ ] Konfigurasi Nginx menangani root, subpath game, caching aset, dan fallback yang diperlukan.
-- [ ] HTTPS aktif untuk `games.gezytech.web.id`.
-- [ ] Prosedur deployment dan rollback terdokumentasi.
+- [x] Build produksi menghasilkan portal dan game pada path yang benar.
+- [x] Konfigurasi Nginx menangani root, subpath game, caching aset, dan fallback yang diperlukan.
+- [x] HTTPS aktif untuk `games.gezytech.web.id`.
+- [x] Prosedur deployment dan rollback terdokumentasi.
 - [ ] Smoke test produksi mencakup portal, mulai game, selesai, laporan, dan refresh URL langsung.
 
 ### GZG-021 — Lakukan sesi uji pengguna MVP

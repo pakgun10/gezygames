@@ -101,20 +101,20 @@ Termasuk dalam MVP:
 
 ## 8. Katalog game yang direncanakan
 
-| Game | Materi utama | Mekanik inti | Nilai pembeda |
-|---|---|---|---|
-| Math Castle | Matematika | Jawaban memperkuat benteng atau menyerang pengepung | Strategi pertahanan ringan |
-| Math Space Mission | Matematika | Jawaban memberi energi untuk berpindah planet | Perjalanan dan koleksi planet |
-| Science Lab | IPAS | Mengatur bahan/alat lalu memprediksi dan mengamati hasil | Eksperimen sebab-akibat |
-| Quiz Runner | Semua mapel | Berlari dan memilih jalur jawaban | Kelancaran materi yang sudah dipelajari |
-| Math Archer | Matematika | Membidik target jawaban lalu melihat panah mengenai sasaran | First playable yang cepat, taktil, dan cocok untuk IFP |
-| Puzzle Quest | Matematika | Menyusun dan memanipulasi objek | Geometri, pola, pecahan, dan logika |
-| Treasure Hunt | Semua mapel | Menjelajah peta, mencari petunjuk, dan membuka lokasi | Eksplorasi bercabang |
-| Math Battle | Matematika | Jawaban menjadi serangan atau pertahanan | Pertarungan bergiliran |
-| Train of Knowledge | Semua mapel | Jawaban membuka stasiun dan gerbong | Progres linear yang mudah dipahami |
-| Math Adventure | Matematika | Menjelajah pulau dan menuntaskan misi wilayah | Game unggulan dengan peta, karakter, ekonomi, dan boss battle |
-| Build the City | Matematika | Menghasilkan dan membelanjakan sumber daya | Matematika terapan dan perencanaan |
-| Dragon Quiz | Semua mapel | Menghadapi naga melalui beberapa fase | Pertarungan bos dan pencapaian |
+| Game               | Materi utama | Mekanik inti                                                | Nilai pembeda                                                 |
+| ------------------ | ------------ | ----------------------------------------------------------- | ------------------------------------------------------------- |
+| Math Castle        | Matematika   | Jawaban memperkuat benteng atau menyerang pengepung         | Strategi pertahanan ringan                                    |
+| Math Space Mission | Matematika   | Jawaban memberi energi untuk berpindah planet               | Perjalanan dan koleksi planet                                 |
+| Science Lab        | IPAS         | Mengatur bahan/alat lalu memprediksi dan mengamati hasil    | Eksperimen sebab-akibat                                       |
+| Quiz Runner        | Semua mapel  | Berlari dan memilih jalur jawaban                           | Kelancaran materi yang sudah dipelajari                       |
+| Math Archer        | Matematika   | Membidik target jawaban lalu melihat panah mengenai sasaran | First playable yang cepat, taktil, dan cocok untuk IFP        |
+| Puzzle Quest       | Matematika   | Menyusun dan memanipulasi objek                             | Geometri, pola, pecahan, dan logika                           |
+| Treasure Hunt      | Semua mapel  | Menjelajah peta, mencari petunjuk, dan membuka lokasi       | Eksplorasi bercabang                                          |
+| Math Battle        | Matematika   | Jawaban menjadi serangan atau pertahanan                    | Pertarungan bergiliran                                        |
+| Train of Knowledge | Semua mapel  | Jawaban membuka stasiun dan gerbong                         | Progres linear yang mudah dipahami                            |
+| Math Adventure     | Matematika   | Menjelajah pulau dan menuntaskan misi wilayah               | Game unggulan dengan peta, karakter, ekonomi, dan boss battle |
+| Build the City     | Matematika   | Menghasilkan dan membelanjakan sumber daya                  | Matematika terapan dan perencanaan                            |
+| Dragon Quiz        | Semua mapel  | Menghadapi naga melalui beberapa fase                       | Pertarungan bos dan pencapaian                                |
 
 Nama Indonesia dapat menjadi nama utama di UI, sedangkan nama Inggris dipakai sebagai nama seri atau slug bila diperlukan.
 
@@ -223,18 +223,18 @@ Gezy Games memakai suasana alam yang hangat, ramah, dan penuh kedalaman seperti 
 
 ### 12.1 Palet merek utama
 
-| Peran | Warna | Kode |
-|---|---|---|
-| Hijau hutan utama | Forest | `#214B3B` |
-| Latar gelap | Forest Deep | `#17352F` |
-| Hijau rumput | Grass | `#70A453` |
-| Hijau lumut | Moss | `#355F3E` |
-| Aksen hadiah/tindakan | Gold | `#F4C662` |
-| Permukaan terang/teks | Cream | `#FFF6D9` |
-| Kayu | Wood | `#9A5535` |
-| Batu/peringatan | Rock | `#A95D39` |
-| Langit/air | Sky | `#83C4D1` |
-| Teks gelap | Ink | `#27332D` |
+| Peran                 | Warna       | Kode      |
+| --------------------- | ----------- | --------- |
+| Hijau hutan utama     | Forest      | `#214B3B` |
+| Latar gelap           | Forest Deep | `#17352F` |
+| Hijau rumput          | Grass       | `#70A453` |
+| Hijau lumut           | Moss        | `#355F3E` |
+| Aksen hadiah/tindakan | Gold        | `#F4C662` |
+| Permukaan terang/teks | Cream       | `#FFF6D9` |
+| Kayu                  | Wood        | `#9A5535` |
+| Batu/peringatan       | Rock        | `#A95D39` |
+| Langit/air            | Sky         | `#83C4D1` |
+| Teks gelap            | Ink         | `#27332D` |
 
 Hijau menjadi pengikat visual portal dan seluruh game. Setiap game mendapat aksen tambahan sesuai dunianya, misalnya biru-ungu untuk Space Mission, merah bata untuk Math Castle, dan emas-kayu untuk Math Archer, tetapi header, tombol utama, fokus, dan laporan tetap terasa sebagai produk Gezy Games.
 
@@ -300,26 +300,26 @@ Untuk MVP tanpa akun dan tanpa analitik eksternal, keberhasilan awal dinilai mel
 
 ## 18. Milestone
 
-| Milestone | Hasil utama |
-|---|---|
-| M0 — Product foundation | PRD, backlog, keputusan arsitektur, dan panduan konten |
-| M1 — Platform foundation | Workspace, design tokens, portal shell, bank soal, session engine, dan progres lokal |
-| M2 — First playable | Math Archer dapat dimainkan dari pemilihan materi hingga laporan |
-| M3 — MVP release | QA perangkat, optimasi aset, deployment, dan monitoring dasar |
-| M4 — Flagship vertical slice | Math Adventure menghadirkan peta, karakter, dua wilayah, dan boss awal |
-| M5 — Interactive learning | Science Lab memperkenalkan eksperimen virtual |
+| Milestone                    | Hasil utama                                                                          |
+| ---------------------------- | ------------------------------------------------------------------------------------ |
+| M0 — Product foundation      | PRD, backlog, keputusan arsitektur, dan panduan konten                               |
+| M1 — Platform foundation     | Workspace, design tokens, portal shell, bank soal, session engine, dan progres lokal |
+| M2 — First playable          | Math Archer dapat dimainkan dari pemilihan materi hingga laporan                     |
+| M3 — MVP release             | QA perangkat, optimasi aset, deployment, dan monitoring dasar                        |
+| M4 — Flagship vertical slice | Math Adventure menghadirkan peta, karakter, dua wilayah, dan boss awal               |
+| M5 — Interactive learning    | Science Lab memperkenalkan eksperimen virtual                                        |
 
 ## 19. Risiko dan mitigasi
 
-| Risiko | Dampak | Mitigasi |
-|---|---|---|
-| Dua belas game dibangun bersamaan | Fondasi tidak stabil dan banyak pekerjaan setengah selesai | Selesaikan satu vertical slice sebelum ekspansi |
-| Semua game terasa seperti kuis dengan skin berbeda | Pemain cepat bosan | Tetapkan nilai pembeda dan jenis interaksi dalam brief tiap game |
-| Konten salah atau tidak sesuai fase | Menurunkan kepercayaan | Skema tervalidasi dan proses review editorial |
-| Aset terlalu berat | Lambat pada perangkat sekolah | Anggaran aset, kompresi, dan uji perangkat nyata |
-| Timer membuat siswa cemas | Mengganggu tujuan belajar | Timer opsional dan disesuaikan dengan jenis latihan |
-| Progres lokal hilang saat data browser dibersihkan | Pengalaman terputus | Jelaskan batas MVP dan rencanakan akun pada fase berikutnya |
-| Paket bersama terlalu abstrak sejak awal | Pengembangan lambat | Abstraksi hanya setelah kebutuhan Math Archer terbukti |
+| Risiko                                             | Dampak                                                     | Mitigasi                                                         |
+| -------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| Dua belas game dibangun bersamaan                  | Fondasi tidak stabil dan banyak pekerjaan setengah selesai | Selesaikan satu vertical slice sebelum ekspansi                  |
+| Semua game terasa seperti kuis dengan skin berbeda | Pemain cepat bosan                                         | Tetapkan nilai pembeda dan jenis interaksi dalam brief tiap game |
+| Konten salah atau tidak sesuai fase                | Menurunkan kepercayaan                                     | Skema tervalidasi dan proses review editorial                    |
+| Aset terlalu berat                                 | Lambat pada perangkat sekolah                              | Anggaran aset, kompresi, dan uji perangkat nyata                 |
+| Timer membuat siswa cemas                          | Mengganggu tujuan belajar                                  | Timer opsional dan disesuaikan dengan jenis latihan              |
+| Progres lokal hilang saat data browser dibersihkan | Pengalaman terputus                                        | Jelaskan batas MVP dan rencanakan akun pada fase berikutnya      |
+| Paket bersama terlalu abstrak sejak awal           | Pengembangan lambat                                        | Abstraksi hanya setelah kebutuhan Math Archer terbukti           |
 
 ## 20. Keputusan yang masih terbuka
 

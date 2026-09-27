@@ -255,7 +255,8 @@ export const mathQuestions: readonly Question[] = [
     topic: "Perbandingan",
     difficulty: 3,
     type: "multiple-choice",
-    prompt: "Perbandingan buku cerita dan komik adalah 3 : 2. Jika ada 12 buku cerita, ada berapa komik?",
+    prompt:
+      "Perbandingan buku cerita dan komik adalah 3 : 2. Jika ada 12 buku cerita, ada berapa komik?",
     choices: ["6 komik", "8 komik", "9 komik"],
     correctAnswer: "8 komik",
     explanation: "12 adalah 4 × 3, sehingga jumlah komik adalah 4 × 2 = 8.",
@@ -281,7 +282,8 @@ export const mathQuestions: readonly Question[] = [
     topic: "Relasi",
     difficulty: 1,
     type: "multiple-choice",
-    prompt: "A = {1, 2, 3} dan B = {2, 4, 6}. Pasangan mana menunjukkan relasi ‘dua kali dari’ dari A ke B?",
+    prompt:
+      "A = {1, 2, 3} dan B = {2, 4, 6}. Pasangan mana menunjukkan relasi ‘dua kali dari’ dari A ke B?",
     choices: ["{(1,2), (2,4), (3,6)}", "{(1,4), (2,2), (3,6)}", "{(1,6), (2,4), (3,2)}"],
     correctAnswer: "{(1,2), (2,4), (3,6)}",
     explanation: "Setiap anggota B adalah dua kali anggota A: 2 = 2×1, 4 = 2×2, dan 6 = 2×3.",
@@ -502,7 +504,8 @@ export const mathQuestions: readonly Question[] = [
     topic: "Pecahan",
     difficulty: 2,
     type: "multiple-choice",
-    prompt: "Satu kue dibagi menjadi 4 bagian sama besar. Rani mengambil 1 bagian. Pecahan bagian Rani adalah ...",
+    prompt:
+      "Satu kue dibagi menjadi 4 bagian sama besar. Rani mengambil 1 bagian. Pecahan bagian Rani adalah ...",
     choices: ["1/2", "1/3", "1/4"],
     correctAnswer: "1/4",
     explanation: "Satu dari empat bagian sama besar ditulis 1/4.",
@@ -580,10 +583,12 @@ export const mathQuestions: readonly Question[] = [
     topic: "Perbandingan",
     difficulty: 3,
     type: "multiple-choice",
-    prompt: "Perbandingan kelereng merah dan biru adalah 2 : 3. Jika jumlahnya 25, ada berapa kelereng biru?",
+    prompt:
+      "Perbandingan kelereng merah dan biru adalah 2 : 3. Jika jumlahnya 25, ada berapa kelereng biru?",
     choices: ["10", "15", "20"],
     correctAnswer: "15",
-    explanation: "Jumlah bagian 2 + 3 = 5. Setiap bagian bernilai 25 ÷ 5 = 5, sehingga kelereng biru 3 × 5 = 15.",
+    explanation:
+      "Jumlah bagian 2 + 3 = 5. Setiap bagian bernilai 25 ÷ 5 = 5, sehingga kelereng biru 3 × 5 = 15.",
     status: "published",
   },
   {
@@ -606,10 +611,12 @@ export const mathQuestions: readonly Question[] = [
     topic: "Relasi",
     difficulty: 2,
     type: "multiple-choice",
-    prompt: "A = {2, 3, 4} dan B = {1, 2, 3}. Pasangan mana menunjukkan relasi ‘satu kurang dari’ dari A ke B?",
+    prompt:
+      "A = {2, 3, 4} dan B = {1, 2, 3}. Pasangan mana menunjukkan relasi ‘satu kurang dari’ dari A ke B?",
     choices: ["{(2,1), (3,2), (4,3)}", "{(2,2), (3,3), (4,1)}", "{(2,3), (3,1), (4,2)}"],
     correctAnswer: "{(2,1), (3,2), (4,3)}",
-    explanation: "Setiap anggota B satu kurang dari anggota A yang dipasangkan: 1 = 2 − 1, 2 = 3 − 1, dan 3 = 4 − 1.",
+    explanation:
+      "Setiap anggota B satu kurang dari anggota A yang dipasangkan: 1 = 2 − 1, 2 = 3 − 1, dan 3 = 4 − 1.",
     status: "published",
   },
   {
@@ -648,7 +655,8 @@ export const mathQuestions: readonly Question[] = [
     prompt: "x + y = 12 dan 2x + y = 19. Berapa nilai x dan y?",
     choices: ["x = 5, y = 7", "x = 7, y = 5", "x = 8, y = 4"],
     correctAnswer: "x = 7, y = 5",
-    explanation: "Kurangi persamaan pertama dari persamaan kedua: x = 7. Lalu 7 + y = 12, jadi y = 5.",
+    explanation:
+      "Kurangi persamaan pertama dari persamaan kedua: x = 7. Lalu 7 + y = 12, jadi y = 5.",
     status: "published",
   },
 ] as const;

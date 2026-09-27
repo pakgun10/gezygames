@@ -73,12 +73,14 @@ const shuffle = <T>(values: readonly T[], random: () => number): T[] => {
 export const selectQuestions = (
   questionBank: readonly Question[],
   criteria: SessionCriteria,
-): readonly Question[] => questionBank.filter((question) => (
-  question.status === "published"
-  && (criteria.phase === undefined || question.phase === criteria.phase)
-  && (criteria.topic === undefined || question.topic === criteria.topic)
-  && (criteria.difficulty === undefined || question.difficulty === criteria.difficulty)
-));
+): readonly Question[] =>
+  questionBank.filter(
+    (question) =>
+      question.status === "published" &&
+      (criteria.phase === undefined || question.phase === criteria.phase) &&
+      (criteria.topic === undefined || question.topic === criteria.topic) &&
+      (criteria.difficulty === undefined || question.difficulty === criteria.difficulty),
+  );
 
 export const shuffleQuestionChoices = (
   question: Question,
@@ -98,9 +100,13 @@ export const createGameSession = (
   const resolvedConfig = { ...defaultConfig, ...config };
   if (resolvedConfig.questionCount < 1) throw new Error("Jumlah soal minimal satu.");
   if (resolvedConfig.remedialGap < 1) throw new Error("Jarak remedial minimal satu soal.");
-  if (resolvedConfig.immediateRetries < 0) throw new Error("Jumlah percobaan ulang tidak boleh negatif.");
+  if (resolvedConfig.immediateRetries < 0)
+    throw new Error("Jumlah percobaan ulang tidak boleh negatif.");
 
-  const selectedQuestions = shuffle(availableQuestions, random).slice(0, resolvedConfig.questionCount);
+  const selectedQuestions = shuffle(availableQuestions, random).slice(
+    0,
+    resolvedConfig.questionCount,
+  );
   const questionsById = new Map(selectedQuestions.map((question) => [question.id, question]));
   const queue = selectedQuestions.map((question) => ({ questionId: question.id, remedial: false }));
   const mastered = new Set<string>();

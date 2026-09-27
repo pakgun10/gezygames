@@ -27,33 +27,33 @@ Rujukan utama:
 
 Setiap fase memiliki lima topik inti dan sedikitnya dua soal terbit untuk tiap topik. Target minimalnya adalah **10 soal per fase** atau **50 soal** untuk Fondasi sampai Fase D. Pemeriksaan otomatis menolak build jika batas ini tidak terpenuhi.
 
-| Fase | Topik inti | Tujuan belajar ringkas | Contoh ID |
-|---|---|---|---|
-| Fondasi | Membilang | Menghubungkan jumlah benda dengan lambang bilangan sampai 10. | `math-foundation-counting-001` |
-| Fondasi | Bentuk | Membedakan bentuk dasar melalui ciri visual. | `math-foundation-shapes-001` |
-| Fondasi | Banyak dan sedikit | Membandingkan kumpulan konkret. | `math-foundation-more-less-001` |
-| Fondasi | Pola | Melanjutkan pola sederhana warna atau bentuk. | `math-foundation-pattern-001` |
-| Fondasi | Posisi | Mengenali atas, bawah, kiri, dan kanan pada objek konkret. | `math-foundation-position-001` |
-| A | Penjumlahan | Menjumlahkan bilangan sederhana dan konteks benda. | `math-a-addition-001` |
-| A | Pengurangan | Mengurangi bilangan sederhana sampai 20. | `math-a-subtraction-001` |
-| A | Nilai tempat | Mengenali puluhan dan satuan. | `math-a-place-value-001` |
-| A | Pola bilangan | Menentukan aturan tambah sederhana dalam urutan. | `math-a-pattern-001` |
-| A | Pengukuran panjang | Membaca serta membandingkan panjang dalam cm. | `math-a-measurement-001` |
-| B | Penjumlahan | Menjumlahkan bilangan cacah hingga ratusan. | `math-b-addition-001` |
-| B | Perkalian | Memahami perkalian sebagai kelompok sama banyak. | `math-b-multiplication-001` |
-| B | Pembagian | Membagi sama rata melalui fakta perkalian. | `math-b-division-001` |
-| B | Pecahan | Mengenali bagian dari keseluruhan dan pecahan senilai sederhana. | `math-b-fraction-001` |
-| B | Keliling | Menghitung keliling persegi dan persegi panjang. | `math-b-perimeter-001` |
-| C | Pecahan | Menjumlah serta mengurangkan pecahan berpenyebut terkait. | `math-c-fraction-001` |
-| C | Desimal | Mengoperasikan desimal dengan nilai tempat yang benar. | `math-c-decimal-001` |
-| C | Persentase | Menghubungkan persen dengan pecahan dan bilangan. | `math-c-percentage-001` |
-| C | Luas | Menggunakan rumus luas persegi panjang dan segitiga. | `math-c-area-001` |
-| C | Perbandingan | Menyelesaikan perbandingan senilai sederhana. | `math-c-ratio-001` |
-| D | Himpunan | Mengenali anggota serta gabungan himpunan. | `math-d-set-001` |
-| D | Relasi | Membaca pasangan berurutan dari aturan relasi. | `math-d-relation-001` |
-| D | Fungsi | Menghitung nilai fungsi dari substitusi. | `math-d-function-001` |
-| D | Persamaan linear | Menyelesaikan persamaan linear satu variabel. | `math-d-equation-001` |
-| D | SPLDV | Menentukan solusi sistem dua persamaan linear. | `math-d-spldv-001` |
+| Fase    | Topik inti         | Tujuan belajar ringkas                                           | Contoh ID                       |
+| ------- | ------------------ | ---------------------------------------------------------------- | ------------------------------- |
+| Fondasi | Membilang          | Menghubungkan jumlah benda dengan lambang bilangan sampai 10.    | `math-foundation-counting-001`  |
+| Fondasi | Bentuk             | Membedakan bentuk dasar melalui ciri visual.                     | `math-foundation-shapes-001`    |
+| Fondasi | Banyak dan sedikit | Membandingkan kumpulan konkret.                                  | `math-foundation-more-less-001` |
+| Fondasi | Pola               | Melanjutkan pola sederhana warna atau bentuk.                    | `math-foundation-pattern-001`   |
+| Fondasi | Posisi             | Mengenali atas, bawah, kiri, dan kanan pada objek konkret.       | `math-foundation-position-001`  |
+| A       | Penjumlahan        | Menjumlahkan bilangan sederhana dan konteks benda.               | `math-a-addition-001`           |
+| A       | Pengurangan        | Mengurangi bilangan sederhana sampai 20.                         | `math-a-subtraction-001`        |
+| A       | Nilai tempat       | Mengenali puluhan dan satuan.                                    | `math-a-place-value-001`        |
+| A       | Pola bilangan      | Menentukan aturan tambah sederhana dalam urutan.                 | `math-a-pattern-001`            |
+| A       | Pengukuran panjang | Membaca serta membandingkan panjang dalam cm.                    | `math-a-measurement-001`        |
+| B       | Penjumlahan        | Menjumlahkan bilangan cacah hingga ratusan.                      | `math-b-addition-001`           |
+| B       | Perkalian          | Memahami perkalian sebagai kelompok sama banyak.                 | `math-b-multiplication-001`     |
+| B       | Pembagian          | Membagi sama rata melalui fakta perkalian.                       | `math-b-division-001`           |
+| B       | Pecahan            | Mengenali bagian dari keseluruhan dan pecahan senilai sederhana. | `math-b-fraction-001`           |
+| B       | Keliling           | Menghitung keliling persegi dan persegi panjang.                 | `math-b-perimeter-001`          |
+| C       | Pecahan            | Menjumlah serta mengurangkan pecahan berpenyebut terkait.        | `math-c-fraction-001`           |
+| C       | Desimal            | Mengoperasikan desimal dengan nilai tempat yang benar.           | `math-c-decimal-001`            |
+| C       | Persentase         | Menghubungkan persen dengan pecahan dan bilangan.                | `math-c-percentage-001`         |
+| C       | Luas               | Menggunakan rumus luas persegi panjang dan segitiga.             | `math-c-area-001`               |
+| C       | Perbandingan       | Menyelesaikan perbandingan senilai sederhana.                    | `math-c-ratio-001`              |
+| D       | Himpunan           | Mengenali anggota serta gabungan himpunan.                       | `math-d-set-001`                |
+| D       | Relasi             | Membaca pasangan berurutan dari aturan relasi.                   | `math-d-relation-001`           |
+| D       | Fungsi             | Menghitung nilai fungsi dari substitusi.                         | `math-d-function-001`           |
+| D       | Persamaan linear   | Menyelesaikan persamaan linear satu variabel.                    | `math-d-equation-001`           |
+| D       | SPLDV              | Menentukan solusi sistem dua persamaan linear.                   | `math-d-spldv-001`              |
 
 ## Aturan penulisan soal
 
@@ -70,11 +70,11 @@ Setiap fase memiliki lima topik inti dan sedikitnya dua soal terbit untuk tiap t
 
 ## Kesulitan
 
-| Nilai | Makna | Contoh |
-|---|---|---|
-| 1 | Mengenali konsep atau operasi langsung. | `7 + 5`, memilih lingkaran, anggota himpunan. |
-| 2 | Menerapkan satu langkah atau representasi lain. | Nilai tempat, keliling, nilai fungsi. |
-| 3 | Menghubungkan beberapa langkah atau proporsi. | Perbandingan, SPLDV, soal konteks. |
+| Nilai | Makna                                           | Contoh                                        |
+| ----- | ----------------------------------------------- | --------------------------------------------- |
+| 1     | Mengenali konsep atau operasi langsung.         | `7 + 5`, memilih lingkaran, anggota himpunan. |
+| 2     | Menerapkan satu langkah atau representasi lain. | Nilai tempat, keliling, nilai fungsi.         |
+| 3     | Menghubungkan beberapa langkah atau proporsi.   | Perbandingan, SPLDV, soal konteks.            |
 
 Kesulitan mengukur beban penalaran, bukan panjang teks. Soal Fase Fondasi dapat berkesulitan 2 tanpa menambah tuntutan membaca.
 

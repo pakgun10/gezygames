@@ -32,7 +32,7 @@ export interface SessionReport {
   readonly questions: readonly QuestionReport[];
 }
 
-const answerLabel = (answer: string): string => answer === "__TIMEOUT__" ? "Waktu habis" : answer;
+const answerLabel = (answer: string): string => (answer === "__TIMEOUT__" ? "Waktu habis" : answer);
 
 export const createSessionReport = (
   result: SessionResult,
@@ -62,16 +62,18 @@ export const createSessionReport = (
     };
   });
 
-  const topics = [...new Set(questions.map((question) => question.topic))].map((topic): TopicReport => {
-    const topicQuestions = questions.filter((question) => question.topic === topic);
-    return {
-      topic,
-      correct: topicQuestions.filter((question) => question.status === "correct").length,
-      incorrect: topicQuestions.filter((question) => question.status === "incorrect").length,
-      unanswered: topicQuestions.filter((question) => question.status === "unanswered").length,
-      total: topicQuestions.length,
-    };
-  });
+  const topics = [...new Set(questions.map((question) => question.topic))].map(
+    (topic): TopicReport => {
+      const topicQuestions = questions.filter((question) => question.topic === topic);
+      return {
+        topic,
+        correct: topicQuestions.filter((question) => question.status === "correct").length,
+        incorrect: topicQuestions.filter((question) => question.status === "incorrect").length,
+        unanswered: topicQuestions.filter((question) => question.status === "unanswered").length,
+        total: topicQuestions.length,
+      };
+    },
+  );
 
   return {
     correct: result.correctAttempts,
@@ -92,12 +94,13 @@ export const formatDuration = (elapsedMs: number): string => {
   return `${minutes}:${String(seconds).padStart(2, "0")}`;
 };
 
-const escapeHtml = (value: string): string => value
-  .replaceAll("&", "&amp;")
-  .replaceAll("<", "&lt;")
-  .replaceAll(">", "&gt;")
-  .replaceAll('"', "&quot;")
-  .replaceAll("'", "&#039;");
+const escapeHtml = (value: string): string =>
+  value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 
 const statusLabels: Record<QuestionResultStatus, string> = {
   correct: "Dikuasai",
@@ -120,19 +123,25 @@ export const renderSessionReport = (report: SessionReport): string => `
     <div class="topic-report">
       <h3>Hasil per materi</h3>
       <ul>
-        ${report.topics.map((topic) => `
+        ${report.topics
+          .map(
+            (topic) => `
           <li>
             <strong>${escapeHtml(topic.topic)}</strong>
             <span>${topic.correct}/${topic.total} dikuasai${topic.incorrect > 0 ? ` · ${topic.incorrect} perlu diulang` : ""}${topic.unanswered > 0 ? ` · ${topic.unanswered} belum dijawab` : ""}</span>
           </li>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </ul>
     </div>
 
     <details class="answer-review">
       <summary>Lihat rincian jawaban (${report.questions.length})</summary>
       <ol>
-        ${report.questions.map((question, index) => `
+        ${report.questions
+          .map(
+            (question, index) => `
           <li class="answer-review__item answer-review__item--${question.status}">
             <div class="answer-review__heading">
               <span>Soal ${index + 1} · ${escapeHtml(question.topic)}</span>
@@ -151,7 +160,9 @@ export const renderSessionReport = (report: SessionReport): string => `
             </dl>
             <p class="answer-review__explanation"><strong>Pembahasan:</strong> ${escapeHtml(question.explanation)}</p>
           </li>
-        `).join("")}
+        `,
+          )
+          .join("")}
       </ol>
     </details>
   </section>

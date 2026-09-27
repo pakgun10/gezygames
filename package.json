@@ -13,16 +13,23 @@
     "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
     "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build",
     "preview": "vite preview --outDir dist",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "node --import tsx --test 'packages/**/*.test.ts'",
     "validate:content": "npm --workspace @gezy-games/question-bank run validate"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^22.19.0",
     "concurrently": "^9.2.1",
+    "eslint": "^10.11.0",
+    "prettier": "^3.9.9",
     "puppeteer-core": "^25.12.0",
-    "typescript": "^5.9.3",
     "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.1",
     "vite": "^8.0.0"
   }
 }

@@ -53,17 +53,20 @@ const modeDetails: Record<GameMode, { label: string; detail: string; seconds: nu
 
 const initialPreferences = loadPlayerProgress().preferences;
 let selectedPhase: Phase = phases.includes(initialPreferences.lastPhase as Phase)
-  ? initialPreferences.lastPhase as Phase
+  ? (initialPreferences.lastPhase as Phase)
   : "A";
 const topicsForPhase = (phase: Phase): readonly string[] => [
-  ...new Set(mathQuestions
-    .filter((question) => question.phase === phase && question.status === "published")
-    .map((question) => question.topic)),
+  ...new Set(
+    mathQuestions
+      .filter((question) => question.phase === phase && question.status === "published")
+      .map((question) => question.topic),
+  ),
 ];
-let selectedTopic: string | null = initialPreferences.lastTopic
-  && topicsForPhase(selectedPhase).includes(initialPreferences.lastTopic)
-  ? initialPreferences.lastTopic
-  : null;
+let selectedTopic: string | null =
+  initialPreferences.lastTopic &&
+  topicsForPhase(selectedPhase).includes(initialPreferences.lastTopic)
+    ? initialPreferences.lastTopic
+    : null;
 let selectedMode: GameMode = "calm";
 let session: GameSession | null = null;
 let currentQuestions: readonly Question[] = [];
@@ -83,7 +86,7 @@ let pendingTransition: (() => void) | null = null;
 let pauseDialogController: DialogController | null = null;
 let helpDialogController: DialogController | null = null;
 let resumeAfterHelp = false;
-let progress: PlayerProgress = { ...migrateLegacyMathArcherProgress() };
+const progress: PlayerProgress = { ...migrateLegacyMathArcherProgress() };
 
 function saveProgress(): void {
   saveGameProgress("math-archer", {
@@ -163,10 +166,15 @@ function renderSetup(): void {
             <span>Pilih materi</span>
             <select id="topic-select">
               <option value="">Semua materi (${availableTopics.length} topik)</option>
-              ${availableTopics.map((topic) => {
-                const questionCount = selectQuestions(mathQuestions, { phase: selectedPhase, topic }).length;
-                return `<option value="${escapeHtml(topic)}"${topic === selectedTopic ? " selected" : ""}>${escapeHtml(topic)} (${questionCount} soal)</option>`;
-              }).join("")}
+              ${availableTopics
+                .map((topic) => {
+                  const questionCount = selectQuestions(mathQuestions, {
+                    phase: selectedPhase,
+                    topic,
+                  }).length;
+                  return `<option value="${escapeHtml(topic)}"${topic === selectedTopic ? " selected" : ""}>${escapeHtml(topic)} (${questionCount} soal)</option>`;
+                })
+                .join("")}
             </select>
           </label>
 
@@ -197,7 +205,9 @@ function renderSetup(): void {
 
   document.querySelectorAll<HTMLButtonElement>("[data-phase]").forEach((button) => {
     button.addEventListener("click", () => {
-      playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ?? playerNickname;
+      playerNickname =
+        document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ??
+        playerNickname;
       selectedPhase = button.dataset.phase as Phase;
       selectedTopic = null;
       savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase, lastTopic: "" });
@@ -205,15 +215,19 @@ function renderSetup(): void {
     });
   });
 
-  document.querySelector<HTMLSelectElement>("#topic-select")?.addEventListener("change", (event) => {
-    selectedTopic = (event.currentTarget as HTMLSelectElement).value || null;
-    savePlayerPreferences({ lastPhase: selectedPhase, lastTopic: selectedTopic ?? "" });
-    renderSetup();
-  });
+  document
+    .querySelector<HTMLSelectElement>("#topic-select")
+    ?.addEventListener("change", (event) => {
+      selectedTopic = (event.currentTarget as HTMLSelectElement).value || null;
+      savePlayerPreferences({ lastPhase: selectedPhase, lastTopic: selectedTopic ?? "" });
+      renderSetup();
+    });
 
   document.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((button) => {
     button.addEventListener("click", () => {
-      playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ?? playerNickname;
+      playerNickname =
+        document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ??
+        playerNickname;
       selectedMode = button.dataset.mode as GameMode;
       savePlayerPreferences({ nickname: playerNickname });
       renderSetup();
@@ -260,9 +274,20 @@ function startGame(): void {
         soundEnabled,
         stats: [
           { id: "hud-xp", icon: "⭐", label: "XP", value: progress.xp.toLocaleString("id-ID") },
-          { id: "hud-coins", icon: "💰", label: "Koin", value: progress.coins.toLocaleString("id-ID") },
+          {
+            id: "hud-coins",
+            icon: "💰",
+            label: "Koin",
+            value: progress.coins.toLocaleString("id-ID"),
+          },
           { id: "hud-streak", icon: "🔥", label: "Streak", value: "0" },
-          { id: "hud-hearts", icon: "❤️", label: "Nyawa", value: selectedMode === "challenge" ? "3" : "∞", className: "hearts-stat" },
+          {
+            id: "hud-hearts",
+            icon: "❤️",
+            label: "Nyawa",
+            value: selectedMode === "challenge" ? "3" : "∞",
+            className: "hearts-stat",
+          },
           { id: "hud-level", icon: "🏆", label: "Level", value: String(levelFromXp(progress.xp)) },
         ],
       })}
@@ -303,8 +328,16 @@ function startGame(): void {
       ${renderSessionDialogs({
         gameName: "Pemanah Matematika",
         helpItems: [
-          { icon: "👆", title: "Sentuh atau klik", detail: "Pilih target dengan jawaban yang tepat." },
-          { icon: "🏹", title: "Bidik dengan tenang", detail: "Jawaban salah boleh dicoba kembali." },
+          {
+            icon: "👆",
+            title: "Sentuh atau klik",
+            detail: "Pilih target dengan jawaban yang tepat.",
+          },
+          {
+            icon: "🏹",
+            title: "Bidik dengan tenang",
+            detail: "Jawaban salah boleh dicoba kembali.",
+          },
         ],
       })}
     </main>
@@ -316,13 +349,23 @@ function startGame(): void {
   pauseDialogController = createDialogController(pauseOverlay, { onEscape: resumeGame });
   helpDialogController = createDialogController(helpOverlay, { onEscape: closeHelp });
 
-  document.querySelector<HTMLButtonElement>("#sound-button")?.addEventListener("click", toggleSound);
+  document
+    .querySelector<HTMLButtonElement>("#sound-button")
+    ?.addEventListener("click", toggleSound);
   document.querySelector<HTMLButtonElement>("#help-button")?.addEventListener("click", openHelp);
-  document.querySelector<HTMLButtonElement>("#fullscreen-button")?.addEventListener("click", toggleFullscreen);
-  document.querySelector<HTMLButtonElement>("#pause-button")?.addEventListener("click", () => pauseGame());
-  document.querySelector<HTMLButtonElement>("#resume-button")?.addEventListener("click", resumeGame);
+  document
+    .querySelector<HTMLButtonElement>("#fullscreen-button")
+    ?.addEventListener("click", toggleFullscreen);
+  document
+    .querySelector<HTMLButtonElement>("#pause-button")
+    ?.addEventListener("click", () => pauseGame());
+  document
+    .querySelector<HTMLButtonElement>("#resume-button")
+    ?.addEventListener("click", resumeGame);
   document.querySelector<HTMLButtonElement>("#quit-button")?.addEventListener("click", quitSession);
-  document.querySelector<HTMLButtonElement>("#close-help-button")?.addEventListener("click", closeHelp);
+  document
+    .querySelector<HTMLButtonElement>("#close-help-button")
+    ?.addEventListener("click", closeHelp);
   renderQuestion();
 }
 
@@ -341,8 +384,14 @@ function renderQuestion(): void {
   }
   inputLocked = false;
 
-  setText("#topic-label", `${selectedPhase === "Fondasi" ? "FASE FONDASI" : `FASE ${selectedPhase}`} · ${question.topic}`);
-  setText("#question-progress", `Sasaran ${Math.min(snapshot.progress + 1, snapshot.target)} dari ${snapshot.target}`);
+  setText(
+    "#topic-label",
+    `${selectedPhase === "Fondasi" ? "FASE FONDASI" : `FASE ${selectedPhase}`} · ${question.topic}`,
+  );
+  setText(
+    "#question-progress",
+    `Sasaran ${Math.min(snapshot.progress + 1, snapshot.target)} dari ${snapshot.target}`,
+  );
   setText("#question-prompt", question.prompt);
   setText("#mastery-text", `${snapshot.progress}/${snapshot.target}`);
   const masteryFill = document.querySelector<HTMLElement>("#mastery-fill");
@@ -420,9 +469,11 @@ async function shootAt(target: HTMLButtonElement): Promise<void> {
     scheduleTransition(() => {
       inputLocked = false;
       document.querySelector(".archer-character")?.classList.remove("is-shooting");
-      document.querySelectorAll<HTMLButtonElement>(".target-button:not(.is-miss)").forEach((button) => {
-        button.disabled = false;
-      });
+      document
+        .querySelectorAll<HTMLButtonElement>(".target-button:not(.is-miss)")
+        .forEach((button) => {
+          button.disabled = false;
+        });
       startQuestionTimer(true);
     }, 900);
   } else {
@@ -461,10 +512,14 @@ function animateArrow(target: HTMLElement): Promise<void> {
     arrow.style.setProperty("--arrow-y", `${endY - startY}px`);
     arrow.style.setProperty("--arrow-angle", `${angle}deg`);
     arena.append(arrow);
-    arrow.addEventListener("animationend", () => {
-      arrow.remove();
-      resolve();
-    }, { once: true });
+    arrow.addEventListener(
+      "animationend",
+      () => {
+        arrow.remove();
+        resolve();
+      },
+      { once: true },
+    );
   });
 }
 
@@ -570,7 +625,10 @@ function quitSession(): void {
     return;
   }
   const snapshot = session.getSnapshot();
-  if (snapshot.attempts.length > 0 && !window.confirm("Keluar dari sesi? Progres sesi yang sedang berjalan tidak akan disimpan.")) {
+  if (
+    snapshot.attempts.length > 0 &&
+    !window.confirm("Keluar dari sesi? Progres sesi yang sedang berjalan tidak akan disimpan.")
+  ) {
     return;
   }
   clearTimer();
@@ -622,8 +680,12 @@ function finishGame(victory: boolean): void {
     </main>
   `;
 
-  document.querySelector<HTMLButtonElement>(".retry-session-button")?.addEventListener("click", startGame);
-  document.querySelector<HTMLButtonElement>(".change-material-button")?.addEventListener("click", renderSetup);
+  document
+    .querySelector<HTMLButtonElement>(".retry-session-button")
+    ?.addEventListener("click", startGame);
+  document
+    .querySelector<HTMLButtonElement>(".change-material-button")
+    ?.addEventListener("click", renderSetup);
 }
 
 function updateHud(): void {
@@ -746,18 +808,23 @@ document.addEventListener("keydown", (event) => {
 
   const targetIndex = Number(event.key) - 1;
   if (
-    targetIndex >= 0
-    && targetIndex <= 2
-    && !inputLocked
-    && !session?.getSnapshot().paused
-    && !helpDialogController?.isOpen()
+    targetIndex >= 0 &&
+    targetIndex <= 2 &&
+    !inputLocked &&
+    !session?.getSnapshot().paused &&
+    !helpDialogController?.isOpen()
   ) {
     document.querySelectorAll<HTMLButtonElement>(".target-button")[targetIndex]?.click();
   }
 });
 
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden && document.querySelector(".play-screen") && session && !session.getSnapshot().paused) {
+  if (
+    document.hidden &&
+    document.querySelector(".play-screen") &&
+    session &&
+    !session.getSnapshot().paused
+  ) {
     pauseGame(true);
   }
 });

@@ -189,7 +189,9 @@
   border-radius: 14px;
   font-weight: 900;
   text-decoration: none;
-  transition: transform 160ms ease, filter 160ms ease;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
 }
 
 .button:hover {
@@ -243,7 +245,9 @@
   background:
     radial-gradient(circle at 70% 15%, #fff0ae 0 3%, #f4c662 3.4% 8%, transparent 8.5%),
     linear-gradient(#78b8bf 0 48%, #84a764 48% 61%, #557a45 61% 100%);
-  box-shadow: var(--gg-shadow-dark), inset 0 0 60px rgb(23 53 47 / 28%);
+  box-shadow:
+    var(--gg-shadow-dark),
+    inset 0 0 60px rgb(23 53 47 / 28%);
   isolation: isolate;
   transform: rotate(1.5deg);
 }
@@ -351,7 +355,9 @@
   background: #fff2ca;
   border: 16px solid var(--gg-rock);
   border-radius: 50%;
-  box-shadow: 0 12px 0 #6f4933, 0 17px 22px rgb(23 53 47 / 32%);
+  box-shadow:
+    0 12px 0 #6f4933,
+    0 17px 22px rgb(23 53 47 / 32%);
 }
 
 .hero-target::before,
@@ -426,7 +432,9 @@
   top: -12px;
   left: -5px;
   right: -5px;
-  background: repeating-linear-gradient(90deg, #875635 0 15%, transparent 15% 25%), linear-gradient(#d9a966, #c18a4d);
+  background:
+    repeating-linear-gradient(90deg, #875635 0 15%, transparent 15% 25%),
+    linear-gradient(#d9a966, #c18a4d);
   border-bottom: 3px solid #74492f;
 }
 
@@ -511,9 +519,21 @@
   transform: scaleX(0.7);
 }
 
-.tree--one { left: 6%; bottom: 15%; }
-.tree--two { left: 13%; bottom: 8%; font-size: 61px; color: #2c5a40; }
-.tree--three { right: 5%; bottom: 12%; color: #1c4638; }
+.tree--one {
+  left: 6%;
+  bottom: 15%;
+}
+.tree--two {
+  left: 13%;
+  bottom: 8%;
+  font-size: 61px;
+  color: #2c5a40;
+}
+.tree--three {
+  right: 5%;
+  bottom: 12%;
+  color: #1c4638;
+}
 
 .world__spark {
   position: absolute;
@@ -522,8 +542,15 @@
   animation: twinkle 1.9s ease-in-out infinite alternate;
 }
 
-.spark--one { left: 16%; top: 39%; }
-.spark--two { right: 12%; top: 48%; animation-delay: 0.8s; }
+.spark--one {
+  left: 16%;
+  top: 39%;
+}
+.spark--two {
+  right: 12%;
+  top: 48%;
+  animation-delay: 0.8s;
+}
 
 .world__label {
   position: absolute;
@@ -540,7 +567,9 @@
   background: var(--gg-cream);
   border: 3px solid #d8b764;
   border-radius: 16px;
-  box-shadow: 0 7px 0 #765139, 0 16px 30px rgb(23 53 47 / 32%);
+  box-shadow:
+    0 7px 0 #765139,
+    0 16px 30px rgb(23 53 47 / 32%);
   transform: translateX(-50%) rotate(-1.5deg);
 }
 
@@ -585,8 +614,7 @@
 .catalog-section {
   padding: 80px 0 100px;
   background:
-    radial-gradient(circle at 8% 10%, rgb(112 164 83 / 10%), transparent 25%),
-    var(--gg-surface);
+    radial-gradient(circle at 8% 10%, rgb(112 164 83 / 10%), transparent 25%), var(--gg-surface);
 }
 
 .section-heading {
@@ -669,7 +697,9 @@
   border: 1px solid var(--gg-line);
   border-radius: var(--gg-radius-lg);
   box-shadow: var(--gg-shadow-sm);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .game-card:hover {
@@ -760,19 +790,46 @@
   letter-spacing: 1px;
 }
 
-.game-art--space { background: linear-gradient(#272d60, #55477b 63%, #805e77); }
-.game-art--space .game-art__sun { background: #fff2b1; box-shadow: 0 0 20px #fff; }
-.game-art--space .game-art__land { background: #4e5575; }
-.game-art--lab { background: linear-gradient(#b7ddd0 0 60%, #5e9b78 60%); }
-.game-art--runner { background: linear-gradient(#8ac8d2 0 58%, #bd8a51 58%); }
-.game-art--archer { background: linear-gradient(#77adb3 0 58%, #496f44 58%); }
-.game-art--puzzle { background: linear-gradient(#d7b36e, #be774d); }
-.game-art--treasure { background: linear-gradient(#73c7d2 0 58%, #d8bc6b 58%); }
-.game-art--battle { background: linear-gradient(#7f776b 0 58%, #76533e 58%); }
-.game-art--train { background: linear-gradient(#9bcad0 0 55%, #759456 55%); }
-.game-art--island { background: linear-gradient(#6ec0d1 0 62%, #d4bd70 62%); }
-.game-art--city { background: linear-gradient(#abbec1 0 57%, #886e54 57%); }
-.game-art--dragon { background: linear-gradient(#494268 0 54%, #315342 54%); }
+.game-art--space {
+  background: linear-gradient(#272d60, #55477b 63%, #805e77);
+}
+.game-art--space .game-art__sun {
+  background: #fff2b1;
+  box-shadow: 0 0 20px #fff;
+}
+.game-art--space .game-art__land {
+  background: #4e5575;
+}
+.game-art--lab {
+  background: linear-gradient(#b7ddd0 0 60%, #5e9b78 60%);
+}
+.game-art--runner {
+  background: linear-gradient(#8ac8d2 0 58%, #bd8a51 58%);
+}
+.game-art--archer {
+  background: linear-gradient(#77adb3 0 58%, #496f44 58%);
+}
+.game-art--puzzle {
+  background: linear-gradient(#d7b36e, #be774d);
+}
+.game-art--treasure {
+  background: linear-gradient(#73c7d2 0 58%, #d8bc6b 58%);
+}
+.game-art--battle {
+  background: linear-gradient(#7f776b 0 58%, #76533e 58%);
+}
+.game-art--train {
+  background: linear-gradient(#9bcad0 0 55%, #759456 55%);
+}
+.game-art--island {
+  background: linear-gradient(#6ec0d1 0 62%, #d4bd70 62%);
+}
+.game-art--city {
+  background: linear-gradient(#abbec1 0 57%, #886e54 57%);
+}
+.game-art--dragon {
+  background: linear-gradient(#494268 0 54%, #315342 54%);
+}
 
 .game-card__body {
   padding: 21px 22px 22px;
@@ -1035,18 +1092,35 @@
 }
 
 @keyframes twinkle {
-  0%, 100% { opacity: 0.45; transform: scale(0.8) rotate(0); }
-  50% { opacity: 1; transform: scale(1.15) rotate(22deg); }
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.8) rotate(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(22deg);
+  }
 }
 
 @keyframes flag-wave {
-  0%, 100% { transform: skewY(0deg) scaleX(1); }
-  50% { transform: skewY(5deg) scaleX(0.9); }
+  0%,
+  100% {
+    transform: skewY(0deg) scaleX(1);
+  }
+  50% {
+    transform: skewY(5deg) scaleX(0.9);
+  }
 }
 
 @keyframes hero-arrow-float {
-  0%, 100% { transform: translateX(-5px) rotate(-9deg); }
-  50% { transform: translateX(9px) rotate(-9deg); }
+  0%,
+  100% {
+    transform: translateX(-5px) rotate(-9deg);
+  }
+  50% {
+    transform: translateX(9px) rotate(-9deg);
+  }
 }
 
 @media (max-width: 940px) {

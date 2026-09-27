@@ -69,18 +69,24 @@ export const loadPlayerProgress = (storage: ProgressStorage = localStorage): Pla
     }
 
     const games = Object.fromEntries(
-      Object.entries(parsed.games).map(([slug, gameProgress]) => [slug, parseGameProgress(gameProgress)]),
+      Object.entries(parsed.games).map(([slug, gameProgress]) => [
+        slug,
+        parseGameProgress(gameProgress),
+      ]),
     );
-    const preferencesCandidate = parsed.preferences && typeof parsed.preferences === "object"
-      ? parsed.preferences as Partial<PlayerPreferences>
-      : {};
+    const preferencesCandidate =
+      parsed.preferences && typeof parsed.preferences === "object"
+        ? (parsed.preferences as Partial<PlayerPreferences>)
+        : {};
     const preferences: PlayerPreferences = {
-      nickname: typeof preferencesCandidate.nickname === "string"
-        ? preferencesCandidate.nickname.trim().slice(0, 30)
-        : "",
-      audioEnabled: typeof preferencesCandidate.audioEnabled === "boolean"
-        ? preferencesCandidate.audioEnabled
-        : true,
+      nickname:
+        typeof preferencesCandidate.nickname === "string"
+          ? preferencesCandidate.nickname.trim().slice(0, 30)
+          : "",
+      audioEnabled:
+        typeof preferencesCandidate.audioEnabled === "boolean"
+          ? preferencesCandidate.audioEnabled
+          : true,
       ...(typeof preferencesCandidate.lastPhase === "string"
         ? { lastPhase: preferencesCandidate.lastPhase }
         : {}),
@@ -127,9 +133,10 @@ export const savePlayerPreferences = (
 ): boolean => {
   try {
     const current = loadPlayerProgress(storage);
-    const nickname = typeof patch.nickname === "string"
-      ? patch.nickname.trim().slice(0, 30)
-      : current.preferences.nickname;
+    const nickname =
+      typeof patch.nickname === "string"
+        ? patch.nickname.trim().slice(0, 30)
+        : current.preferences.nickname;
     const next: PlayerProgress = {
       ...current,
       preferences: {

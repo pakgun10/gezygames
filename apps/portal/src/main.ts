@@ -23,9 +23,10 @@ const gameCard = (game: GameCatalogItem): string => {
   const action = isPlayable
     ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">Mainkan versi awal <span aria-hidden="true">→</span></a>`
     : `<button class="card-action" type="button" disabled aria-label="${game.name}: ${statusLabel}">${statusLabel}</button>`;
-  const savedProgress = isPlayable && mathArcherProgress.sessions > 0
-    ? `<p class="game-card__progress"><span>★ Level ${mathArcherLevel}</span><span>${mathArcherProgress.xp.toLocaleString("id-ID")} XP</span><span>${mathArcherProgress.sessions} sesi</span></p>`
-    : "";
+  const savedProgress =
+    isPlayable && mathArcherProgress.sessions > 0
+      ? `<p class="game-card__progress"><span>★ Level ${mathArcherLevel}</span><span>${mathArcherProgress.xp.toLocaleString("id-ID")} XP</span><span>${mathArcherProgress.sessions} sesi</span></p>`
+      : "";
 
   return `
     <article class="game-card" data-subject="${game.subject}" data-status="${game.status}">
@@ -223,7 +224,9 @@ filterButtons.forEach((button) => {
 });
 
 document.querySelector<HTMLButtonElement>(".reset-progress")?.addEventListener("click", () => {
-  const confirmed = window.confirm("Hapus seluruh XP, koin, level, dan riwayat permainan di perangkat ini?");
+  const confirmed = window.confirm(
+    "Hapus seluruh XP, koin, level, dan riwayat permainan di perangkat ini?",
+  );
   if (!confirmed) return;
   clearPlayerProgress();
   window.location.reload();
