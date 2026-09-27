@@ -49,7 +49,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Atur bahan, buat prediksi, lalu amati hasil eksperimenmu.",
     icon: "🧪",
     theme: "lab",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "quiz-runner",

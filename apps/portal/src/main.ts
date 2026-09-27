@@ -10,24 +10,33 @@ if (!app) {
 }
 
 const playerProgress = loadPlayerProgress();
-const mathArcherProgress = loadGameProgress("math-archer");
 const hasSavedProgress = Object.keys(playerProgress.games).length > 0;
-const mathArcherLevel = Math.floor(mathArcherProgress.xp / 1_000) + 1;
 
 const gameCard = (game: GameCatalogItem): string => {
   const phaseLabels = game.phases.map((phase) => `<span>Fase ${phase}</span>`).join("");
   const isDeveloping = game.status === "in-development";
-  const isPlayable = game.slug === "math-archer" || game.slug === "math-adventure";
+  const isPlayable =
+    game.slug === "math-archer" || game.slug === "math-adventure" || game.slug === "science-lab";
   const statusLabel = isDeveloping ? "Sedang dibuat" : "Segera hadir";
+  const devPort =
+    game.slug === "math-adventure" ? "5175" : game.slug === "science-lab" ? "5176" : "5174";
   const playableHref = import.meta.env.DEV
-    ? `http://localhost:${game.slug === "math-adventure" ? "5175" : "5174"}/${game.slug}/`
+    ? `http://localhost:${devPort}/${game.slug}/`
     : `/${game.slug}/`;
+  const playableLabel =
+    game.slug === "math-adventure"
+      ? "Mainkan vertical slice"
+      : game.slug === "science-lab"
+        ? "Mainkan prototipe"
+        : "Mainkan versi awal";
   const action = isPlayable
-    ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">${game.slug === "math-adventure" ? "Mainkan vertical slice" : "Mainkan versi awal"} <span aria-hidden="true">→</span></a>`
+    ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">${playableLabel} <span aria-hidden="true">→</span></a>`
     : `<button class="card-action" type="button" disabled aria-label="${game.name}: ${statusLabel}">${statusLabel}</button>`;
+  const gameProgress = loadGameProgress(game.slug);
+  const gameLevel = Math.floor(gameProgress.xp / 1_000) + 1;
   const savedProgress =
-    isPlayable && mathArcherProgress.sessions > 0
-      ? `<p class="game-card__progress"><span>★ Level ${mathArcherLevel}</span><span>${mathArcherProgress.xp.toLocaleString("id-ID")} XP</span><span>${mathArcherProgress.sessions} sesi</span></p>`
+    isPlayable && gameProgress.sessions > 0
+      ? `<p class="game-card__progress"><span>★ Level ${gameLevel}</span><span>${gameProgress.xp.toLocaleString("id-ID")} XP</span><span>${gameProgress.sessions} sesi</span></p>`
       : "";
 
   return `

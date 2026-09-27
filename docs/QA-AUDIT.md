@@ -24,6 +24,14 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Misi Pantai memakai Himpunan, membuka Hutan setelah selesai, lalu Hutan memakai Relasi dan membuka boss.
 - Boss menggabungkan Himpunan dan Relasi; seluruh rangkaian dapat diselesaikan sampai laporan hasil, dengan progres peta `3/3` dan tanpa error JavaScript.
 
+## Science Lab prototype
+
+- Kartu Science Lab muncul sebagai **Mainkan prototipe** dari portal.
+- Pada viewport 390×844 dengan sentuhan dan desktop dengan mouse, setup membuka meja eksperimen tanpa overflow.
+- Pemain memilih kerikil, pasir, dan kapas, menyusun tiga lapisan, lalu menjalankan penyaringan.
+- Urutan benar mengubah meter kejernihan menjadi 92%, menampilkan hasil observasi, memberi XP/koin, dan mencegah hadiah ganda dari klik ulang.
+- Urutan salah menampilkan petunjuk, mengembalikan langkah ke tahap penyusunan, dan mengizinkan percobaan ulang tanpa error JavaScript.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:

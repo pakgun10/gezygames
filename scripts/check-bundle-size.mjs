@@ -35,6 +35,20 @@ const budgets = [
     raw: 45,
     gzip: 12,
   },
+  {
+    label: "Science Lab JavaScript",
+    directory: "dist/science-lab/assets",
+    extension: ".js",
+    raw: 75,
+    gzip: 20,
+  },
+  {
+    label: "Science Lab CSS",
+    directory: "dist/science-lab/assets",
+    extension: ".css",
+    raw: 45,
+    gzip: 12,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

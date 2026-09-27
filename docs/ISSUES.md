@@ -426,15 +426,17 @@ Bangun game unggulan kedua yang memakai fondasi bersama serta menambahkan peta, 
 **Prioritas:** P2  
 **Depends on:** GZG-021
 
+**Status:** Selesai — 28 September 2026
+
 Uji satu eksperimen virtual sederhana yang melibatkan manipulasi, prediksi, observasi, dan penjelasan.
 
 **Acceptance criteria**
 
-- [ ] Eksperimen terkait tujuan belajar IPAS yang spesifik.
-- [ ] Pemain melakukan interaksi bermakna selain memilih jawaban teks.
-- [ ] Hasil eksperimen dapat diamati dan dijelaskan.
-- [ ] Prototipe diuji pada sentuh dan mouse.
-- [ ] Kebutuhan perluasan model konten dan mesin sesi didokumentasikan.
+- [x] Eksperimen terkait tujuan belajar IPAS yang spesifik.
+- [x] Pemain melakukan interaksi bermakna selain memilih jawaban teks.
+- [x] Hasil eksperimen dapat diamati dan dijelaskan.
+- [x] Prototipe diuji pada sentuh dan mouse.
+- [x] Kebutuhan perluasan model konten dan mesin sesi didokumentasikan.
 
 ## Issue template yang disarankan
 
