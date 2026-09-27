@@ -1,7 +1,7 @@
 # Audit QA awal — Math Archer
 
 **Tanggal:** 27 September 2026  
-**Build yang diuji:** `faf7f60`  
+**Build yang diuji:** `8f57e59`  
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
