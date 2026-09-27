@@ -1,8 +1,11 @@
 import { mathQuestions } from "./math";
 import { phases } from "./types";
-import { validateQuestionBank } from "./validate";
+import { validateMathMvpCoverage, validateQuestionBank } from "./validate";
 
-const issues = [...validateQuestionBank(mathQuestions)];
+const issues = [
+  ...validateQuestionBank(mathQuestions),
+  ...validateMathMvpCoverage(mathQuestions),
+];
 
 for (const question of mathQuestions) {
   if (question.status !== "published") {

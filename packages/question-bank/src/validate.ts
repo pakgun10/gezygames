@@ -4,6 +4,11 @@ import {
   type Question,
   type QuestionValidationIssue,
 } from "./types";
+import {
+  mathMvpTopics,
+  minimumQuestionsPerPhase,
+  minimumQuestionsPerTopic,
+} from "./math-coverage";
 
 const idPattern = /^math-(foundation|[abcd])-[a-z0-9-]+-\d{3}$/;
 
@@ -61,6 +66,38 @@ export const validateQuestionBank = (
       });
     }
   });
+
+  return issues;
+};
+
+export const validateMathMvpCoverage = (
+  questions: readonly Question[],
+): readonly QuestionValidationIssue[] => {
+  const issues: QuestionValidationIssue[] = [];
+
+  for (const phase of phases) {
+    const publishedQuestions = questions.filter(
+      (question) => question.phase === phase && question.status === "published",
+    );
+    if (publishedQuestions.length < minimumQuestionsPerPhase) {
+      issues.push({
+        questionId: `phase-${phase}`,
+        field: "status",
+        message: `Fase ${phase} membutuhkan minimal ${minimumQuestionsPerPhase} soal published.`,
+      });
+    }
+
+    for (const topic of mathMvpTopics[phase]) {
+      const topicQuestions = publishedQuestions.filter((question) => question.topic === topic);
+      if (topicQuestions.length < minimumQuestionsPerTopic) {
+        issues.push({
+          questionId: `phase-${phase}-${topic.toLocaleLowerCase("id").replaceAll(" ", "-")}`,
+          field: "topic",
+          message: `Topik ${topic} pada Fase ${phase} membutuhkan minimal ${minimumQuestionsPerTopic} soal published.`,
+        });
+      }
+    }
+  }
 
   return issues;
 };

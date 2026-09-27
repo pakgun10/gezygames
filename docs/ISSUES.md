@@ -29,15 +29,17 @@ Tentukan nama portal, pola nama Indonesia/Inggris, dan aturan slug URL agar UI, 
 **Prioritas:** P0  
 **Depends on:** —
 
+**Status:** Selesai — 27 September 2026
+
 Tentukan topik prioritas untuk Fase Fondasi, A, B, C, dan D serta standar penulisan soal dan pembahasan.
 
 **Acceptance criteria**
 
-- [ ] Topik MVP untuk setiap fase terdaftar.
-- [ ] Setiap topik memiliki tujuan belajar dan contoh soal.
-- [ ] Aturan bahasa, notasi, distraktor, dan pembahasan didokumentasikan.
-- [ ] Ada checklist review ketepatan materi dan kesesuaian fase.
-- [ ] Pemilik atau proses persetujuan konten ditentukan.
+- [x] Topik MVP untuk setiap fase terdaftar.
+- [x] Setiap topik memiliki tujuan belajar dan contoh soal.
+- [x] Aturan bahasa, notasi, distraktor, dan pembahasan didokumentasikan.
+- [x] Ada checklist review ketepatan materi dan kesesuaian fase.
+- [x] Pemilik atau proses persetujuan konten ditentukan.
 
 ### GZG-003 — Buat brief game Math Archer dan Math Adventure
 
@@ -240,15 +242,17 @@ Buat laporan yang dapat dipakai semua game dan memisahkan hasil belajar dari sko
 **Prioritas:** P0  
 **Depends on:** GZG-002, GZG-008, GZG-009
 
+**Status:** Siap ditinjau editorial — 27 September 2026
+
 Tulis atau bangun generator untuk set soal awal berdasarkan cakupan yang telah disepakati.
 
 **Acceptance criteria**
 
-- [ ] Setiap fase memiliki jumlah soal minimum yang disepakati untuk topik MVP.
-- [ ] Semua soal memiliki pembahasan.
-- [ ] Distraktor masuk akal dan tidak ambigu.
+- [x] Setiap fase memiliki jumlah soal minimum yang disepakati untuk topik MVP.
+- [x] Semua soal memiliki pembahasan.
+- [x] Distraktor masuk akal dan tidak ambigu.
 - [ ] Soal telah melalui review editorial.
-- [ ] Seluruh konten lolos pipeline validasi.
+- [x] Seluruh konten lolos pipeline validasi.
 
 ### GZG-015 — Bangun scene dan loop inti Math Archer
 

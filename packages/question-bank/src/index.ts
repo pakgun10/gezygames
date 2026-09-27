@@ -1,5 +1,13 @@
 export { mathQuestions } from "./math";
-export { validateQuestionBank } from "./validate";
+export {
+  validateMathMvpCoverage,
+  validateQuestionBank,
+} from "./validate";
+export {
+  mathMvpTopics,
+  minimumQuestionsPerPhase,
+  minimumQuestionsPerTopic,
+} from "./math-coverage";
 export {
   phases,
   questionStatuses,
@@ -9,4 +17,3 @@ export {
   type QuestionStatus,
   type QuestionValidationIssue,
 } from "./types";
-
