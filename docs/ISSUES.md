@@ -264,17 +264,19 @@ Tulis atau bangun generator untuk set soal awal berdasarkan cakupan yang telah d
 **Prioritas:** P0  
 **Depends on:** GZG-003, GZG-010, GZG-012, GZG-014
 
+**Status:** Selesai — 27 September 2026
+
 Implementasikan satu sesi lengkap Math Archer dari pemilihan fase hingga kondisi akhir.
 
 **Acceptance criteria**
 
-- [ ] Pertanyaan dan pilihan terhubung ke mesin sesi bersama.
-- [ ] Jawaban benar menghasilkan animasi panah mengenai target, XP, koin, dan streak.
-- [ ] Jawaban salah menghasilkan panah meleset, petunjuk ramah, dan state game yang konsisten.
-- [ ] Kondisi menang dan kalah sesuai brief.
-- [ ] Remedial muncul tanpa terasa sebagai pengulangan langsung.
-- [ ] Sesi dapat diselesaikan dengan sentuh, mouse, dan keyboard.
-- [ ] Hasil dikirim ke laporan bersama.
+- [x] Pertanyaan dan pilihan terhubung ke mesin sesi bersama.
+- [x] Jawaban benar menghasilkan animasi panah mengenai target, XP, koin, dan streak.
+- [x] Jawaban salah menghasilkan panah meleset, petunjuk ramah, dan state game yang konsisten.
+- [x] Kondisi menang dan kalah sesuai brief.
+- [x] Remedial muncul tanpa terasa sebagai pengulangan langsung.
+- [x] Sesi dapat diselesaikan dengan sentuh, mouse, dan keyboard.
+- [x] Hasil dikirim ke laporan bersama.
 
 ### GZG-016 — Buat aset dan audio Math Archer
 
@@ -282,16 +284,20 @@ Implementasikan satu sesi lengkap Math Archer dari pemilihan fase hingga kondisi
 **Prioritas:** P0  
 **Depends on:** GZG-003, GZG-006
 
+**Status:** Selesai — 27 September 2026
+
 Buat arena memanah yang konsisten dengan gaya hijau-alam Gezy Games dan tetap menyisakan area baca yang tenang.
 
 **Acceptance criteria**
 
-- [ ] Daftar aset final mengacu pada brief game.
-- [ ] Latar tidak memiliki teks, soal, jawaban, atau kontrol yang menyatu di gambar.
-- [ ] Aset karakter/objek penting memiliki state yang diperlukan.
-- [ ] Ukuran dan format aset dioptimalkan untuk web.
-- [ ] Audio memiliki volume yang wajar dan dapat dimatikan.
-- [ ] Sumber, kepemilikan, dan lisensi setiap aset tercatat.
+- [x] Daftar aset final mengacu pada brief game.
+- [x] Latar tidak memiliki teks, soal, jawaban, atau kontrol yang menyatu di gambar.
+- [x] Aset karakter/objek penting memiliki state yang diperlukan.
+- [x] Ukuran dan format aset dioptimalkan untuk web.
+- [x] Audio memiliki volume yang wajar dan dapat dimatikan.
+- [x] Sumber, kepemilikan, dan lisensi setiap aset tercatat.
+
+Inventaris dan aturan pemakaian aset tercatat di [ASSETS.md](./ASSETS.md).
 
 ### GZG-017 — Tambahkan animasi, feedback, dan reduced motion
 
@@ -299,15 +305,19 @@ Buat arena memanah yang konsisten dengan gaya hijau-alam Gezy Games dan tetap me
 **Prioritas:** P1  
 **Depends on:** GZG-015, GZG-016
 
+**Status:** Selesai — 27 September 2026
+
 Tambahkan respons visual/audio yang membuat aksi terasa hidup tanpa menghalangi kegiatan belajar.
 
 **Acceptance criteria**
 
-- [ ] Jawaban benar, salah, serangan, kerusakan, dan kemenangan memiliki feedback yang berbeda.
-- [ ] Input dikunci selama transisi yang dapat menyebabkan jawaban ganda.
-- [ ] Animasi tidak menunda soal berikutnya secara berlebihan.
-- [ ] `prefers-reduced-motion` mengurangi atau mengganti animasi besar.
-- [ ] Informasi tetap lengkap ketika audio dimatikan.
+- [x] Jawaban benar, salah, serangan, kerusakan, dan kemenangan memiliki feedback yang berbeda.
+- [x] Input dikunci selama transisi yang dapat menyebabkan jawaban ganda.
+- [x] Animasi tidak menunda soal berikutnya secara berlebihan.
+- [x] `prefers-reduced-motion` mengurangi atau mengganti animasi besar.
+- [x] Informasi tetap lengkap ketika audio dimatikan.
+
+Bukti pemeriksaan otomatis awal dicatat di [QA-AUDIT.md](./QA-AUDIT.md).
 
 ## Milestone M3 — MVP release
 
@@ -316,6 +326,8 @@ Tambahkan respons visual/audio yang membuat aksi terasa hidup tanpa menghalangi 
 **Tipe:** QA  
 **Prioritas:** P0  
 **Depends on:** GZG-007, GZG-013, GZG-015, GZG-017
+
+**Status:** Audit otomatis awal selesai; verifikasi perangkat fisik masih terbuka — 27 September 2026
 
 Uji alur utama pada kombinasi ukuran layar dan metode input sasaran.
 
@@ -332,6 +344,8 @@ Uji alur utama pada kombinasi ukuran layar dan metode input sasaran.
 **Tipe:** Performance  
 **Prioritas:** P0  
 **Depends on:** GZG-015, GZG-016
+
+**Status:** Baseline awal tercatat; pengukuran jaringan lambat masih terbuka — 27 September 2026
 
 Ukur dan perbaiki waktu muat, ukuran aset, serta perilaku aplikasi pada kondisi tidak ideal.
 
