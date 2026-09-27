@@ -102,15 +102,17 @@ Siapkan workspace utama untuk portal, game, dan paket bersama.
 **Prioritas:** P0  
 **Depends on:** GZG-005
 
+**Status:** Selesai — 27 September 2026
+
 Terapkan palet hijau Gezy Games, tipografi, jarak, bentuk, bayangan, serta komponen interaksi yang konsisten.
 
 **Acceptance criteria**
 
-- [ ] Token warna utama mencakup forest, forest deep, grass, moss, gold, cream, wood, rock, sky, dan ink dari PRD.
-- [ ] Tombol primer, sekunder, kartu, badge, dialog, input, dan focus state tersedia.
-- [ ] Komponen memenuhi ukuran target sentuh minimum.
-- [ ] Informasi status tidak hanya bergantung pada warna.
-- [ ] Contoh komponen dapat dilihat pada halaman internal atau portal.
+- [x] Token warna utama mencakup forest, forest deep, grass, moss, gold, cream, wood, rock, sky, dan ink dari PRD.
+- [x] Tombol primer, sekunder, kartu, badge, dialog, input, dan focus state tersedia.
+- [x] Komponen memenuhi ukuran target sentuh minimum.
+- [x] Informasi status tidak hanya bergantung pada warna.
+- [x] Contoh komponen dapat dilihat pada halaman internal atau portal.
 
 ### GZG-007 — Bangun portal katalog responsif
 
@@ -118,16 +120,18 @@ Terapkan palet hijau Gezy Games, tipografi, jarak, bentuk, bayangan, serta kompo
 **Prioritas:** P0  
 **Depends on:** GZG-005, GZG-006
 
+**Status:** Selesai — 27 September 2026
+
 Buat beranda Gezy Games yang memperkenalkan produk dan menampilkan katalog dua belas game.
 
 **Acceptance criteria**
 
-- [ ] Seluruh game pada PRD tampil sebagai kartu katalog.
-- [ ] Math Archer berstatus dapat dimainkan; game lain dapat ditandai segera hadir sesuai roadmap.
-- [ ] Kartu menampilkan nama, mapel, fase, mekanik singkat, status, dan aksi yang sesuai.
-- [ ] Portal responsif pada ponsel, tablet, desktop, dan layar besar.
-- [ ] Navigasi keyboard dan focus order masuk akal.
-- [ ] Metadata halaman, favicon, dan theme color tersedia.
+- [x] Seluruh game pada PRD tampil sebagai kartu katalog.
+- [x] Math Archer berstatus dapat dimainkan; game lain dapat ditandai segera hadir sesuai roadmap.
+- [x] Kartu menampilkan nama, mapel, fase, mekanik singkat, status, dan aksi yang sesuai.
+- [x] Portal responsif pada ponsel, tablet, desktop, dan layar besar.
+- [x] Navigasi keyboard dan focus order masuk akal.
+- [x] Metadata halaman, favicon, dan theme color tersedia.
 
 ### GZG-008 — Definisikan skema bank soal bersama
 
