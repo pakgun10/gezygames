@@ -350,7 +350,7 @@ Ukur dan perbaiki waktu muat, ukuran aset, serta perilaku aplikasi pada kondisi 
 **Prioritas:** P0  
 **Depends on:** GZG-007, GZG-015, GZG-019
 
-**Status:** Sebagian selesai — 27 September 2026
+**Status:** Selesai — 27 September 2026
 
 Publikasikan build statis melalui Nginx pada domain produksi dengan proses deployment yang dapat diulang.
 
@@ -360,7 +360,7 @@ Publikasikan build statis melalui Nginx pada domain produksi dengan proses deplo
 - [x] Konfigurasi Nginx menangani root, subpath game, caching aset, dan fallback yang diperlukan.
 - [x] HTTPS aktif untuk `games.gezytech.web.id`.
 - [x] Prosedur deployment dan rollback terdokumentasi.
-- [ ] Smoke test produksi mencakup portal, mulai game, selesai, laporan, dan refresh URL langsung.
+- [x] Smoke test produksi mencakup portal, mulai game, selesai, laporan, dan refresh URL langsung.
 
 ### GZG-021 — Lakukan sesi uji pengguna MVP
 
