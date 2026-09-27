@@ -139,15 +139,17 @@ Buat beranda Gezy Games yang memperkenalkan produk dan menampilkan katalog dua b
 **Prioritas:** P0  
 **Depends on:** GZG-002, GZG-005
 
+**Status:** Selesai — 27 September 2026
+
 Buat tipe data dan aturan validasi untuk soal manual maupun soal berbasis generator.
 
 **Acceptance criteria**
 
-- [ ] Skema mendukung ID, mapel, fase, topik, kesulitan, tipe, prompt, jawaban, pembahasan, aset, dan status editorial.
-- [ ] ID ganda dan data wajib yang hilang menyebabkan validasi gagal.
-- [ ] Pilihan ganda menjamin tepat satu jawaban benar.
-- [ ] Skema memiliki versi.
-- [ ] Contoh valid dan tidak valid tersedia sebagai fixture.
+- [x] Skema mendukung ID, mapel, fase, topik, kesulitan, tipe, prompt, jawaban, pembahasan, aset, dan status editorial.
+- [x] ID ganda dan data wajib yang hilang menyebabkan validasi gagal.
+- [x] Pilihan ganda menjamin tepat satu jawaban benar.
+- [x] Skema memiliki versi.
+- [x] Contoh valid dan tidak valid tersedia sebagai fixture.
 
 ### GZG-009 — Buat pipeline validasi konten
 

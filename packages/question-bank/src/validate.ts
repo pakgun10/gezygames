@@ -1,4 +1,12 @@
-import { phases, questionStatuses, type Question, type QuestionValidationIssue } from "./types";
+import {
+  QUESTION_BANK_SCHEMA_VERSION,
+  phases,
+  questionAssetKinds,
+  questionStatuses,
+  type Question,
+  type QuestionBank,
+  type QuestionValidationIssue,
+} from "./types";
 import { mathMvpTopics, minimumQuestionsPerPhase, minimumQuestionsPerTopic } from "./math-coverage";
 
 const idPattern = /^math-(foundation|[abcd])-[a-z0-9-]+-\d{3}$/;
@@ -51,6 +59,48 @@ export const validateQuestionBank = (
       });
     }
 
+    if (question.assets) {
+      const seenAssetIds = new Set<string>();
+      question.assets.forEach((asset) => {
+        if (!asset.id.trim()) {
+          issues.push({
+            questionId: question.id,
+            field: "assets",
+            message: "ID aset tidak boleh kosong.",
+          });
+        }
+        if (seenAssetIds.has(asset.id)) {
+          issues.push({
+            questionId: question.id,
+            field: "assets",
+            message: "ID aset dalam satu soal harus unik.",
+          });
+        }
+        seenAssetIds.add(asset.id);
+        if (!questionAssetKinds.includes(asset.kind)) {
+          issues.push({
+            questionId: question.id,
+            field: "assets",
+            message: `Jenis aset ${asset.kind} tidak dikenal.`,
+          });
+        }
+        if (!asset.src.trim()) {
+          issues.push({
+            questionId: question.id,
+            field: "assets",
+            message: "Sumber aset tidak boleh kosong.",
+          });
+        }
+        if (asset.kind === "image" && !asset.alt?.trim()) {
+          issues.push({
+            questionId: question.id,
+            field: "assets",
+            message: "Aset gambar harus memiliki teks alternatif.",
+          });
+        }
+      });
+    }
+
     const normalizedChoices = question.choices.map((choice) =>
       choice.trim().toLocaleLowerCase("id"),
     );
@@ -78,6 +128,21 @@ export const validateQuestionBank = (
     }
   });
 
+  return issues;
+};
+
+export const validateQuestionBankDocument = (
+  bank: QuestionBank,
+): readonly QuestionValidationIssue[] => {
+  const issues: QuestionValidationIssue[] = [];
+  if (bank.version !== QUESTION_BANK_SCHEMA_VERSION) {
+    issues.push({
+      questionId: "__bank__",
+      field: "version",
+      message: `Versi bank soal harus ${QUESTION_BANK_SCHEMA_VERSION}.`,
+    });
+  }
+  issues.push(...validateQuestionBank(bank.questions));
   return issues;
 };
 

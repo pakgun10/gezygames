@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
+import { invalidQuestionFixture, validQuestionFixture } from "./fixtures";
 import { mathQuestions } from "./math";
-import type { Question } from "./types";
-import { validateMathMvpCoverage, validateQuestionBank } from "./validate";
+import type { Question, QuestionBank } from "./types";
+import {
+  validateMathMvpCoverage,
+  validateQuestionBank,
+  validateQuestionBankDocument,
+} from "./validate";
 
 describe("validateQuestionBank", () => {
   it("menerima bank soal terbit saat ini", () => {
@@ -33,5 +38,29 @@ describe("validateQuestionBank", () => {
 
     assert.ok(issues.some((issue) => issue.message.includes("Fase A membutuhkan minimal")));
     assert.ok(issues.some((issue) => issue.message.includes("Topik Membilang")));
+  });
+
+  it("memvalidasi aset soal dan dokumen bank berversi", () => {
+    const withAsset: Question = {
+      ...validQuestionFixture,
+      assets: [
+        { id: "counting-picture", kind: "image", src: "/assets/counting.svg", alt: "Tiga bintang" },
+      ],
+    };
+    assert.deepEqual(validateQuestionBank([withAsset]), []);
+
+    const invalidAsset: Question = {
+      ...invalidQuestionFixture,
+    };
+    const assetIssues = validateQuestionBank([invalidAsset]);
+    assert.ok(assetIssues.filter((issue) => issue.field === "assets").length >= 3);
+
+    const invalidVersion = {
+      version: 99,
+      questions: [validQuestionFixture],
+    } as unknown as QuestionBank;
+    assert.ok(
+      validateQuestionBankDocument(invalidVersion).some((issue) => issue.field === "version"),
+    );
   });
 });

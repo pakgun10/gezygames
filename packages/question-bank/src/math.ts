@@ -1,4 +1,4 @@
-import type { Question } from "./types";
+import { QUESTION_BANK_SCHEMA_VERSION, type Question, type QuestionBank } from "./types";
 
 export const mathQuestions: readonly Question[] = [
   {
@@ -660,3 +660,8 @@ export const mathQuestions: readonly Question[] = [
     status: "published",
   },
 ] as const;
+
+export const mathQuestionBank: QuestionBank = {
+  version: QUESTION_BANK_SCHEMA_VERSION,
+  questions: mathQuestions,
+};

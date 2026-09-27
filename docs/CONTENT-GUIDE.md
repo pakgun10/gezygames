@@ -27,6 +27,8 @@ Rujukan utama:
 
 Setiap fase memiliki lima topik inti dan sedikitnya dua soal terbit untuk tiap topik. Target minimalnya adalah **10 soal per fase** atau **50 soal** untuk Fondasi sampai Fase D. Pemeriksaan otomatis menolak build jika batas ini tidak terpenuhi.
 
+Bank soal memakai `QUESTION_BANK_SCHEMA_VERSION = 1`. Setiap soal dapat membawa `assets` opsional untuk ilustrasi atau audio; aset gambar wajib memiliki `alt` agar interaksi baru tetap dapat diakses.
+
 | Fase    | Topik inti         | Tujuan belajar ringkas                                           | Contoh ID                       |
 | ------- | ------------------ | ---------------------------------------------------------------- | ------------------------------- |
 | Fondasi | Membilang          | Menghubungkan jumlah benda dengan lambang bilangan sampai 10.    | `math-foundation-counting-001`  |
@@ -67,6 +69,19 @@ Setiap fase memiliki lima topik inti dan sedikitnya dua soal terbit untuk tiap t
 8. Pembahasan menjelaskan langkah atau alasan jawaban dalam satu sampai tiga kalimat, dengan nada yang mendukung.
 9. Hindari konteks yang mengasumsikan kepemilikan, pengalaman, atau latar budaya tertentu.
 10. Soal tidak boleh menyebut hadiah game, streak, atau tekanan waktu.
+
+Contoh metadata aset:
+
+```ts
+assets: [
+  {
+    id: "relation-diagram",
+    kind: "image",
+    src: "/assets/relation-diagram.svg",
+    alt: "Diagram panah dari 1 ke 2, 2 ke 4, dan 3 ke 6",
+  },
+];
+```
 
 ## Kesulitan
 

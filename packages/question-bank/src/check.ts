@@ -1,10 +1,13 @@
-import { mathQuestions } from "./math";
+import { mathQuestionBank } from "./math";
 import { phases } from "./types";
-import { validateMathMvpCoverage, validateQuestionBank } from "./validate";
+import { validateMathMvpCoverage, validateQuestionBankDocument } from "./validate";
 
-const issues = [...validateQuestionBank(mathQuestions), ...validateMathMvpCoverage(mathQuestions)];
+const issues = [
+  ...validateQuestionBankDocument(mathQuestionBank),
+  ...validateMathMvpCoverage(mathQuestionBank.questions),
+];
 
-for (const question of mathQuestions) {
+for (const question of mathQuestionBank.questions) {
   if (question.status !== "published") {
     issues.push({
       questionId: question.id,
@@ -16,7 +19,9 @@ for (const question of mathQuestions) {
 
 for (const phase of phases) {
   if (
-    !mathQuestions.some((question) => question.phase === phase && question.status === "published")
+    !mathQuestionBank.questions.some(
+      (question) => question.phase === phase && question.status === "published",
+    )
   ) {
     issues.push({
       questionId: `phase-${phase}`,
@@ -33,6 +38,8 @@ if (issues.length > 0) {
   });
   process.exitCode = 1;
 } else {
-  const publishedCount = mathQuestions.filter((question) => question.status === "published").length;
+  const publishedCount = mathQuestionBank.questions.filter(
+    (question) => question.status === "published",
+  ).length;
   console.log(`Bank soal valid: ${publishedCount} soal published untuk ${phases.length} fase.`);
 }
