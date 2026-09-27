@@ -1,7 +1,7 @@
 # Audit QA awal — Math Archer
 
 **Tanggal:** 27 September 2026  
-**Build yang diuji:** `8f57e59`  
+**Build yang diuji:** `1baa4f4`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -36,10 +36,12 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 
 Ukuran output Vite dari build produksi:
 
-| Aplikasi    | JavaScript |      CSS | Gzip JavaScript | Gzip CSS |
-| ----------- | ---------: | -------: | --------------: | -------: |
-| Portal      |   13.29 kB | 18.20 kB |         4.64 kB |  5.40 kB |
-| Math Archer |   44.91 kB | 23.78 kB |        13.43 kB |  6.30 kB |
+| Aplikasi       | JavaScript |      CSS | Gzip JavaScript | Gzip CSS |
+| -------------- | ---------: | -------: | --------------: | -------: |
+| Portal         |   13.29 kB | 18.20 kB |         4.64 kB |  5.40 kB |
+| Math Archer    |   44.91 kB | 23.78 kB |        13.43 kB |  6.30 kB |
+| Math Adventure |   43.20 kB | 19.32 kB |        12.68 kB |  4.99 kB |
+| Science Lab    |   16.31 kB | 15.62 kB |         5.68 kB |  4.27 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
