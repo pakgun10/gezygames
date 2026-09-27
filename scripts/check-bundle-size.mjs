@@ -49,6 +49,20 @@ const budgets = [
     raw: 45,
     gzip: 12,
   },
+  {
+    label: "Math Castle JavaScript",
+    directory: "dist/math-castle/assets",
+    extension: ".js",
+    raw: 85,
+    gzip: 22,
+  },
+  {
+    label: "Math Castle CSS",
+    directory: "dist/math-castle/assets",
+    extension: ".css",
+    raw: 45,
+    gzip: 12,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

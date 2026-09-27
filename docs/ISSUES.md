@@ -438,6 +438,145 @@ Uji satu eksperimen virtual sederhana yang melibatkan manipulasi, prediksi, obse
 - [x] Prototipe diuji pada sentuh dan mouse.
 - [x] Kebutuhan perluasan model konten dan mesin sesi didokumentasikan.
 
+## Milestone M6 — Game expansion backlog
+
+### GZG-024 — Bangun vertical slice Math Castle
+
+**Tipe:** Game feature  
+**Prioritas:** P1  
+**Depends on:** GZG-015, GZG-019
+
+**Status:** Selesai — 28 September 2026
+
+Bangun game pertahanan kastil yang menjadikan jawaban matematika sebagai aksi memperkuat tembok dan menghalau gelombang musuh.
+
+**Acceptance criteria**
+
+- [x] Pemain dapat memilih fase dan memulai sesi dari portal.
+- [x] Jawaban benar memperkuat kastil atau menyerang musuh; jawaban salah memberi feedback dan kesempatan mencoba.
+- [x] Sesi memiliki gelombang, nyawa kastil, progres, hadiah, dan laporan hasil.
+- [x] Game memakai paket bersama serta diuji pada sentuh dan mouse.
+
+### GZG-025 — Bangun vertical slice Math Space Mission
+
+**Tipe:** Game feature  
+**Prioritas:** P1  
+**Depends on:** GZG-024
+
+Gunakan jawaban benar untuk mengisi bahan bakar pesawat dan membuka planet berikutnya.
+
+**Acceptance criteria**
+
+- [ ] Peta planet dan urutan misi dapat dipahami tanpa instruksi tambahan.
+- [ ] Jawaban benar menggerakkan pesawat; jawaban salah memberi pembahasan singkat.
+- [ ] Progres planet, XP, dan laporan tersimpan melalui fondasi bersama.
+- [ ] Vertical slice memiliki minimal tiga planet dan satu kondisi selesai.
+
+### GZG-026 — Bangun vertical slice Quiz Runner
+
+**Tipe:** Game feature  
+**Prioritas:** P1  
+**Depends on:** GZG-015, GZG-017
+
+Uji pilihan jawaban sambil bergerak melewati jalur rintangan.
+
+**Acceptance criteria**
+
+- [ ] Pemain memilih jalur melalui sentuh, mouse, dan keyboard.
+- [ ] Posisi karakter, jawaban, dan feedback terbaca pada layar kecil.
+- [ ] Kecepatan dan hukuman kesalahan memiliki mode ramah belajar.
+- [ ] Satu lintasan dapat diselesaikan dan menghasilkan laporan.
+
+### GZG-027 — Bangun vertical slice Puzzle Quest
+
+**Tipe:** Game feature  
+**Prioritas:** P1  
+**Depends on:** GZG-010, GZG-012
+
+Jadikan operasi, pola, dan representasi matematika sebagai kepingan puzzle yang membuka ruangan.
+
+**Acceptance criteria**
+
+- [ ] Pemain menyusun atau memasangkan kepingan, bukan hanya memilih teks.
+- [ ] Puzzle dapat diulang setelah kesalahan tanpa kehilangan progres.
+- [ ] Minimal dua tipe puzzle dan satu pintu akhir tersedia.
+- [ ] Konten dan validasi puzzle terdokumentasi untuk fase berbeda.
+
+### GZG-028 — Bangun vertical slice Treasure Hunt
+
+**Tipe:** Game feature  
+**Prioritas:** P2  
+**Depends on:** GZG-022
+
+Kembangkan eksplorasi peta untuk menemukan petunjuk dan peti soal lintas mata pelajaran.
+
+**Acceptance criteria**
+
+- [ ] Peta memiliki minimal tiga lokasi dan jalur yang terbuka bertahap.
+- [ ] Petunjuk mengarahkan pemain ke soal dengan konteks yang jelas.
+- [ ] Peti, koin, dan progres misi tersimpan lokal.
+- [ ] Mode sentuh tidak bergantung pada drag panjang.
+
+### GZG-029 — Bangun vertical slice Math Battle
+
+**Tipe:** Game feature  
+**Prioritas:** P2  
+**Depends on:** GZG-024, GZG-012
+
+Buat duel bergiliran yang mengubah jawaban menjadi serangan, pertahanan, dan pemulihan.
+
+**Acceptance criteria**
+
+- [ ] Giliran pemain dan lawan terlihat jelas.
+- [ ] Jawaban benar mengubah statistik duel secara bermakna.
+- [ ] Kesalahan memberi petunjuk tanpa langsung mengakhiri sesi santai.
+- [ ] Boss atau lawan awal dapat dikalahkan dan hasilnya dilaporkan.
+
+### GZG-030 — Bangun vertical slice Train of Knowledge
+
+**Tipe:** Game feature  
+**Prioritas:** P2  
+**Depends on:** GZG-025
+
+Rancang perjalanan stasiun yang menambah gerbong setelah pemain menjawab pertanyaan.
+
+**Acceptance criteria**
+
+- [ ] Minimal tiga stasiun memiliki tema dan tujuan belajar berbeda.
+- [ ] Jawaban benar menambah gerbong atau membuka stasiun berikutnya.
+- [ ] Pemain mengetahui alasan jawaban melalui feedback.
+- [ ] Progres perjalanan dapat dilanjutkan setelah refresh.
+
+### GZG-031 — Bangun vertical slice Build the City
+
+**Tipe:** Game feature  
+**Prioritas:** P2  
+**Depends on:** GZG-029
+
+Gunakan hasil hitungan sebagai anggaran untuk membangun fasilitas kota.
+
+**Acceptance criteria**
+
+- [ ] Pemain memilih pembangunan dari anggaran yang terlihat.
+- [ ] Setiap bangunan terkait konsep matematika dan punya dampak visual.
+- [ ] Sistem mencegah saldo negatif tanpa penjelasan.
+- [ ] Vertical slice memiliki minimal empat bangunan dan kondisi kota selesai.
+
+### GZG-032 — Bangun vertical slice Dragon Quiz
+
+**Tipe:** Game feature  
+**Prioritas:** P2  
+**Depends on:** GZG-022, GZG-029
+
+Satukan pertanyaan lintas mapel dalam boss battle naga dengan beberapa fase serangan.
+
+**Acceptance criteria**
+
+- [ ] Fase boss dan perubahan pertahanan naga terlihat jelas.
+- [ ] Soal dapat berasal dari beberapa mapel dan fase yang dipilih.
+- [ ] Kesalahan memicu pembahasan atau pemulihan, bukan hukuman keras.
+- [ ] Kemenangan menghasilkan laporan, achievement, dan progres yang tersimpan.
+
 ## Issue template yang disarankan
 
 Gunakan format ini saat backlog dipindahkan ke GitHub:

@@ -25,7 +25,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Jawab soal untuk memperkuat benteng dan menghalau serangan musuh.",
     icon: "🏰",
     theme: "castle",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "math-space-mission",
