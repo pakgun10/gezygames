@@ -1,14 +1,14 @@
 {
-  "name": "@gezy-games/question-bank",
+  "name": "@gezy-games/progress",
   "version": "0.1.0",
   "private": true,
   "type": "module",
   "exports": "./src/index.ts",
   "scripts": {
-    "typecheck": "tsc -p tsconfig.json",
-    "validate": "node --import tsx src/check.ts"
+    "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
   }
 }
+

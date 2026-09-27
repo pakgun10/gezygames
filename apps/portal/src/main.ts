@@ -1,5 +1,6 @@
 import "@gezy-games/design-system/base.css";
 import { games, subjects, type GameCatalogItem, type SubjectFilter } from "@gezy-games/catalog";
+import { clearPlayerProgress, loadGameProgress, loadPlayerProgress } from "@gezy-games/progress";
 import "./styles.css";
 
 const app = document.querySelector<HTMLDivElement>("#app");
@@ -7,6 +8,11 @@ const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) {
   throw new Error("Elemen aplikasi tidak ditemukan.");
 }
+
+const playerProgress = loadPlayerProgress();
+const mathArcherProgress = loadGameProgress("math-archer");
+const hasSavedProgress = Object.keys(playerProgress.games).length > 0;
+const mathArcherLevel = Math.floor(mathArcherProgress.xp / 1_000) + 1;
 
 const gameCard = (game: GameCatalogItem): string => {
   const phaseLabels = game.phases.map((phase) => `<span>Fase ${phase}</span>`).join("");
@@ -17,6 +23,9 @@ const gameCard = (game: GameCatalogItem): string => {
   const action = isPlayable
     ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">Mainkan versi awal <span aria-hidden="true">→</span></a>`
     : `<button class="card-action" type="button" disabled aria-label="${game.name}: ${statusLabel}">${statusLabel}</button>`;
+  const savedProgress = isPlayable && mathArcherProgress.sessions > 0
+    ? `<p class="game-card__progress"><span>★ Level ${mathArcherLevel}</span><span>${mathArcherProgress.xp.toLocaleString("id-ID")} XP</span><span>${mathArcherProgress.sessions} sesi</span></p>`
+    : "";
 
   return `
     <article class="game-card" data-subject="${game.subject}" data-status="${game.status}">
@@ -36,6 +45,7 @@ const gameCard = (game: GameCatalogItem): string => {
         <h3>${game.name}</h3>
         <p class="game-card__mechanic">${game.mechanic}</p>
         <p class="game-card__description">${game.description}</p>
+        ${savedProgress}
         <div class="game-card__footer">
           <div class="phase-list" aria-label="Tersedia untuk ${game.phases.map((phase) => `Fase ${phase}`).join(", ")}">
             ${phaseLabels}
@@ -174,7 +184,10 @@ app.innerHTML = `
       <a class="brand brand--footer" href="#top"><strong>Gezy</strong> Games</a>
       <p>Dibuat untuk menumbuhkan rasa ingin tahu anak Indonesia.</p>
     </div>
-    <p class="footer-note">Gezy Games · Sedang dalam pengembangan</p>
+    <div class="footer-legal">
+      <p>© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
+      ${hasSavedProgress ? '<button class="reset-progress" type="button">Hapus progres lokal</button>' : ""}
+    </div>
   </footer>
 `;
 
@@ -207,4 +220,11 @@ filterButtons.forEach((button) => {
     const filter = button.dataset.filter as SubjectFilter | undefined;
     if (filter && subjects.includes(filter)) setFilter(filter);
   });
+});
+
+document.querySelector<HTMLButtonElement>(".reset-progress")?.addEventListener("click", () => {
+  const confirmed = window.confirm("Hapus seluruh XP, koin, level, dan riwayat permainan di perangkat ini?");
+  if (!confirmed) return;
+  clearPlayerProgress();
+  window.location.reload();
 });

@@ -98,13 +98,22 @@ a {
   position: relative;
   z-index: 2;
   width: min(1180px, calc(100% - 40px));
-  min-height: calc(100dvh - 76px);
+  min-height: calc(100dvh - 118px);
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
   gap: clamp(50px, 8vw, 110px);
   margin-inline: auto;
   padding: 45px 0 70px;
+}
+
+.legal-footer {
+  position: relative;
+  z-index: 3;
+  padding: 9px 16px 17px;
+  color: #bcd1ae;
+  font-size: 11px;
+  text-align: center;
 }
 
 .setup-hero h1 {
@@ -231,6 +240,42 @@ fieldset {
   margin: 0 0 24px;
   padding: 0;
   border: 0;
+}
+
+.nickname-field {
+  display: block;
+  margin-bottom: 22px;
+}
+
+.nickname-field > span {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--gg-forest-deep);
+  font-family: var(--gg-font-display);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.nickname-field small {
+  color: #7b837b;
+  font-family: var(--gg-font-body);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.nickname-field input {
+  width: 100%;
+  min-height: 46px;
+  padding: 9px 13px;
+  color: var(--gg-ink);
+  background: #fffdf4;
+  border: 2px solid #ccd6bf;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.nickname-field input:focus {
+  border-color: var(--gg-grass);
 }
 
 legend {
@@ -953,6 +998,14 @@ legend {
 
 .play-again-button { width: auto; padding: 10px 26px; }
 .result-actions a { min-height: 49px; display: inline-flex; align-items: center; padding: 10px 20px; color: var(--gg-forest); border: 2px solid #9eb38d; border-radius: 14px; font-weight: 900; text-decoration: none; }
+
+.result-legal {
+  margin: 25px 0 -20px !important;
+  padding-top: 15px;
+  color: #7b837b !important;
+  border-top: 1px solid var(--gg-line);
+  font-size: 10px;
+}
 
 @keyframes arrow-drift {
   0%, 100% { transform: translateX(-8px) rotate(-5deg); }

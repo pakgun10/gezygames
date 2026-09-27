@@ -1,5 +1,11 @@
 import "@gezy-games/design-system/base.css";
 import { createGameSession, type GameSession } from "@gezy-games/game-core";
+import {
+  loadPlayerProgress,
+  migrateLegacyMathArcherProgress,
+  saveGameProgress,
+  savePlayerPreferences,
+} from "@gezy-games/progress";
 import { mathQuestions, phases, type Phase, type Question } from "@gezy-games/question-bank";
 import "./styles.css";
 
@@ -12,7 +18,6 @@ interface PlayerProgress {
   sessions: number;
 }
 
-const storageKey = "gezy-games:math-archer:v1";
 const portalUrl = import.meta.env.DEV ? "http://localhost:5173/" : "/";
 const appElement = document.querySelector<HTMLDivElement>("#app");
 
@@ -33,7 +38,10 @@ const modeDetails: Record<GameMode, { label: string; detail: string; seconds: nu
   challenge: { label: "Tantangan", detail: "18 detik dan 3 hati", seconds: 18 },
 };
 
-let selectedPhase: Phase = "A";
+const initialPreferences = loadPlayerProgress().preferences;
+let selectedPhase: Phase = phases.includes(initialPreferences.lastPhase as Phase)
+  ? initialPreferences.lastPhase as Phase
+  : "A";
 let selectedMode: GameMode = "calm";
 let session: GameSession | null = null;
 let currentQuestions: readonly Question[] = [];
@@ -42,34 +50,18 @@ let activeChoices: readonly string[] = [];
 let streak = 0;
 let hearts = 3;
 let inputLocked = false;
-let soundEnabled = true;
+let soundEnabled = initialPreferences.audioEnabled;
+let playerNickname = initialPreferences.nickname;
 let timerId: number | null = null;
 let deadline = 0;
 let remainingMs = 0;
-let progress = loadProgress();
-
-function loadProgress(): PlayerProgress {
-  try {
-    const raw = localStorage.getItem(storageKey);
-    if (!raw) return { xp: 0, coins: 0, bestStreak: 0, sessions: 0 };
-    const parsed = JSON.parse(raw) as Partial<PlayerProgress>;
-    return {
-      xp: Number.isFinite(parsed.xp) ? Number(parsed.xp) : 0,
-      coins: Number.isFinite(parsed.coins) ? Number(parsed.coins) : 0,
-      bestStreak: Number.isFinite(parsed.bestStreak) ? Number(parsed.bestStreak) : 0,
-      sessions: Number.isFinite(parsed.sessions) ? Number(parsed.sessions) : 0,
-    };
-  } catch {
-    return { xp: 0, coins: 0, bestStreak: 0, sessions: 0 };
-  }
-}
+let progress: PlayerProgress = { ...migrateLegacyMathArcherProgress() };
 
 function saveProgress(): void {
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(progress));
-  } catch {
-    // Permainan tetap berjalan ketika penyimpanan browser tidak tersedia.
-  }
+  saveGameProgress("math-archer", {
+    ...progress,
+    lastPlayedAt: new Date().toISOString(),
+  });
 }
 
 const shuffle = <T>(values: readonly T[]): T[] => {
@@ -118,6 +110,11 @@ function renderSetup(): void {
             <div><span>KOIN</span><strong>${progress.coins.toLocaleString("id-ID")}</strong></div>
           </div>
 
+          <label class="nickname-field">
+            <span>Nama pemain <small>(opsional)</small></span>
+            <input id="player-nickname" type="text" maxlength="30" autocomplete="nickname" value="${escapeHtml(playerNickname)}" placeholder="Contoh: Raka" />
+          </label>
+
           <fieldset>
             <legend>Pilih fase belajar</legend>
             <div class="phase-options">
@@ -156,19 +153,24 @@ function renderSetup(): void {
           <p class="setup-note">5 sasaran · sekitar 3 menit · sentuh atau tombol 1–3</p>
         </section>
       </div>
+      <footer class="legal-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
     </main>
   `;
 
   document.querySelectorAll<HTMLButtonElement>("[data-phase]").forEach((button) => {
     button.addEventListener("click", () => {
+      playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ?? playerNickname;
       selectedPhase = button.dataset.phase as Phase;
+      savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase });
       renderSetup();
     });
   });
 
   document.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((button) => {
     button.addEventListener("click", () => {
+      playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ?? playerNickname;
       selectedMode = button.dataset.mode as GameMode;
+      savePlayerPreferences({ nickname: playerNickname });
       renderSetup();
     });
   });
@@ -177,10 +179,12 @@ function renderSetup(): void {
 }
 
 function startGame(): void {
+  playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim().slice(0, 30) ?? "";
   currentQuestions = mathQuestions.filter(
     (question) => question.phase === selectedPhase && question.status === "published",
   );
   if (currentQuestions.length === 0) throw new Error(`Belum ada soal untuk Fase ${selectedPhase}.`);
+  savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase });
 
   session = createGameSession(currentQuestions, {
     questionCount: Math.min(5, currentQuestions.length),
@@ -273,6 +277,7 @@ function renderQuestion(): void {
   }
 
   const question = snapshot.currentQuestion;
+  savePlayerPreferences({ lastPhase: selectedPhase, lastTopic: question.topic });
   if (activeQuestionId !== question.id) {
     activeQuestionId = question.id;
     activeChoices = shuffle(question.choices);
@@ -518,6 +523,7 @@ function finishGame(victory: boolean): void {
           <button class="play-again-button" type="button">Main lagi</button>
           <a href="${portalUrl}">Kembali ke semua game</a>
         </div>
+        <p class="result-legal">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
       </div>
     </main>
   `;
@@ -554,6 +560,7 @@ function clearTimer(): void {
 
 function toggleSound(): void {
   soundEnabled = !soundEnabled;
+  savePlayerPreferences({ audioEnabled: soundEnabled });
   const button = document.querySelector<HTMLButtonElement>("#sound-button");
   if (button) {
     button.textContent = soundEnabled ? "🔊" : "🔇";

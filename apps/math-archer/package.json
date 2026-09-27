@@ -11,6 +11,7 @@
   "dependencies": {
     "@gezy-games/design-system": "*",
     "@gezy-games/game-core": "*",
+    "@gezy-games/progress": "*",
     "@gezy-games/question-bank": "*"
   },
   "devDependencies": {
@@ -18,4 +19,3 @@
     "vite": "^8.0.0"
   }
 }
-

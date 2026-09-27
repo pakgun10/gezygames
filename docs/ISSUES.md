@@ -145,15 +145,17 @@ Buat tipe data dan aturan validasi untuk soal manual maupun soal berbasis genera
 **Prioritas:** P0  
 **Depends on:** GZG-008
 
+**Status:** Selesai — 27 September 2026
+
 Tambahkan pemeriksaan bank soal sebagai bagian dari workflow pengembangan dan build.
 
 **Acceptance criteria**
 
-- [ ] Semua data soal diperiksa terhadap skema.
-- [ ] Error menyebut file atau ID soal dan alasan kegagalan.
-- [ ] Soal berstatus draft tidak masuk build produksi.
-- [ ] Perintah validasi dapat dijalankan dari root.
-- [ ] Build produksi gagal jika konten terbit tidak valid.
+- [x] Semua data soal diperiksa terhadap skema.
+- [x] Error menyebut file atau ID soal dan alasan kegagalan.
+- [x] Soal berstatus draft tidak masuk build produksi.
+- [x] Perintah validasi dapat dijalankan dari root.
+- [x] Build produksi gagal jika konten terbit tidak valid.
 
 ### GZG-010 — Implementasikan mesin sesi dan remedial
 
@@ -179,15 +181,17 @@ Buat mesin murni tanpa ketergantungan UI yang mengatur pemilihan soal, jawaban, 
 **Prioritas:** P0  
 **Depends on:** GZG-005
 
+**Status:** Selesai — 27 September 2026
+
 Simpan preferensi dan progres dasar di browser dengan skema yang dapat berkembang.
 
 **Acceptance criteria**
 
-- [ ] Nama panggilan, audio, fase terakhir, topik terakhir, dan progres per game dapat disimpan.
-- [ ] Payload penyimpanan memiliki nomor versi.
-- [ ] Data rusak ditangani tanpa membuat aplikasi gagal dibuka.
-- [ ] Game tetap dapat dimainkan bila storage tidak tersedia.
-- [ ] Pengguna dapat menghapus seluruh progres lokal.
+- [x] Nama panggilan, audio, fase terakhir, topik terakhir, dan progres per game dapat disimpan.
+- [x] Payload penyimpanan memiliki nomor versi.
+- [x] Data rusak ditangani tanpa membuat aplikasi gagal dibuka.
+- [x] Game tetap dapat dimainkan bila storage tidak tersedia.
+- [x] Pengguna dapat menghapus seluruh progres lokal.
 
 ### GZG-012 — Buat shell game bersama
 
