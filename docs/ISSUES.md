@@ -351,18 +351,18 @@ Uji alur utama pada kombinasi ukuran layar dan metode input sasaran.
 **Prioritas:** P0  
 **Depends on:** GZG-015, GZG-016
 
-**Status:** Baseline awal tercatat; pengukuran jaringan lambat masih terbuka — 27 September 2026
+**Status:** Baseline dan budget bundle diterapkan; pengukuran jaringan lambat masih terbuka — 27 September 2026
 
 Ukur dan perbaiki waktu muat, ukuran aset, serta perilaku aplikasi pada kondisi tidak ideal.
 
 **Acceptance criteria**
 
-- [ ] Bundle dan aset terbesar diidentifikasi serta dicatat.
-- [ ] Gambar/audio dimuat sesuai kebutuhan dan dikompresi secara layak.
-- [ ] Tidak ada error JavaScript pada alur utama.
-- [ ] Refresh pada URL game langsung tetap membuka aplikasi yang benar.
-- [ ] Kegagalan audio atau storage tidak menghentikan permainan.
-- [ ] Anggaran performa awal ditetapkan berdasarkan hasil pengukuran.
+- [x] Bundle dan aset terbesar diidentifikasi serta dicatat.
+- [x] Gambar/audio dimuat sesuai kebutuhan dan dikompresi secara layak.
+- [x] Tidak ada error JavaScript pada alur utama.
+- [x] Refresh pada URL game langsung tetap membuka aplikasi yang benar.
+- [x] Kegagalan audio atau storage tidak menghentikan permainan.
+- [x] Anggaran performa awal ditetapkan berdasarkan hasil pengukuran.
 
 ### GZG-020 — Siapkan build dan deployment VPS
 

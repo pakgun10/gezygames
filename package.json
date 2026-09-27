@@ -11,14 +11,15 @@
     "dev": "concurrently -n portal,archer -c green,yellow \"npm run dev:portal\" \"npm run dev:archer\"",
     "dev:portal": "npm --workspace @gezy-games/portal run dev -- --port 5173",
     "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
-    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build",
+    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm run check:bundle",
     "preview": "vite preview --outDir dist",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "node --import tsx --test 'packages/**/*.test.ts'",
-    "validate:content": "npm --workspace @gezy-games/question-bank run validate"
+    "validate:content": "npm --workspace @gezy-games/question-bank run validate",
+    "check:bundle": "node scripts/check-bundle-size.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

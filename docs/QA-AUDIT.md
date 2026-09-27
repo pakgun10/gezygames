@@ -27,6 +27,8 @@ Ukuran output Vite dari build produksi:
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip.
+
 ## Pekerjaan lanjutan
 
 - Uji nyata pada IFP 52 inci, tablet, beberapa ponsel portrait/landscape, zoom browser, dan pembaca layar.
