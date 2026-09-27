@@ -242,12 +242,14 @@ fieldset {
   border: 0;
 }
 
-.nickname-field {
+.nickname-field,
+.topic-field {
   display: block;
   margin-bottom: 22px;
 }
 
-.nickname-field > span {
+.nickname-field > span,
+.topic-field > span {
   display: block;
   margin-bottom: 7px;
   color: var(--gg-forest-deep);
@@ -263,7 +265,8 @@ fieldset {
   font-weight: 700;
 }
 
-.nickname-field input {
+.nickname-field input,
+.topic-field select {
   width: 100%;
   min-height: 46px;
   padding: 9px 13px;
@@ -274,7 +277,8 @@ fieldset {
   font-weight: 700;
 }
 
-.nickname-field input:focus {
+.nickname-field input:focus,
+.topic-field select:focus {
   border-color: var(--gg-grass);
 }
 
@@ -932,7 +936,7 @@ legend {
 }
 
 .result-card {
-  width: min(720px, 100%);
+  width: min(920px, 100%);
   padding: clamp(28px, 5vw, 50px);
   color: var(--gg-ink);
   background: var(--gg-surface);
@@ -947,30 +951,74 @@ legend {
 .result-card h1 { margin: 8px 0; color: var(--gg-forest-deep); font-family: var(--gg-font-display); font-size: clamp(28px, 5vw, 48px); line-height: 1.05; }
 .result-card > p:not(.result-eyebrow) { color: var(--gg-muted); }
 
-.result-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  margin: 27px 0;
-}
-
-.result-stats div {
-  padding: 13px 7px;
-  background: #e9efdc;
-  border-radius: 13px;
-}
-
-.result-stats span,
-.result-stats strong { display: block; }
-.result-stats span { color: #6d7a6f; font-size: 8px; font-weight: 900; letter-spacing: 0.8px; }
-.result-stats strong { margin-top: 4px; color: var(--gg-moss); font-family: var(--gg-font-display); font-size: 23px; }
-
-.review-panel {
-  margin: 20px 0;
+.session-report {
+  margin-top: 30px;
   text-align: left;
 }
 
-.review-panel summary {
+.session-report > h2,
+.game-rewards h2 {
+  margin: 0 0 12px;
+  color: var(--gg-forest-deep);
+  font-family: var(--gg-font-display);
+  font-size: 20px;
+}
+
+.report-overview {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.report-overview div {
+  padding: 13px 7px;
+  background: #e9efdc;
+  border-radius: 13px;
+  text-align: center;
+}
+
+.report-overview span,
+.report-overview strong,
+.game-rewards span,
+.game-rewards strong { display: block; }
+.report-overview span,
+.game-rewards span { color: #6d7a6f; font-size: 8px; font-weight: 900; letter-spacing: 0.8px; }
+.report-overview strong,
+.game-rewards strong { margin-top: 4px; color: var(--gg-moss); font-family: var(--gg-font-display); font-size: 23px; }
+
+.topic-report {
+  margin-bottom: 18px;
+  padding: 16px;
+  background: #f3f2e8;
+  border-radius: 14px;
+}
+
+.topic-report h3 {
+  margin: 0 0 9px;
+  color: var(--gg-forest);
+  font-size: 14px;
+}
+
+.topic-report ul,
+.answer-review ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.topic-report li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  border-top: 1px solid var(--gg-line);
+  font-size: 12px;
+}
+
+.topic-report li span { color: var(--gg-muted); text-align: right; }
+
+.answer-review summary {
   padding: 12px;
   color: var(--gg-forest);
   background: #edf1e5;
@@ -979,14 +1027,47 @@ legend {
   font-weight: 900;
 }
 
-.review-panel article {
-  padding: 13px;
-  border-bottom: 1px solid var(--gg-line);
+.answer-review__item {
+  margin-top: 12px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid var(--gg-line);
+  border-left: 5px solid #c6aa70;
+  border-radius: 12px;
   font-size: 13px;
 }
 
-.review-panel article p { margin: 5px 0 0; color: var(--gg-muted); }
-.perfect-note { padding: 12px; color: var(--gg-moss) !important; background: #e9efdc; border-radius: 10px; }
+.answer-review__item--correct { border-left-color: var(--gg-grass); }
+.answer-review__item--incorrect { border-left-color: var(--gg-rock); }
+
+.answer-review__heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--gg-muted);
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.answer-review__heading strong { color: var(--gg-forest); }
+.answer-review__item--incorrect .answer-review__heading strong { color: #914b35; }
+.answer-review__prompt { margin: 10px 0; font-weight: 800; white-space: pre-line; }
+.answer-review dl { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }
+.answer-review dl div { padding: 10px; background: #f6f4e9; border-radius: 9px; }
+.answer-review dt { color: var(--gg-muted); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+.answer-review dd { margin: 3px 0 0; font-weight: 800; }
+.answer-review__explanation { margin: 10px 0 0; color: var(--gg-muted); }
+
+.game-rewards {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gg-line);
+  text-align: left;
+}
+
+.game-rewards > div { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.game-rewards p { margin: 0; padding: 13px; background: #fff5d8; border-radius: 12px; text-align: center; }
 
 .result-actions {
   display: flex;
@@ -997,7 +1078,8 @@ legend {
 }
 
 .play-again-button { width: auto; padding: 10px 26px; }
-.result-actions a { min-height: 49px; display: inline-flex; align-items: center; padding: 10px 20px; color: var(--gg-forest); border: 2px solid #9eb38d; border-radius: 14px; font-weight: 900; text-decoration: none; }
+.change-material-button,
+.result-actions a { min-height: 49px; display: inline-flex; align-items: center; padding: 10px 20px; color: var(--gg-forest); background: transparent; border: 2px solid #9eb38d; border-radius: 14px; cursor: pointer; font-weight: 900; text-decoration: none; }
 
 .result-legal {
   margin: 25px 0 -20px !important;
@@ -1077,9 +1159,13 @@ legend {
   .progress-panel { width: 52vw; right: 10px; bottom: 4%; grid-template-columns: 1fr auto; }
   .progress-panel > span { display: none; }
   .feedback { bottom: 18%; border-radius: 14px; font-size: 12px; }
-  .result-stats { grid-template-columns: repeat(2, 1fr); }
+  .report-overview { grid-template-columns: repeat(2, 1fr); }
+  .topic-report li { display: block; }
+  .topic-report li span { display: block; margin-top: 3px; text-align: left; }
+  .answer-review dl { grid-template-columns: 1fr; }
+  .game-rewards > div { grid-template-columns: 1fr; }
   .result-actions { flex-direction: column; }
-  .play-again-button, .result-actions a { width: 100%; justify-content: center; }
+  .play-again-button, .change-material-button, .result-actions a { width: 100%; justify-content: center; }
 }
 
 @media (max-height: 720px) and (orientation: landscape) {

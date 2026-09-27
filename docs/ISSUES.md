@@ -163,17 +163,19 @@ Tambahkan pemeriksaan bank soal sebagai bagian dari workflow pengembangan dan bu
 **Prioritas:** P0  
 **Depends on:** GZG-008
 
+**Status:** Selesai — 27 September 2026
+
 Buat mesin murni tanpa ketergantungan UI yang mengatur pemilihan soal, jawaban, remedial, skor belajar, dan hasil sesi.
 
 **Acceptance criteria**
 
-- [ ] Sesi dapat dibuat berdasarkan fase, topik, dan jumlah soal.
-- [ ] Pilihan dapat diacak tanpa merusak kunci jawaban.
-- [ ] Soal atau konsep yang salah dijadwalkan ulang setelah jarak yang dapat dikonfigurasi.
-- [ ] Mesin membedakan penguasaan materi dan skor game.
-- [ ] Pause tidak mengurangi waktu sesi.
-- [ ] Hasil sesi memuat data yang diperlukan laporan.
-- [ ] Unit test mencakup pengacakan, remedial, pause, dan kondisi selesai.
+- [x] Sesi dapat dibuat berdasarkan fase, topik, dan jumlah soal.
+- [x] Pilihan dapat diacak tanpa merusak kunci jawaban.
+- [x] Soal atau konsep yang salah dijadwalkan ulang setelah jarak yang dapat dikonfigurasi.
+- [x] Mesin membedakan penguasaan materi dan skor game.
+- [x] Pause tidak mengurangi waktu sesi.
+- [x] Hasil sesi memuat data yang diperlukan laporan.
+- [x] Unit test mencakup pengacakan, remedial, pause, dan kondisi selesai.
 
 ### GZG-011 — Implementasikan penyimpanan progres lokal
 
@@ -216,15 +218,17 @@ Sediakan UI umum untuk konfigurasi sesi, HUD, pause, bantuan, audio, layar penuh
 **Prioritas:** P0  
 **Depends on:** GZG-010, GZG-006
 
+**Status:** Selesai — 27 September 2026
+
 Buat laporan yang dapat dipakai semua game dan memisahkan hasil belajar dari skor hiburan.
 
 **Acceptance criteria**
 
-- [ ] Ringkasan menampilkan benar, salah, tidak terjawab, akurasi, waktu, dan skor.
-- [ ] Hasil dapat dikelompokkan per topik.
-- [ ] Rincian menampilkan soal, jawaban pemain, jawaban benar, dan pembahasan.
-- [ ] Tersedia aksi ulangi, ganti materi, dan kembali ke portal.
-- [ ] Laporan terbaca pada ponsel serta dapat dinavigasi dengan keyboard.
+- [x] Ringkasan menampilkan benar, salah, tidak terjawab, akurasi, waktu, dan skor.
+- [x] Hasil dapat dikelompokkan per topik.
+- [x] Rincian menampilkan soal, jawaban pemain, jawaban benar, dan pembahasan.
+- [x] Tersedia aksi ulangi, ganti materi, dan kembali ke portal.
+- [x] Laporan terbaca pada ponsel serta dapat dinavigasi dengan keyboard.
 
 ## Milestone M2 — Math Archer first playable
 

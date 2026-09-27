@@ -1,5 +1,10 @@
 import "@gezy-games/design-system/base.css";
-import { createGameSession, type GameSession } from "@gezy-games/game-core";
+import {
+  createGameSession,
+  selectQuestions,
+  shuffleQuestionChoices,
+  type GameSession,
+} from "@gezy-games/game-core";
 import {
   loadPlayerProgress,
   migrateLegacyMathArcherProgress,
@@ -7,6 +12,7 @@ import {
   savePlayerPreferences,
 } from "@gezy-games/progress";
 import { mathQuestions, phases, type Phase, type Question } from "@gezy-games/question-bank";
+import { createSessionReport, renderSessionReport } from "@gezy-games/session-report";
 import "./styles.css";
 
 type GameMode = "calm" | "practice" | "challenge";
@@ -42,6 +48,15 @@ const initialPreferences = loadPlayerProgress().preferences;
 let selectedPhase: Phase = phases.includes(initialPreferences.lastPhase as Phase)
   ? initialPreferences.lastPhase as Phase
   : "A";
+const topicsForPhase = (phase: Phase): readonly string[] => [
+  ...new Set(mathQuestions
+    .filter((question) => question.phase === phase && question.status === "published")
+    .map((question) => question.topic)),
+];
+let selectedTopic: string | null = initialPreferences.lastTopic
+  && topicsForPhase(selectedPhase).includes(initialPreferences.lastTopic)
+  ? initialPreferences.lastTopic
+  : null;
 let selectedMode: GameMode = "calm";
 let session: GameSession | null = null;
 let currentQuestions: readonly Question[] = [];
@@ -55,6 +70,7 @@ let playerNickname = initialPreferences.nickname;
 let timerId: number | null = null;
 let deadline = 0;
 let remainingMs = 0;
+let sessionFinished = false;
 let progress: PlayerProgress = { ...migrateLegacyMathArcherProgress() };
 
 function saveProgress(): void {
@@ -64,19 +80,16 @@ function saveProgress(): void {
   });
 }
 
-const shuffle = <T>(values: readonly T[]): T[] => {
-  const output = [...values];
-  for (let index = output.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [output[index], output[swapIndex]] = [output[swapIndex] as T, output[index] as T];
-  }
-  return output;
-};
-
 const levelFromXp = (xp: number): number => Math.floor(xp / 1_000) + 1;
 
 function renderSetup(): void {
   clearTimer();
+  const availableTopics = topicsForPhase(selectedPhase);
+  if (selectedTopic && !availableTopics.includes(selectedTopic)) selectedTopic = null;
+  const availableQuestionCount = selectQuestions(mathQuestions, {
+    phase: selectedPhase,
+    ...(selectedTopic ? { topic: selectedTopic } : {}),
+  }).length;
   app.innerHTML = `
     <main class="setup-screen">
       <header class="game-header">
@@ -132,6 +145,17 @@ function renderSetup(): void {
             </div>
           </fieldset>
 
+          <label class="topic-field">
+            <span>Pilih materi</span>
+            <select id="topic-select">
+              <option value="">Semua materi (${availableTopics.length} topik)</option>
+              ${availableTopics.map((topic) => {
+                const questionCount = selectQuestions(mathQuestions, { phase: selectedPhase, topic }).length;
+                return `<option value="${escapeHtml(topic)}"${topic === selectedTopic ? " selected" : ""}>${escapeHtml(topic)} (${questionCount} soal)</option>`;
+              }).join("")}
+            </select>
+          </label>
+
           <fieldset>
             <legend>Pilih cara bermain</legend>
             <div class="mode-options">
@@ -150,7 +174,7 @@ function renderSetup(): void {
           </fieldset>
 
           <button class="start-button" type="button">Mulai Memanah <span aria-hidden="true">→</span></button>
-          <p class="setup-note">5 sasaran · sekitar 3 menit · sentuh atau tombol 1–3</p>
+          <p class="setup-note">${Math.min(5, availableQuestionCount)} sasaran · sekitar 3 menit · sentuh atau tombol 1–3</p>
         </section>
       </div>
       <footer class="legal-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
@@ -161,9 +185,16 @@ function renderSetup(): void {
     button.addEventListener("click", () => {
       playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim() ?? playerNickname;
       selectedPhase = button.dataset.phase as Phase;
-      savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase });
+      selectedTopic = null;
+      savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase, lastTopic: "" });
       renderSetup();
     });
+  });
+
+  document.querySelector<HTMLSelectElement>("#topic-select")?.addEventListener("change", (event) => {
+    selectedTopic = (event.currentTarget as HTMLSelectElement).value || null;
+    savePlayerPreferences({ lastPhase: selectedPhase, lastTopic: selectedTopic ?? "" });
+    renderSetup();
   });
 
   document.querySelectorAll<HTMLButtonElement>("[data-mode]").forEach((button) => {
@@ -179,12 +210,20 @@ function renderSetup(): void {
 }
 
 function startGame(): void {
-  playerNickname = document.querySelector<HTMLInputElement>("#player-nickname")?.value.trim().slice(0, 30) ?? "";
-  currentQuestions = mathQuestions.filter(
-    (question) => question.phase === selectedPhase && question.status === "published",
-  );
+  const nicknameInput = document.querySelector<HTMLInputElement>("#player-nickname");
+  if (nicknameInput) playerNickname = nicknameInput.value.trim().slice(0, 30);
+  const topicSelect = document.querySelector<HTMLSelectElement>("#topic-select");
+  if (topicSelect) selectedTopic = topicSelect.value || null;
+  currentQuestions = selectQuestions(mathQuestions, {
+    phase: selectedPhase,
+    ...(selectedTopic ? { topic: selectedTopic } : {}),
+  });
   if (currentQuestions.length === 0) throw new Error(`Belum ada soal untuk Fase ${selectedPhase}.`);
-  savePlayerPreferences({ nickname: playerNickname, lastPhase: selectedPhase });
+  savePlayerPreferences({
+    nickname: playerNickname,
+    lastPhase: selectedPhase,
+    lastTopic: selectedTopic ?? "",
+  });
 
   session = createGameSession(currentQuestions, {
     questionCount: Math.min(5, currentQuestions.length),
@@ -196,6 +235,7 @@ function startGame(): void {
   streak = 0;
   hearts = 3;
   inputLocked = false;
+  sessionFinished = false;
 
   app.innerHTML = `
     <main class="play-screen">
@@ -209,7 +249,7 @@ function startGame(): void {
           <div><span>🏆</span><p><small>LEVEL</small><strong id="hud-level">${levelFromXp(progress.xp)}</strong></p></div>
         </div>
         <div class="hud-actions">
-          <button id="sound-button" type="button" aria-label="Matikan suara">🔊</button>
+          <button id="sound-button" type="button" aria-label="${soundEnabled ? "Matikan" : "Nyalakan"} suara">${soundEnabled ? "🔊" : "🔇"}</button>
           <button id="fullscreen-button" type="button" aria-label="Layar penuh">⛶</button>
           <button id="pause-button" type="button" aria-label="Jeda permainan">Ⅱ</button>
         </div>
@@ -264,7 +304,7 @@ function startGame(): void {
   document.querySelector<HTMLButtonElement>("#fullscreen-button")?.addEventListener("click", toggleFullscreen);
   document.querySelector<HTMLButtonElement>("#pause-button")?.addEventListener("click", pauseGame);
   document.querySelector<HTMLButtonElement>("#resume-button")?.addEventListener("click", resumeGame);
-  document.querySelector<HTMLButtonElement>("#quit-button")?.addEventListener("click", renderSetup);
+  document.querySelector<HTMLButtonElement>("#quit-button")?.addEventListener("click", quitSession);
   renderQuestion();
 }
 
@@ -277,10 +317,9 @@ function renderQuestion(): void {
   }
 
   const question = snapshot.currentQuestion;
-  savePlayerPreferences({ lastPhase: selectedPhase, lastTopic: question.topic });
   if (activeQuestionId !== question.id) {
     activeQuestionId = question.id;
-    activeChoices = shuffle(question.choices);
+    activeChoices = shuffleQuestionChoices(question);
   }
   inputLocked = false;
 
@@ -487,40 +526,54 @@ function resumeGame(): void {
   document.querySelector<HTMLButtonElement>("#pause-button")?.focus();
 }
 
-function finishGame(victory: boolean): void {
-  if (!session) return;
+function quitSession(): void {
+  if (!session) {
+    renderSetup();
+    return;
+  }
+  const snapshot = session.getSnapshot();
+  if (snapshot.attempts.length > 0 && !window.confirm("Keluar dari sesi? Progres sesi yang sedang berjalan tidak akan disimpan.")) {
+    return;
+  }
   clearTimer();
+  session.finish();
+  session = null;
+  renderSetup();
+}
+
+function finishGame(victory: boolean): void {
+  if (!session || sessionFinished) return;
+  sessionFinished = true;
+  clearTimer();
+  session.finish();
   progress.sessions += 1;
   saveProgress();
   const result = session.getResult();
-  const accuracy = Math.round(result.accuracy * 100);
-  const missedIds = new Set(result.attempts.filter((attempt) => !attempt.correct).map((attempt) => attempt.questionId));
-  const review = currentQuestions.filter((question) => missedIds.has(question.id));
+  const report = createSessionReport(result, currentQuestions);
+  const playerGreeting = playerNickname ? `, ${escapeHtml(playerNickname)}` : "";
 
   app.innerHTML = `
     <main class="result-screen">
       <div class="result-card">
         <p class="result-eyebrow">${victory ? "MISI SELESAI" : "LATIHAN SELESAI"}</p>
         <div class="result-icon">${victory ? "🏆" : "🌱"}</div>
-        <h1>${victory ? "Panahmu tepat sasaran!" : "Kemampuanmu terus tumbuh!"}</h1>
+        <h1>${victory ? `Panahmu tepat sasaran${playerGreeting}!` : `Kemampuanmu terus tumbuh${playerGreeting}!`}</h1>
         <p>${victory ? "Semua konsep pada sesi ini sudah kamu kuasai." : "Coba lagi dengan mode Santai untuk menguasai sasaran yang tersisa."}</p>
 
-        <div class="result-stats">
-          <div><span>AKURASI</span><strong>${accuracy}%</strong></div>
-          <div><span>DIKUASAI</span><strong>${result.masteredQuestions}/${result.targetQuestions}</strong></div>
-          <div><span>STREAK TERBAIK</span><strong>${progress.bestStreak}</strong></div>
-          <div><span>TOTAL XP</span><strong>${progress.xp.toLocaleString("id-ID")}</strong></div>
-        </div>
+        ${renderSessionReport(report)}
 
-        ${review.length > 0 ? `
-          <details class="review-panel">
-            <summary>Lihat pembahasan (${review.length})</summary>
-            ${review.map((question) => `<article><strong>${escapeHtml(question.prompt)}</strong><p>${escapeHtml(question.explanation)}</p></article>`).join("")}
-          </details>
-        ` : '<p class="perfect-note">✨ Tidak ada konsep yang perlu diulang pada sesi ini.</p>'}
+        <section class="game-rewards" aria-labelledby="game-rewards-title">
+          <h2 id="game-rewards-title">Progres permainan</h2>
+          <div>
+            <p><span>TOTAL XP</span><strong>${progress.xp.toLocaleString("id-ID")}</strong></p>
+            <p><span>TOTAL KOIN</span><strong>${progress.coins.toLocaleString("id-ID")}</strong></p>
+            <p><span>STREAK TERBAIK</span><strong>${progress.bestStreak}</strong></p>
+          </div>
+        </section>
 
         <div class="result-actions">
-          <button class="play-again-button" type="button">Main lagi</button>
+          <button class="play-again-button retry-session-button" type="button">Ulangi materi</button>
+          <button class="change-material-button" type="button">Ganti materi</button>
           <a href="${portalUrl}">Kembali ke semua game</a>
         </div>
         <p class="result-legal">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
@@ -528,7 +581,8 @@ function finishGame(victory: boolean): void {
     </main>
   `;
 
-  document.querySelector<HTMLButtonElement>(".play-again-button")?.addEventListener("click", renderSetup);
+  document.querySelector<HTMLButtonElement>(".retry-session-button")?.addEventListener("click", startGame);
+  document.querySelector<HTMLButtonElement>(".change-material-button")?.addEventListener("click", renderSetup);
 }
 
 function updateHud(): void {

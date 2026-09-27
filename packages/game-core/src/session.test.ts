@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { mathQuestions } from "@gezy-games/question-bank";
-import { createGameSession } from "./session";
+import { createGameSession, selectQuestions, shuffleQuestionChoices } from "./session";
 
 const fixedRandom = (): number => 0.99;
 
@@ -75,5 +75,46 @@ describe("createGameSession", () => {
     if (!correctAnswer) throw new Error("Jawaban benar tidak ditemukan.");
     session.submitAnswer(correctAnswer);
     assert.notEqual(session.getSnapshot().currentQuestion?.id, firstId);
+  });
+
+  it("memilih soal berdasarkan fase dan topik", () => {
+    const selected = selectQuestions(mathQuestions, { phase: "A", topic: "Penjumlahan" });
+
+    assert.equal(selected.length, 2);
+    assert.ok(selected.every((question) => question.phase === "A" && question.topic === "Penjumlahan"));
+  });
+
+  it("mengacak pilihan tanpa mengubah soal atau kunci jawaban", () => {
+    const question = mathQuestions[0];
+    if (!question) throw new Error("Fixture soal tidak ditemukan.");
+    const originalChoices = [...question.choices];
+
+    const shuffled = shuffleQuestionChoices(question, () => 0);
+
+    assert.notDeepEqual(shuffled, originalChoices);
+    assert.deepEqual([...shuffled].sort(), [...originalChoices].sort());
+    assert.ok(shuffled.includes(question.correctAnswer));
+    assert.deepEqual(question.choices, originalChoices);
+  });
+
+  it("menghitung durasi aktif tanpa waktu jeda", () => {
+    let timestamp = 1_000;
+    const session = createGameSession(
+      mathQuestions.slice(0, 1),
+      { questionCount: 1 },
+      fixedRandom,
+      () => timestamp,
+    );
+
+    timestamp = 4_000;
+    session.pause();
+    timestamp = 9_000;
+    assert.equal(session.getSnapshot().elapsedMs, 3_000);
+    session.resume();
+    timestamp = 11_000;
+    session.finish();
+
+    assert.equal(session.getResult().elapsedMs, 5_000);
+    assert.equal(session.getResult().unansweredQuestions, 1);
   });
 });
