@@ -1,8 +1,8 @@
 # Audit QA platform — Gezy Games
 
 **Tanggal:** 28 September 2026
-**Build yang diuji:** `7662aff`
-**Platform version:** `1.2.0`
+**Build yang diuji:** `PENDING_RELEASE_COMMIT`
+**Platform version:** `1.3.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -72,21 +72,29 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Setiap lokasi menampilkan petunjuk sebelum soal, lalu membuka peti dan memberi XP/koin saat jawaban benar.
 - Progres peti, koin, dan lokasi terbuka tersimpan lokal; interaksi pilihan memakai sentuh atau tombol 1–3 tanpa drag panjang.
 
+## Math Battle vertical slice
+
+- Kartu Math Battle muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, kartu petarung menampilkan HP pemain/lawan, energi, dan indikator giliran tanpa overflow.
+- Jawaban benar mengurangi HP lawan dan menambah energi; jawaban salah memberi serangan ringan serta pembahasan tanpa game over.
+- Lawan awal dapat dikalahkan melalui empat ronde dan laporan duel menampilkan achievement, statistik, serta progres belajar.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:
 
 | Aplikasi           | JavaScript |      CSS | Gzip JavaScript | Gzip CSS |
 | ------------------ | ---------: | -------: | --------------: | -------: |
-| Portal             |   13.70 kB | 17.87 kB |         4.73 kB |  5.26 kB |
-| Math Archer        |   44.19 kB | 23.62 kB |        13.17 kB |  6.18 kB |
-| Math Adventure     |   43.29 kB | 19.41 kB |        12.73 kB |  5.02 kB |
-| Science Lab        |   16.39 kB | 15.71 kB |         5.73 kB |  4.31 kB |
-| Math Castle        |   40.29 kB | 18.52 kB |        12.10 kB |  5.05 kB |
-| Math Space Mission |   40.52 kB | 18.88 kB |        12.22 kB |  5.09 kB |
-| Quiz Runner        |   39.88 kB | 18.15 kB |        12.05 kB |  5.00 kB |
-| Puzzle Quest       |   45.74 kB | 20.53 kB |        13.67 kB |  5.60 kB |
+| Portal             |   13.94 kB | 17.87 kB |         4.75 kB |  5.26 kB |
+| Math Archer        |   44.19 kB | 23.62 kB |        13.10 kB |  6.17 kB |
+| Math Adventure     |   43.29 kB | 19.41 kB |        12.66 kB |  5.02 kB |
+| Science Lab        |   16.39 kB | 15.71 kB |         5.72 kB |  4.31 kB |
+| Math Castle        |   40.29 kB | 18.52 kB |        12.01 kB |  5.06 kB |
+| Math Space Mission |   40.52 kB | 18.88 kB |        12.13 kB |  5.10 kB |
+| Quiz Runner        |   39.88 kB | 18.15 kB |        11.96 kB |  5.01 kB |
+| Puzzle Quest       |   45.74 kB | 20.53 kB |        13.58 kB |  5.62 kB |
 | Treasure Hunt      |   43.12 kB | 20.73 kB |        12.81 kB |  5.58 kB |
+| Math Battle        |   40.66 kB | 17.45 kB |        12.22 kB |  4.89 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 

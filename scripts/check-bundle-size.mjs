@@ -119,6 +119,20 @@ const budgets = [
     raw: 65,
     gzip: 18,
   },
+  {
+    label: "Math Battle JavaScript",
+    directory: "dist/math-battle/assets",
+    extension: ".js",
+    raw: 95,
+    gzip: 25,
+  },
+  {
+    label: "Math Battle CSS",
+    directory: "dist/math-battle/assets",
+    extension: ".css",
+    raw: 65,
+    gzip: 18,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

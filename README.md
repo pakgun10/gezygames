@@ -12,6 +12,7 @@ Brief game aktif:
 - [Quiz Runner](./docs/games/quiz-runner.md)
 - [Puzzle Quest](./docs/games/puzzle-quest.md)
 - [Treasure Hunt](./docs/games/treasure-hunt.md)
+- [Math Battle](./docs/games/math-battle.md)
 - [Kebijakan versioning](./docs/VERSIONING.md)
 
 Math Adventure sudah memiliki vertical slice Fase D pada `/math-adventure/` dengan alur Pantai → Hutan → boss.
@@ -21,6 +22,7 @@ Math Space Mission sudah memiliki vertical slice perjalanan tiga planet pada `/m
 Quiz Runner sudah memiliki vertical slice lintasan empat jalur pada `/quiz-runner/`.
 Puzzle Quest sudah memiliki vertical slice susun langkah dan pasangkan pasangan pada `/puzzle-quest/`.
 Treasure Hunt sudah memiliki vertical slice peta tiga lokasi pada `/treasure-hunt/`.
+Math Battle sudah memiliki vertical slice duel bergiliran pada `/math-battle/`.
 
 Dokumen fondasi:
 

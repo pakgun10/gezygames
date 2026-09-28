@@ -531,14 +531,16 @@ Kembangkan eksplorasi peta untuk menemukan petunjuk dan peti soal lintas mata pe
 **Prioritas:** P2  
 **Depends on:** GZG-024, GZG-012
 
+**Status:** Selesai — 28 September 2026
+
 Buat duel bergiliran yang mengubah jawaban menjadi serangan, pertahanan, dan pemulihan.
 
 **Acceptance criteria**
 
-- [ ] Giliran pemain dan lawan terlihat jelas.
-- [ ] Jawaban benar mengubah statistik duel secara bermakna.
-- [ ] Kesalahan memberi petunjuk tanpa langsung mengakhiri sesi santai.
-- [ ] Boss atau lawan awal dapat dikalahkan dan hasilnya dilaporkan.
+- [x] Giliran pemain dan lawan terlihat jelas.
+- [x] Jawaban benar mengubah statistik duel secara bermakna.
+- [x] Kesalahan memberi petunjuk tanpa langsung mengakhiri sesi santai.
+- [x] Boss atau lawan awal dapat dikalahkan dan hasilnya dilaporkan.
 
 ### GZG-030 — Bangun vertical slice Train of Knowledge
 

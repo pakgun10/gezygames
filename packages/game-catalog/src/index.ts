@@ -109,7 +109,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Bangun serangan dan pertahanan dengan memecahkan soal matematika.",
     icon: "⚔️",
     theme: "battle",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "train-of-knowledge",
