@@ -1,7 +1,7 @@
 # Audit QA platform — Gezy Games
 
 **Tanggal:** 28 September 2026
-**Build yang diuji:** `PENDING_RELEASE_COMMIT`
+**Build yang diuji:** `7662aff`
 **Platform version:** `1.2.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
