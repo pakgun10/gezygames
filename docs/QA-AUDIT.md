@@ -113,7 +113,7 @@ Ukuran output Vite dari build produksi:
 | Treasure Hunt      |   43.12 kB | 20.73 kB |        12.81 kB |  5.58 kB |
 | Math Battle        |   40.66 kB | 17.45 kB |        12.22 kB |  4.89 kB |
 | Train of Knowledge |   43.21 kB | 20.42 kB |        12.90 kB |  5.58 kB |
-| Build the City     |   43.47 kB | 20.29 kB |        13.08 kB |  5.58 kB |
+| Build the City     |   43.47 kB | 20.29 kB |        12.98 kB |  5.58 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
