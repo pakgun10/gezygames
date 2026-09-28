@@ -1,7 +1,7 @@
 # Audit QA awal — Math Archer
 
 **Tanggal:** 27 September 2026  
-**Build yang diuji:** `e8f20e2`
+**Build yang diuji:** `0b00b58`
 **Platform version:** `1.0.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
@@ -9,7 +9,7 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 
 ## Cakupan yang lulus
 
-- Pipeline VPS: lint, format check, typecheck, 19 unit test, validasi 50 soal untuk lima fase, build portal/game, dan `nginx -t`.
+- Pipeline VPS: lint, format check, typecheck, 20 unit test, validasi 50 soal untuk lima fase, build portal/game, dan `nginx -t`.
 - Portal produksi: judul, footer legal, tautan Math Archer, dan pembukaan game.
 - Math Archer produksi pada viewport 390×844 dengan touch: setup, mulai sesi, tiga sasaran, tombol audio, pesan saat audio dimatikan, layout dua kolom, tanpa overflow, dan tanpa error JavaScript.
 - Math Archer produksi pada desktop 1280×800: setup menuju arena dan kontrol HUD.
@@ -63,13 +63,13 @@ Ukuran output Vite dari build produksi:
 
 | Aplikasi           | JavaScript |      CSS | Gzip JavaScript | Gzip CSS |
 | ------------------ | ---------: | -------: | --------------: | -------: |
-| Portal             |   13.29 kB | 18.20 kB |         4.64 kB |  5.40 kB |
-| Math Archer        |   44.91 kB | 23.78 kB |        13.43 kB |  6.30 kB |
-| Math Adventure     |   43.20 kB | 19.32 kB |        12.68 kB |  4.99 kB |
-| Science Lab        |   16.31 kB | 15.62 kB |         5.68 kB |  4.27 kB |
-| Math Castle        |   40.20 kB | 18.43 kB |        12.05 kB |  5.02 kB |
-| Math Space Mission |   40.43 kB | 18.79 kB |        12.18 kB |  5.06 kB |
-| Quiz Runner        |   39.79 kB | 18.06 kB |        12.00 kB |  4.97 kB |
+| Portal             |   13.70 kB | 17.87 kB |         4.73 kB |  5.26 kB |
+| Math Archer        |   44.19 kB | 23.62 kB |        13.17 kB |  6.18 kB |
+| Math Adventure     |   43.29 kB | 19.41 kB |        12.73 kB |  5.02 kB |
+| Science Lab        |   16.39 kB | 15.71 kB |         5.73 kB |  4.31 kB |
+| Math Castle        |   40.29 kB | 18.52 kB |        12.10 kB |  5.05 kB |
+| Math Space Mission |   40.52 kB | 18.88 kB |        12.22 kB |  5.09 kB |
+| Quiz Runner        |   39.88 kB | 18.15 kB |        12.05 kB |  5.00 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
