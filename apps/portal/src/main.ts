@@ -26,7 +26,8 @@ const gameCard = (game: GameCatalogItem): string => {
     game.slug === "puzzle-quest" ||
     game.slug === "treasure-hunt" ||
     game.slug === "math-battle" ||
-    game.slug === "train-of-knowledge";
+    game.slug === "train-of-knowledge" ||
+    game.slug === "build-the-city";
   const statusLabel = isDeveloping ? "Sedang dibuat" : "Segera hadir";
   const devPort =
     game.slug === "math-adventure"
@@ -47,7 +48,9 @@ const gameCard = (game: GameCatalogItem): string => {
                     ? "5182"
                     : game.slug === "train-of-knowledge"
                       ? "5183"
-                      : "5174";
+                      : game.slug === "build-the-city"
+                        ? "5184"
+                        : "5174";
   const playableHref = import.meta.env.DEV
     ? `http://localhost:${devPort}/${game.slug}/`
     : `/${game.slug}/`;
@@ -70,7 +73,9 @@ const gameCard = (game: GameCatalogItem): string => {
                     ? "Mainkan vertical slice"
                     : game.slug === "train-of-knowledge"
                       ? "Mainkan vertical slice"
-                      : "Mainkan versi awal";
+                      : game.slug === "build-the-city"
+                        ? "Mainkan vertical slice"
+                        : "Mainkan versi awal";
   const action = isPlayable
     ? `<a class="card-action card-action--play" href="${playableHref}" aria-label="Mainkan ${game.name}">${playableLabel} <span aria-hidden="true">→</span></a>`
     : `<button class="card-action" type="button" disabled aria-label="${game.name}: ${statusLabel}">${statusLabel}</button>`;

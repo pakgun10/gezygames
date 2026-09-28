@@ -567,12 +567,14 @@ Rancang perjalanan stasiun yang menambah gerbong setelah pemain menjawab pertany
 
 Gunakan hasil hitungan sebagai anggaran untuk membangun fasilitas kota.
 
+**Status:** Selesai — 28 September 2026
+
 **Acceptance criteria**
 
-- [ ] Pemain memilih pembangunan dari anggaran yang terlihat.
-- [ ] Setiap bangunan terkait konsep matematika dan punya dampak visual.
-- [ ] Sistem mencegah saldo negatif tanpa penjelasan.
-- [ ] Vertical slice memiliki minimal empat bangunan dan kondisi kota selesai.
+- [x] Pemain memilih pembangunan dari anggaran yang terlihat.
+- [x] Setiap bangunan terkait konsep matematika dan punya dampak visual.
+- [x] Sistem mencegah saldo negatif tanpa penjelasan.
+- [x] Vertical slice memiliki minimal empat bangunan dan kondisi kota selesai.
 
 ### GZG-032 — Bangun vertical slice Dragon Quiz
 

@@ -147,6 +147,20 @@ const budgets = [
     raw: 65,
     gzip: 18,
   },
+  {
+    label: "Build the City JavaScript",
+    directory: "dist/build-the-city/assets",
+    extension: ".js",
+    raw: 95,
+    gzip: 25,
+  },
+  {
+    label: "Build the City CSS",
+    directory: "dist/build-the-city/assets",
+    extension: ".css",
+    raw: 65,
+    gzip: 18,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;
