@@ -1,8 +1,8 @@
 # Audit QA platform — Gezy Games
 
 **Tanggal:** 28 September 2026
-**Build yang diuji:** `91a10df`
-**Platform version:** `1.4.0`
+**Build yang diuji:** `ea9291f`
+**Platform version:** `1.5.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -88,6 +88,14 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Setelah Stasiun Pelabuhan selesai, Stasiun Hutan terbuka. Rute, stasiun terbuka, dan jumlah gerbong tersimpan di localStorage dan tetap terbaca setelah refresh.
 - Smoke test lokal sentuh pada 390×844 menyelesaikan satu stasiun, memeriksa unlock, refresh, tanpa overflow, dan tanpa error JavaScript.
 
+## Build the City vertical slice
+
+- Kartu Build the City muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, rencana kota menampilkan empat fasilitas dengan biaya dan saldo anggaran yang terlihat.
+- Sekolah, pasar, taman, dan pabrik memakai topik matematika berbeda; bangunan selesai mengubah visual fasilitas dan membuka pilihan berikutnya.
+- Jawaban benar memberi 💰25 serta XP. Tombol pembangunan menjadi nonaktif saat saldo belum mencukupi dan menjelaskan kebutuhan anggaran.
+- Saldo, bangunan selesai, dan jalur pembangunan tersimpan di localStorage; kondisi kota selesai tercapai setelah empat bangunan dibangun.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:
@@ -105,10 +113,11 @@ Ukuran output Vite dari build produksi:
 | Treasure Hunt      |   43.12 kB | 20.73 kB |        12.81 kB |  5.58 kB |
 | Math Battle        |   40.66 kB | 17.45 kB |        12.22 kB |  4.89 kB |
 | Train of Knowledge |   43.21 kB | 20.42 kB |        12.90 kB |  5.58 kB |
+| Build the City     |   43.47 kB | 20.29 kB |        13.08 kB |  5.58 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
-Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip; Treasure Hunt, Math Battle, dan Train of Knowledge maksimal 95 kB JavaScript/65 kB CSS raw dan 25 kB/18 kB gzip.
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip; Treasure Hunt, Math Battle, Train of Knowledge, dan Build the City maksimal 95 kB JavaScript/65 kB CSS raw dan 25 kB/18 kB gzip.
 
 ## Pekerjaan lanjutan
 
