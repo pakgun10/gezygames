@@ -37,7 +37,7 @@ describe("game shell markup", () => {
   });
 
   it("menampilkan versi platform pada footer", () => {
-    assert.equal(PLATFORM_VERSION, "1.0.0");
-    assert.match(renderPlatformVersion(), /Version : 1\.0\.0/);
+    assert.equal(PLATFORM_VERSION, "1.1.0");
+    assert.match(renderPlatformVersion(), /Version : 1\.1\.0/);
   });
 });

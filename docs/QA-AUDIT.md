@@ -1,8 +1,8 @@
 # Audit QA awal — Math Archer
 
 **Tanggal:** 27 September 2026  
-**Build yang diuji:** `0b00b58`
-**Platform version:** `1.0.0`
+**Build yang diuji:** `PENDING_RELEASE_COMMIT`
+**Platform version:** `1.1.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -57,6 +57,14 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Jawaban benar membuat pelari melaju dan menambah progres, sedangkan jawaban salah memicu rintangan, feedback, dan remedial.
 - Satu lintasan dapat diselesaikan sampai laporan hasil tanpa error aplikasi.
 
+## Puzzle Quest vertical slice
+
+- Kartu Puzzle Quest muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, setup fase/materi dan ruang teka-teki tampil tanpa overflow.
+- Mode **susun langkah** menerima kepingan melalui sentuh atau keyboard dan memvalidasi urutannya.
+- Mode **pasangkan pasangan** memakai dua ketukan, sehingga tidak bergantung pada drag panjang di layar kelas.
+- Kesalahan memberi kesempatan memperbaiki puzzle yang sama; sesi yang selesai menampilkan laporan, XP, koin, dan versi platform.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:
@@ -70,10 +78,11 @@ Ukuran output Vite dari build produksi:
 | Math Castle        |   40.29 kB | 18.52 kB |        12.10 kB |  5.05 kB |
 | Math Space Mission |   40.52 kB | 18.88 kB |        12.22 kB |  5.09 kB |
 | Quiz Runner        |   39.88 kB | 18.15 kB |        12.05 kB |  5.00 kB |
+| Puzzle Quest       |   45.74 kB | 20.53 kB |        13.67 kB |  5.60 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
-Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip.
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip.
 
 ## Pekerjaan lanjutan
 

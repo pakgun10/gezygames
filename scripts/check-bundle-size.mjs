@@ -91,6 +91,20 @@ const budgets = [
     raw: 45,
     gzip: 12,
   },
+  {
+    label: "Puzzle Quest JavaScript",
+    directory: "dist/puzzle-quest/assets",
+    extension: ".js",
+    raw: 90,
+    gzip: 24,
+  },
+  {
+    label: "Puzzle Quest CSS",
+    directory: "dist/puzzle-quest/assets",
+    extension: ".css",
+    raw: 50,
+    gzip: 14,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;

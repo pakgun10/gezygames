@@ -10,6 +10,7 @@ Brief game aktif:
 - [Math Castle](./docs/games/math-castle.md)
 - [Math Space Mission](./docs/games/math-space-mission.md)
 - [Quiz Runner](./docs/games/quiz-runner.md)
+- [Puzzle Quest](./docs/games/puzzle-quest.md)
 - [Kebijakan versioning](./docs/VERSIONING.md)
 
 Math Adventure sudah memiliki vertical slice Fase D pada `/math-adventure/` dengan alur Pantai → Hutan → boss.
@@ -17,6 +18,7 @@ Science Lab sudah memiliki prototipe eksperimen penyaringan air pada `/science-l
 Math Castle sudah memiliki vertical slice pertahanan kastil pada `/math-castle/`.
 Math Space Mission sudah memiliki vertical slice perjalanan tiga planet pada `/math-space-mission/`.
 Quiz Runner sudah memiliki vertical slice lintasan empat jalur pada `/quiz-runner/`.
+Puzzle Quest sudah memiliki vertical slice susun langkah dan pasangkan pasangan pada `/puzzle-quest/`.
 
 Dokumen fondasi:
 

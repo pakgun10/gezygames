@@ -85,7 +85,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Gunakan pola, bentuk, dan pecahan untuk membuka jalan berikutnya.",
     icon: "🧩",
     theme: "puzzle",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "treasure-hunt",

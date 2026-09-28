@@ -497,14 +497,16 @@ Uji pilihan jawaban sambil bergerak melewati jalur rintangan.
 **Prioritas:** P1  
 **Depends on:** GZG-010, GZG-012
 
+**Status:** Selesai — 28 September 2026
+
 Jadikan operasi, pola, dan representasi matematika sebagai kepingan puzzle yang membuka ruangan.
 
 **Acceptance criteria**
 
-- [ ] Pemain menyusun atau memasangkan kepingan, bukan hanya memilih teks.
-- [ ] Puzzle dapat diulang setelah kesalahan tanpa kehilangan progres.
-- [ ] Minimal dua tipe puzzle dan satu pintu akhir tersedia.
-- [ ] Konten dan validasi puzzle terdokumentasi untuk fase berbeda.
+- [x] Pemain menyusun atau memasangkan kepingan, bukan hanya memilih teks.
+- [x] Puzzle dapat diulang setelah kesalahan tanpa kehilangan progres.
+- [x] Minimal dua tipe puzzle dan satu pintu akhir tersedia.
+- [x] Konten dan validasi puzzle terdokumentasi untuk fase berbeda.
 
 ### GZG-028 — Bangun vertical slice Treasure Hunt
 
