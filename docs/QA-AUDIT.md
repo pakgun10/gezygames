@@ -1,7 +1,7 @@
-# Audit QA awal — Math Archer
+# Audit QA platform — Gezy Games
 
-**Tanggal:** 27 September 2026  
-**Build yang diuji:** `PENDING_RELEASE_COMMIT`
+**Tanggal:** 28 September 2026
+**Build yang diuji:** `7f85587`
 **Platform version:** `1.1.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
