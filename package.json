@@ -1,6 +1,6 @@
 {
   "name": "gezy-games",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n portal,archer,adventure,science,castle,space,runner,puzzle -c green,yellow,cyan,magenta,blue,white,red,gray \"npm run dev:portal\" \"npm run dev:archer\" \"npm run dev:adventure\" \"npm run dev:science\" \"npm run dev:castle\" \"npm run dev:space\" \"npm run dev:runner\" \"npm run dev:puzzle\"",
+    "dev": "concurrently -n portal,archer,adventure,science,castle,space,runner,puzzle,treasure -c green,yellow,cyan,magenta,blue,white,red,gray,bgBlue \"npm run dev:portal\" \"npm run dev:archer\" \"npm run dev:adventure\" \"npm run dev:science\" \"npm run dev:castle\" \"npm run dev:space\" \"npm run dev:runner\" \"npm run dev:puzzle\" \"npm run dev:treasure\"",
     "dev:portal": "npm --workspace @gezy-games/portal run dev -- --port 5173",
     "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
     "dev:adventure": "npm --workspace @gezy-games/math-adventure run dev -- --port 5175",
@@ -17,7 +17,8 @@
     "dev:space": "npm --workspace @gezy-games/math-space-mission run dev -- --port 5178",
     "dev:runner": "npm --workspace @gezy-games/quiz-runner run dev -- --port 5179",
     "dev:puzzle": "npm --workspace @gezy-games/puzzle-quest run dev -- --port 5180",
-    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm --workspace @gezy-games/math-adventure run build && npm --workspace @gezy-games/science-lab run build && npm --workspace @gezy-games/math-castle run build && npm --workspace @gezy-games/math-space-mission run build && npm --workspace @gezy-games/quiz-runner run build && npm --workspace @gezy-games/puzzle-quest run build && npm run check:bundle",
+    "dev:treasure": "npm --workspace @gezy-games/treasure-hunt run dev -- --port 5181",
+    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm --workspace @gezy-games/math-adventure run build && npm --workspace @gezy-games/science-lab run build && npm --workspace @gezy-games/math-castle run build && npm --workspace @gezy-games/math-space-mission run build && npm --workspace @gezy-games/quiz-runner run build && npm --workspace @gezy-games/puzzle-quest run build && npm --workspace @gezy-games/treasure-hunt run build && npm run check:bundle",
     "preview": "vite preview --outDir dist",
     "lint": "eslint .",
     "format": "prettier --write .",

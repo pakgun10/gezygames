@@ -97,7 +97,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Ikuti petunjuk, temukan soal, dan buka peti di pulau misterius.",
     icon: "🗺️",
     theme: "treasure",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "math-battle",

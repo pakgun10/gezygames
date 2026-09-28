@@ -514,14 +514,16 @@ Jadikan operasi, pola, dan representasi matematika sebagai kepingan puzzle yang 
 **Prioritas:** P2  
 **Depends on:** GZG-022
 
+**Status:** Selesai — 28 September 2026
+
 Kembangkan eksplorasi peta untuk menemukan petunjuk dan peti soal lintas mata pelajaran.
 
 **Acceptance criteria**
 
-- [ ] Peta memiliki minimal tiga lokasi dan jalur yang terbuka bertahap.
-- [ ] Petunjuk mengarahkan pemain ke soal dengan konteks yang jelas.
-- [ ] Peti, koin, dan progres misi tersimpan lokal.
-- [ ] Mode sentuh tidak bergantung pada drag panjang.
+- [x] Peta memiliki minimal tiga lokasi dan jalur yang terbuka bertahap.
+- [x] Petunjuk mengarahkan pemain ke soal dengan konteks yang jelas.
+- [x] Peti, koin, dan progres misi tersimpan lokal.
+- [x] Mode sentuh tidak bergantung pada drag panjang.
 
 ### GZG-029 — Bangun vertical slice Math Battle
 

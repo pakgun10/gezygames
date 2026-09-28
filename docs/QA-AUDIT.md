@@ -1,8 +1,8 @@
 # Audit QA platform — Gezy Games
 
 **Tanggal:** 28 September 2026
-**Build yang diuji:** `7f85587`
-**Platform version:** `1.1.0`
+**Build yang diuji:** `PENDING_RELEASE_COMMIT`
+**Platform version:** `1.2.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -65,6 +65,13 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Mode **pasangkan pasangan** memakai dua ketukan, sehingga tidak bergantung pada drag panjang di layar kelas.
 - Kesalahan memberi kesempatan memperbaiki puzzle yang sama; sesi yang selesai menampilkan laporan, XP, koin, dan versi platform.
 
+## Treasure Hunt vertical slice
+
+- Kartu Treasure Hunt muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, peta menampilkan tiga lokasi dan mengunci jalur berikutnya sampai peti sebelumnya ditemukan.
+- Setiap lokasi menampilkan petunjuk sebelum soal, lalu membuka peti dan memberi XP/koin saat jawaban benar.
+- Progres peti, koin, dan lokasi terbuka tersimpan lokal; interaksi pilihan memakai sentuh atau tombol 1–3 tanpa drag panjang.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:
@@ -79,10 +86,11 @@ Ukuran output Vite dari build produksi:
 | Math Space Mission |   40.52 kB | 18.88 kB |        12.22 kB |  5.09 kB |
 | Quiz Runner        |   39.88 kB | 18.15 kB |        12.05 kB |  5.00 kB |
 | Puzzle Quest       |   45.74 kB | 20.53 kB |        13.67 kB |  5.60 kB |
+| Treasure Hunt      |   43.12 kB | 20.73 kB |        12.81 kB |  5.58 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
-Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip.
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip; Treasure Hunt maksimal 95 kB JavaScript/65 kB CSS raw dan 25 kB/18 kB gzip.
 
 ## Pekerjaan lanjutan
 

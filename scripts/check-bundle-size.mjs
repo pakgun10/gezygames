@@ -105,6 +105,20 @@ const budgets = [
     raw: 50,
     gzip: 14,
   },
+  {
+    label: "Treasure Hunt JavaScript",
+    directory: "dist/treasure-hunt/assets",
+    extension: ".js",
+    raw: 95,
+    gzip: 25,
+  },
+  {
+    label: "Treasure Hunt CSS",
+    directory: "dist/treasure-hunt/assets",
+    extension: ".css",
+    raw: 65,
+    gzip: 18,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;
