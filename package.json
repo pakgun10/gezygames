@@ -1,6 +1,6 @@
 {
   "name": "gezy-games",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "workspaces": [
@@ -8,7 +8,7 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "concurrently -n portal,archer,adventure,science,castle,space,runner,puzzle,treasure,battle -c green,yellow,cyan,magenta,blue,white,red,gray,bgBlue,bgMagenta \"npm run dev:portal\" \"npm run dev:archer\" \"npm run dev:adventure\" \"npm run dev:science\" \"npm run dev:castle\" \"npm run dev:space\" \"npm run dev:runner\" \"npm run dev:puzzle\" \"npm run dev:treasure\" \"npm run dev:battle\"",
+    "dev": "concurrently -n portal,archer,adventure,science,castle,space,runner,puzzle,treasure,battle,train -c green,yellow,cyan,magenta,blue,white,red,gray,bgBlue,bgMagenta,bgGreen \"npm run dev:portal\" \"npm run dev:archer\" \"npm run dev:adventure\" \"npm run dev:science\" \"npm run dev:castle\" \"npm run dev:space\" \"npm run dev:runner\" \"npm run dev:puzzle\" \"npm run dev:treasure\" \"npm run dev:battle\" \"npm run dev:train\"",
     "dev:portal": "npm --workspace @gezy-games/portal run dev -- --port 5173",
     "dev:archer": "npm --workspace @gezy-games/math-archer run dev -- --port 5174",
     "dev:adventure": "npm --workspace @gezy-games/math-adventure run dev -- --port 5175",
@@ -19,7 +19,8 @@
     "dev:puzzle": "npm --workspace @gezy-games/puzzle-quest run dev -- --port 5180",
     "dev:treasure": "npm --workspace @gezy-games/treasure-hunt run dev -- --port 5181",
     "dev:battle": "npm --workspace @gezy-games/math-battle run dev -- --port 5182",
-    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm --workspace @gezy-games/math-adventure run build && npm --workspace @gezy-games/science-lab run build && npm --workspace @gezy-games/math-castle run build && npm --workspace @gezy-games/math-space-mission run build && npm --workspace @gezy-games/quiz-runner run build && npm --workspace @gezy-games/puzzle-quest run build && npm --workspace @gezy-games/treasure-hunt run build && npm --workspace @gezy-games/math-battle run build && npm run check:bundle",
+    "dev:train": "npm --workspace @gezy-games/train-of-knowledge run dev -- --port 5183",
+    "build": "npm run validate:content && npm --workspace @gezy-games/portal run build && npm --workspace @gezy-games/math-archer run build && npm --workspace @gezy-games/math-adventure run build && npm --workspace @gezy-games/science-lab run build && npm --workspace @gezy-games/math-castle run build && npm --workspace @gezy-games/math-space-mission run build && npm --workspace @gezy-games/quiz-runner run build && npm --workspace @gezy-games/puzzle-quest run build && npm --workspace @gezy-games/treasure-hunt run build && npm --workspace @gezy-games/math-battle run build && npm --workspace @gezy-games/train-of-knowledge run build && npm run check:bundle",
     "preview": "vite preview --outDir dist",
     "lint": "eslint .",
     "format": "prettier --write .",

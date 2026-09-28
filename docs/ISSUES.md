@@ -550,12 +550,14 @@ Buat duel bergiliran yang mengubah jawaban menjadi serangan, pertahanan, dan pem
 
 Rancang perjalanan stasiun yang menambah gerbong setelah pemain menjawab pertanyaan.
 
+**Status:** Selesai — 28 September 2026
+
 **Acceptance criteria**
 
-- [ ] Minimal tiga stasiun memiliki tema dan tujuan belajar berbeda.
-- [ ] Jawaban benar menambah gerbong atau membuka stasiun berikutnya.
-- [ ] Pemain mengetahui alasan jawaban melalui feedback.
-- [ ] Progres perjalanan dapat dilanjutkan setelah refresh.
+- [x] Minimal tiga stasiun memiliki tema dan tujuan belajar berbeda.
+- [x] Jawaban benar menambah gerbong atau membuka stasiun berikutnya.
+- [x] Pemain mengetahui alasan jawaban melalui feedback.
+- [x] Progres perjalanan dapat dilanjutkan setelah refresh.
 
 ### GZG-031 — Bangun vertical slice Build the City
 

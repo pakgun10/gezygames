@@ -121,7 +121,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Jawab pertanyaan untuk menambah gerbong dan mencapai stasiun baru.",
     icon: "🚂",
     theme: "train",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "math-adventure",
