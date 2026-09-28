@@ -480,14 +480,16 @@ Gunakan jawaban benar untuk mengisi bahan bakar pesawat dan membuka planet berik
 **Prioritas:** P1  
 **Depends on:** GZG-015, GZG-017
 
+**Status:** Selesai — 28 September 2026
+
 Uji pilihan jawaban sambil bergerak melewati jalur rintangan.
 
 **Acceptance criteria**
 
-- [ ] Pemain memilih jalur melalui sentuh, mouse, dan keyboard.
-- [ ] Posisi karakter, jawaban, dan feedback terbaca pada layar kecil.
-- [ ] Kecepatan dan hukuman kesalahan memiliki mode ramah belajar.
-- [ ] Satu lintasan dapat diselesaikan dan menghasilkan laporan.
+- [x] Pemain memilih jalur melalui sentuh, mouse, dan keyboard.
+- [x] Posisi karakter, jawaban, dan feedback terbaca pada layar kecil.
+- [x] Kecepatan dan hukuman kesalahan memiliki mode ramah belajar.
+- [x] Satu lintasan dapat diselesaikan dan menghasilkan laporan.
 
 ### GZG-027 — Bangun vertical slice Puzzle Quest
 

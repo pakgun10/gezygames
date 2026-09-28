@@ -28,6 +28,7 @@ curl -fsSI https://games.gezytech.web.id/math-adventure/
 curl -fsSI https://games.gezytech.web.id/science-lab/
 curl -fsSI https://games.gezytech.web.id/math-castle/
 curl -fsSI https://games.gezytech.web.id/math-space-mission/
+curl -fsSI https://games.gezytech.web.id/quiz-runner/
 sudo systemctl is-active nginx
 ```
 

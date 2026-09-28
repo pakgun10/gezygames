@@ -1,0 +1,23 @@
+{
+  "name": "@gezy-games/quiz-runner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@gezy-games/design-system": "*",
+    "@gezy-games/game-core": "*",
+    "@gezy-games/game-shell": "*",
+    "@gezy-games/progress": "*",
+    "@gezy-games/question-bank": "*",
+    "@gezy-games/session-report": "*"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^8.0.0"
+  }
+}

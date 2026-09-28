@@ -61,7 +61,7 @@ export const games: readonly GameCatalogItem[] = [
     description: "Pilih jalur jawaban yang tepat sambil berlari menuju garis akhir.",
     icon: "🏃",
     theme: "runner",
-    status: "planned",
+    status: "in-development",
   },
   {
     slug: "math-archer",

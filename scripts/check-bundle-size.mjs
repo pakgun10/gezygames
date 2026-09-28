@@ -77,6 +77,20 @@ const budgets = [
     raw: 45,
     gzip: 12,
   },
+  {
+    label: "Quiz Runner JavaScript",
+    directory: "dist/quiz-runner/assets",
+    extension: ".js",
+    raw: 85,
+    gzip: 22,
+  },
+  {
+    label: "Quiz Runner CSS",
+    directory: "dist/quiz-runner/assets",
+    extension: ".css",
+    raw: 45,
+    gzip: 12,
+  },
 ];
 
 const formatSize = (bytes) => `${(bytes / 1024).toFixed(2)} kB`;
