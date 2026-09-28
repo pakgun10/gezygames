@@ -1,8 +1,8 @@
 # Audit QA platform — Gezy Games
 
 **Tanggal:** 28 September 2026
-**Build yang diuji:** `818964d`
-**Platform version:** `1.3.0`
+**Build yang diuji:** `91a10df`
+**Platform version:** `1.4.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.
@@ -79,6 +79,15 @@ Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. 
 - Jawaban benar mengurangi HP lawan dan menambah energi; jawaban salah memberi serangan ringan serta pembahasan tanpa game over.
 - Lawan awal dapat dikalahkan melalui empat ronde dan laporan duel menampilkan achievement, statistik, serta progres belajar.
 
+## Train of Knowledge vertical slice
+
+- Kartu Train of Knowledge muncul sebagai **Mainkan vertical slice** dari portal.
+- Pada viewport 390×844, rute menampilkan tiga stasiun dengan jalur kedua dan ketiga terkunci sampai sesi sebelumnya selesai.
+- Stasiun Pelabuhan, Hutan, dan Puncak memakai tema serta topik belajar berbeda sesuai fase Fondasi–D.
+- Jawaban benar menambah gerbong, XP, koin, dan streak; jawaban salah menampilkan pembahasan serta kesempatan mencoba kembali.
+- Setelah Stasiun Pelabuhan selesai, Stasiun Hutan terbuka. Rute, stasiun terbuka, dan jumlah gerbong tersimpan di localStorage dan tetap terbaca setelah refresh.
+- Smoke test lokal sentuh pada 390×844 menyelesaikan satu stasiun, memeriksa unlock, refresh, tanpa overflow, dan tanpa error JavaScript.
+
 ## Pemeriksaan performa awal
 
 Ukuran output Vite dari build produksi:
@@ -95,10 +104,11 @@ Ukuran output Vite dari build produksi:
 | Puzzle Quest       |   45.74 kB | 20.53 kB |        13.58 kB |  5.62 kB |
 | Treasure Hunt      |   43.12 kB | 20.73 kB |        12.81 kB |  5.58 kB |
 | Math Battle        |   40.66 kB | 17.45 kB |        12.22 kB |  4.89 kB |
+| Train of Knowledge |   43.21 kB | 20.42 kB |        12.90 kB |  5.58 kB |
 
 MVP belum membundel gambar atau audio pihak ketiga. Cue permainan memakai Web Audio API dan pembacaan soal memakai Speech Synthesis API; kegagalan keduanya ditangani sebagai fitur tambahan sehingga sesi tetap berjalan.
 
-Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip; Treasure Hunt maksimal 95 kB JavaScript/65 kB CSS raw dan 25 kB/18 kB gzip.
+Build menjalankan `npm run check:bundle` dengan budget awal: portal maksimal 25 kB JavaScript/30 kB CSS raw dan 8 kB/8 kB gzip; Math Archer maksimal 70 kB JavaScript/35 kB CSS raw dan 18 kB/10 kB gzip; Math Adventure maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Science Lab maksimal 75 kB JavaScript/45 kB CSS raw dan 20 kB/12 kB gzip; Math Castle, Math Space Mission, dan Quiz Runner maksimal 85 kB JavaScript/45 kB CSS raw dan 22 kB/12 kB gzip; Puzzle Quest maksimal 90 kB JavaScript/50 kB CSS raw dan 24 kB/14 kB gzip; Treasure Hunt, Math Battle, dan Train of Knowledge maksimal 95 kB JavaScript/65 kB CSS raw dan 25 kB/18 kB gzip.
 
 ## Pekerjaan lanjutan
 
