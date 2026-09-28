@@ -1,5 +1,6 @@
 import "@gezy-games/design-system/base.css";
 import { games, subjects, type GameCatalogItem, type SubjectFilter } from "@gezy-games/catalog";
+import { renderPlatformVersion } from "@gezy-games/game-shell";
 import { clearPlayerProgress, loadGameProgress, loadPlayerProgress } from "@gezy-games/progress";
 import "./styles.css";
 
@@ -219,6 +220,7 @@ app.innerHTML = `
     </div>
     <div class="footer-legal">
       <p>© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
+      <p>${renderPlatformVersion()}</p>
       ${hasSavedProgress ? '<button class="reset-progress" type="button">Hapus progres lokal</button>' : ""}
     </div>
   </footer>

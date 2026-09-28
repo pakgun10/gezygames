@@ -9,6 +9,7 @@ import {
 import {
   createDialogController,
   renderGameHud,
+  renderPlatformVersion,
   renderSessionDialogs,
   type DialogController,
 } from "@gezy-games/game-shell";
@@ -199,7 +200,7 @@ function renderSetup(): void {
           <p class="setup-note">${Math.min(5, availableQuestionCount)} sasaran · sekitar 3 menit · sentuh atau tombol 1–3</p>
         </section>
       </div>
-      <footer class="legal-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
+      <footer class="legal-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</footer>
     </main>
   `;
 
@@ -682,7 +683,7 @@ function finishGame(victory: boolean): void {
           <button class="change-material-button" type="button">Ganti materi</button>
           <a href="${portalUrl}">Kembali ke semua game</a>
         </div>
-        <p class="result-legal">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
+        <p class="result-legal">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</p>
       </div>
     </main>
   `;

@@ -2,6 +2,7 @@
 
 **Tanggal:** 27 September 2026  
 **Build yang diuji:** `e8f20e2`
+**Platform version:** `1.0.0`
 **URL produksi:** `https://games.gezytech.web.id`
 
 Dokumen ini mencatat pemeriksaan otomatis dan smoke test yang sudah dijalankan. Uji perangkat fisik dan sesi bersama siswa tetap menjadi pekerjaan GZG-018 dan GZG-021.

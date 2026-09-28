@@ -581,6 +581,23 @@ Satukan pertanyaan lintas mapel dalam boss battle naga dengan beberapa fase sera
 - [ ] Kesalahan memicu pembahasan atau pemulihan, bukan hukuman keras.
 - [ ] Kemenangan menghasilkan laporan, achievement, dan progres yang tersimpan.
 
+### GZG-033 — Terapkan versioning platform dan label release
+
+**Tipe:** Platform/ops
+**Prioritas:** P1
+**Depends on:** GZG-020
+
+**Status:** Selesai — 28 September 2026
+
+Gunakan Semantic Versioning untuk release production dan tampilkan versi platform pada footer seluruh aplikasi.
+
+**Acceptance criteria**
+
+- [x] Aturan MAJOR, MINOR, dan PATCH terdokumentasi dengan contoh.
+- [x] Versi baseline production ditetapkan sebagai `1.0.0`.
+- [x] Portal dan seluruh game membaca label versi dari sumber bersama.
+- [x] Prosedur membedakan versi release dari versi skema storage dan versi paket internal.
+
 ## Issue template yang disarankan
 
 Gunakan format ini saat backlog dipindahkan ke GitHub:

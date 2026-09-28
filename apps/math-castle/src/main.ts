@@ -10,6 +10,7 @@ import {
   createDialogController,
   renderGameHud,
   renderSessionDialogs,
+  renderPlatformVersion,
   type DialogController,
 } from "@gezy-games/game-shell";
 import {
@@ -121,7 +122,7 @@ function renderSetup(): void {
           <p class="castle-note">${Math.min(5, availableQuestionCount)} gelombang · sekitar 3 menit · tombol 1–4</p>
         </section>
       </div>
-      <footer class="castle-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
+      <footer class="castle-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</footer>
     </main>
   `;
 
@@ -368,7 +369,7 @@ function finishGame(victory: boolean): void {
   const report = createSessionReport(session.getResult(), currentQuestions);
   const greeting = playerNickname ? `, ${escapeHtml(playerNickname)}` : "";
   destroyShellDialogs();
-  app.innerHTML = `<main class="castle-result" aria-labelledby="castle-result-title"><div class="castle-result-card"><p class="castle-result-eyebrow">${victory ? "KASTIL SELAMAT" : "LATIHAN SELESAI"}</p><div class="castle-result-icon">${victory ? "🏰" : "🧱"}</div><h1 id="castle-result-title" tabindex="-1">${victory ? `Kastilmu bertahan${greeting}!` : `Penjagamu terus belajar${greeting}!`}</h1><p>${victory ? "Semua gelombang berhasil dihalau dengan strategi matematika." : "Ulangi latihan untuk memperkuat konsep yang masih menantang."}</p>${renderSessionReport(report)}<section class="castle-rewards"><h2>Progres permainan</h2><div><p><span>TOTAL XP</span><strong>${progress.xp.toLocaleString("id-ID")}</strong></p><p><span>TOTAL KOIN</span><strong>${progress.coins.toLocaleString("id-ID")}</strong></p><p><span>STREAK TERBAIK</span><strong>${progress.bestStreak}</strong></p></div></section><div class="castle-result-actions"><button class="castle-primary-button" id="retry-castle" type="button">Pertahankan lagi</button><button class="castle-secondary-button" id="change-castle" type="button">Ganti fase</button><a href="${portalUrl}">Kembali ke semua game</a></div><p class="castle-result-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p></div></main>`;
+  app.innerHTML = `<main class="castle-result" aria-labelledby="castle-result-title"><div class="castle-result-card"><p class="castle-result-eyebrow">${victory ? "KASTIL SELAMAT" : "LATIHAN SELESAI"}</p><div class="castle-result-icon">${victory ? "🏰" : "🧱"}</div><h1 id="castle-result-title" tabindex="-1">${victory ? `Kastilmu bertahan${greeting}!` : `Penjagamu terus belajar${greeting}!`}</h1><p>${victory ? "Semua gelombang berhasil dihalau dengan strategi matematika." : "Ulangi latihan untuk memperkuat konsep yang masih menantang."}</p>${renderSessionReport(report)}<section class="castle-rewards"><h2>Progres permainan</h2><div><p><span>TOTAL XP</span><strong>${progress.xp.toLocaleString("id-ID")}</strong></p><p><span>TOTAL KOIN</span><strong>${progress.coins.toLocaleString("id-ID")}</strong></p><p><span>STREAK TERBAIK</span><strong>${progress.bestStreak}</strong></p></div></section><div class="castle-result-actions"><button class="castle-primary-button" id="retry-castle" type="button">Pertahankan lagi</button><button class="castle-secondary-button" id="change-castle" type="button">Ganti fase</button><a href="${portalUrl}">Kembali ke semua game</a></div><p class="castle-result-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</p></div></main>`;
   document.querySelector<HTMLButtonElement>("#retry-castle")?.addEventListener("click", startGame);
   document
     .querySelector<HTMLButtonElement>("#change-castle")

@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { renderGameHud, renderSessionDialogs } from "./index";
+import {
+  PLATFORM_VERSION,
+  renderGameHud,
+  renderPlatformVersion,
+  renderSessionDialogs,
+} from "./index";
 
 describe("game shell markup", () => {
   it("menampilkan statistik dan seluruh aksi HUD", () => {
@@ -29,5 +34,10 @@ describe("game shell markup", () => {
     assert.match(markup, /Jeda cepat/);
     assert.match(markup, /Archer &lt;uji&gt;/);
     assert.doesNotMatch(markup, /Archer <uji>/);
+  });
+
+  it("menampilkan versi platform pada footer", () => {
+    assert.equal(PLATFORM_VERSION, "1.0.0");
+    assert.match(renderPlatformVersion(), /Version : 1\.0\.0/);
   });
 });

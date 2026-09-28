@@ -35,6 +35,12 @@ export interface DialogControllerOptions {
   readonly onEscape?: () => void;
 }
 
+/** Versi rilis platform yang ditampilkan pada footer seluruh aplikasi. */
+export const PLATFORM_VERSION = "1.0.0";
+
+export const renderPlatformVersion = (): string =>
+  `<span class="platform-version">Version : ${PLATFORM_VERSION}</span>`;
+
 const escapeHtml = (value: string): string =>
   value
     .replaceAll("&", "&amp;")

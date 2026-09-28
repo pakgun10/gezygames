@@ -9,6 +9,7 @@ import {
 import {
   createDialogController,
   renderGameHud,
+  renderPlatformVersion,
   renderSessionDialogs,
   type DialogController,
 } from "@gezy-games/game-shell";
@@ -248,7 +249,7 @@ function renderSetup(): void {
           <p class="adventure-note">Sekitar 8–12 menit · dapat dimainkan dengan sentuh, mouse, atau keyboard</p>
         </section>
       </div>
-      <footer class="adventure-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
+      <footer class="adventure-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</footer>
     </main>
   `;
   document.querySelector<HTMLInputElement>("#adventure-nickname")?.focus();
@@ -616,7 +617,7 @@ function finishMission(): void {
           <button class="adventure-secondary-button" id="retry-mission-button" type="button">Ulangi misi</button>
           <a class="adventure-secondary-button" href="${portalUrl}">Semua game</a>
         </div>
-        <p class="adventure-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</p>
+        <p class="adventure-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</p>
       </div>
     </main>
   `;

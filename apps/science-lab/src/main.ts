@@ -4,6 +4,7 @@ import {
   createDialogController,
   renderGameHud,
   renderSessionDialogs,
+  renderPlatformVersion,
   type DialogController,
 } from "@gezy-games/game-shell";
 import {
@@ -107,7 +108,7 @@ function renderSetup(): void {
           <p class="lab-note">Sekitar 3 menit · tanpa jawaban pilihan ganda</p>
         </section>
       </div>
-      <footer class="lab-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved.</footer>
+      <footer class="lab-footer">© 2026 GezyTech Platform, Games Multi Fase ala Pak Gun. All rights reserved. ${renderPlatformVersion()}</footer>
     </main>
   `;
   document.querySelector<HTMLInputElement>("#lab-nickname")?.focus();
